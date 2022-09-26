@@ -50,7 +50,7 @@ Alex's demo begins at 1:13:19 and shows the actuated control plane in action wit
 
 ## Get started
 
-* [Register for the pilot](registration.md)
+* [Register for the pilot](register.md)
 * [Read the FAQ](faq.md)
 * [Enable actuated for an existing repository](test-build.md)
 

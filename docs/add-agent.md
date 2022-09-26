@@ -9,7 +9,7 @@ actuated is split into three parts:
 We look after 2 and 3 which means you just have to set up one or more agent to get started.
 
 !!! info "Have you registered your organisation yet?"
-    Before you can add an agent, you or your GitHub organisation admin will need to install the: [Actuated GitHub App](registration.md).
+    Before you can add an agent, you or your GitHub organisation admin will need to install the: [Actuated GitHub App](register.md).
 
 ## Decide where to run your agent
 
