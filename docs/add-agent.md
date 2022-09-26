@@ -37,6 +37,10 @@ There are three places you can run an agent:
 
     This option may not have the raw speed and throughput of a dedicated, bare-metal host, but keeps costs low and is convenient for getting started.
 
+## Review the End User License Agreement (EULA)
+
+Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actuated/blob/master/EULA.md) before registering your organisation with the actuated GitHub App, or starting the agent binary on one of your hosts.
+
 ## Set up your first agent
 
 1. Download the agent binary
@@ -65,5 +69,8 @@ There are three places you can run an agent:
 
     `./start.sh 35`
 
+## Next steps
+
 You can now add your first build, to run on your actuated agent.
 
+[Start a build on your agent](test-build.md)

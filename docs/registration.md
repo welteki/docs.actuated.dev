@@ -15,6 +15,9 @@ Would you like to try out Actuated for your team and GitHub Organisation?
 
 Once accepted into the pilot program, your an administrator from your GitHub organisation will need to install our GitHub App. GitHub Apps provide fine-grained access controls for third parties integrating with GitHub. [Learn more about GitHub Apps](https://docs.github.com/en/developers/apps/getting-started-with-apps/about-apps)
 
+!!! info "End User License Agreement (EULA)"
+    Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actuated/blob/master/EULA.md) before registering your organisation with the actuated GitHub App.
+
 ## Next steps
 
 Then you'll [Add your first agent](add-agent.md)

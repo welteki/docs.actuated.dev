@@ -18,6 +18,17 @@ You'll need either: a bare-metal host (your own, AWS i3.metal or Equinix Metal),
 
 actuated is primarily for software engineering teams who are currently using GitHub Actions. A GitHub organisation is required for installation, and runners are attached to individual repositories as required, to execute builds.
 
+## What kind of access is required to my GitHub Organisation?
+
+GitHub Apps provide fine-grained privileges, access control, and event data.
+
+Actuated integrates with GitHub using a [GitHub App](https://docs.github.com/en/developers/apps/getting-started-with-apps/about-apps).
+
+The actuated GitHub App will request:
+
+* Administrative access to add/remove GitHub Actions Runners to individual repositories
+* Events via webhook for Workflow Runs and Workflow Jobs
+
 ## How many builds does a single actuated VM run?
 
 A VM can run at most one build, then it will be destroyed.
@@ -32,7 +43,9 @@ Yes, actuated is built to run on both Intel/AMD and ARM64 hosts, check your subs
 
 ## Is Actuated free and open-source?
 
-Actuated is commercial software developed by OpenFaaS Ltd. A subscription will be required to use the software. 
+Actuated is commercial software developed by OpenFaaS Ltd. A subscription will be required to use the software.
+
+[Read the End User License Agreement (EULA)](https://github.com/self-actuated/actuated/blob/master/EULA.md)
 
 The website and documentation are available on GitHub and we plan to release some open source tools in the future for actuated customers. 
 
