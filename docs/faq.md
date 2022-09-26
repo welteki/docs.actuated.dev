@@ -18,6 +18,14 @@ You'll need either: a bare-metal host (your own, AWS i3.metal or Equinix Metal),
 
 actuated is primarily for software engineering teams who are currently using GitHub Actions. A GitHub organisation is required for installation, and runners are attached to individual repositories as required, to execute builds.
 
+## When will Jenkins, GitLab CI, BitBucket Pipeline Runners, Drone or Azure DevOps be supported?
+
+For the pilot phase, we're targeting GitHub Actions because it has fine-grained access controls and the ability to schedule exactly one build to a runner. Most other CI systems expect self-hosted runners to perform many builds, and we believe that to be an anti-pattern. We'll offer advice to teams accepted into the pilot who wish to evaluate GitHub Actions or migrate away from another solution.
+
+That said, if you're using these tools within your organisation, and face similar issues or concerns, we'd like to hear from you.
+
+Feel free to contact us at: [contact@openfaas.com](mailto:contact@openfaas.com)
+
 ## What kind of access is required to my GitHub Organisation?
 
 GitHub Apps provide fine-grained privileges, access control, and event data.
@@ -31,7 +39,9 @@ The actuated GitHub App will request:
 
 ## How many builds does a single actuated VM run?
 
-A VM can run at most one build, then it will be destroyed.
+When a VM starts up, it runs the GitHub Actions Runner ephemeral (aka one-shot) mode, so in can run at most one build. After that, the VM will be destroyed.
+
+See also: [GitHub: ephemeral runners](https://docs.github.com/en/actions/hosting-your-own-runners/autoscaling-with-self-hosted-runners#using-ephemeral-runners-for-autoscaling)
 
 ## What's in the VM image and how is it built?
 
