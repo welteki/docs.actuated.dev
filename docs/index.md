@@ -34,11 +34,11 @@ Just enable automated updates on your server then install the actuated agent. We
 
 And actuated will run your jobs efficiently across a fleet of hosts, or a single machine. They each need to be either bare-metal hosts (think: AWS, Equinix Metal, etc), or support nested virtualization (a feature available on GCP and DigitalOcean)
 
-Conceptual overview
+**Conceptual overview**
 
-![Conceptual flow of starting up a new ephemeral runner](images/conceptual.png)
+![Conceptual flow of starting up a new ephemeral runner](images/conceptual-high-level.png)
 
-> MicroVMs are started only when needed, and are registered with GitHub by the official GitHub Actions runner, using a short-lived registration token. The token is encrypted with the agent's public key before it's sent over the wire using HTTPS. This ensures a token for a runner cannot end up in the wrong hands.
+> Actuated will schedule builds across your fleet of agents, packing them in densely, without overloading the host. Each microVM will run just one build before being destroyed to ensure a clean, isolated build. 
 
 Learn more in the [FAQ](faq.md)
 
