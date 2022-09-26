@@ -34,11 +34,11 @@ And actuated will run your jobs efficiently across a fleet of hosts, or a single
 > 
 > Something that activates or impels itself; specifically (a machine, device, etc.) that causes itself to begin operating automatically, self-activating.
 
-Watch a live demo:
+## Watch a live demo
+
+Alex's demo begins at 1:13:19 and shows the actuated control plane in action with a self-hosted agent running builds. It was recorded as part of a educational webinar Alex gave with Richard Case from Weaveworks on Firecracker and how microVMs compare to containers and legacy VMs.
 
 [![Live stream](https://img.youtube.com/vi/CYCsa5e2vqg/hqdefault.jpg)](https://www.youtube.com/watch?v=CYCsa5e2vqg?t=4399)
-
-> Alex's demo begins at 1:13:19
 
 ## Register for the pilot
 
@@ -46,57 +46,11 @@ Would you like to try out Actuated for your team and GitHub Organisation?
 
 [Register for the Actuated Pilot - managed self-hosted runners](https://forms.gle/8XmpTTWXbZwWkfqT6)
 
-## Q&A
+## Got questions, comments or suggestions?
 
-Q: How does it work?
+actuated is trademark of OpenFaaS Ltd.
 
-Actuated has three main parts:
+You can contact the team working on actuated via email at: [contact@openfaas.com](mailto:contact@openfaas.com)
 
-1. an agent which knows how to run VMs, you install this on your hosts
-2. a VM image and Kernel that we build which has everything required for Docker, KinD and K3s
-3. a multi-tenant control plane that we host, which tells your agents to start VMs and register a runner on your GitHub organisation
+Follow [@selfactuated on Twitter](https://twitter.com/selfactuated) for updates and announcements
 
-The multi-tenant control plane is run and operated by OpenFaaS Ltd.
-
-Q: What kind of machines do I need for the agent?
-
-You'll need either: a bare-metal host (your own, AWS i3.metal or Equinix Metal), or a VM that supports nested virtualisation such as those provided by GCP and DigitalOcean.
-
-Q: Who is actuated for?
-
-actuated is primarily for software engineering teams who are currently using GitHub Actions. A GitHub organisation is required for installation, and runners are attached to individual repositories as required, to execute builds.
-
-Q: How many builds does a single actuated VM run?
-
-A VM can run at most one build, then it will be destroyed.
-
-Q: What's in the VM image and how is it built?
-
-The VM image will be publicly available in a container registry for you to explore.
-
-Q: Is Actuated going to be free and open-source?
-
-Actuated is commercial software developed by OpenFaaS Ltd. A subscription will be required to use the software. 
-
-The website and documentation are available on GitHub and we plan to release some open source tools in the future for actuated customers. 
-
-Q: Is there a risk that we could get "locked-in" to actuated?
-
-No, you can move back to hosted runners, or self-managed self-hosted runners at any time, but you may run into the problems that actuated sets out to solve.
-
-Q: Why is the brand called "actuated" and "selfactuated"?
-
-The name of the software is actuated, in some places "actuated" is not available, and we liked "selfactuated" more than "actuatedhq" or "actuatedio" because it refers to the hybrid experience of self-hosted runners.
-
-Q: What do I need to change in my workflows?
-
-Very little, just add / set `runs-on: actuated`
-
-Q: Do you have any samples for Docker, KinD, K3s or OpenFaaS?
-
-Glad you asked:
-
-* [AMD64/Intel examples](https://github.com/actuated-samples)
-* [AARCH64 / Graviton / Raspberry Pi 4 examples](https://github.com/actuated-samples-arm64)
-
-Follow [@selfactuated on Twitter](https://twitter.com/selfactuated)

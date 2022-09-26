@@ -33,7 +33,9 @@ theme:
   features:
     - navigation.tracking
     - navigation.sections
-    - toc.integrate
+    # - toc.integrate
+    - navigation.expand
+
     # - navigation.instant
 
   include_search_page: false
@@ -86,6 +88,12 @@ markdown_extensions:
 nav:
   - Overview:
       - Introduction: index.md
+      - FAQ: faq.md
+  - Onboarding:
+      - Register your GitHub Organisation: registration.md
+      - Add your first agent: add-agent.md
+      - Start a build on your agent: test-build.md
+
 
 # extra:
 #   analytics:
