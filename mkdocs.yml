@@ -88,6 +88,7 @@ markdown_extensions:
 nav:
   - Overview:
       - Introduction: index.md
+      - Roadmap: roadmap.md
       - FAQ: faq.md
   - Onboarding:
       - Register your GitHub Organisation: registration.md

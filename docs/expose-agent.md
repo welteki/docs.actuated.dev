@@ -6,6 +6,9 @@ The agent serves HTTP traffic on `127.0.0.1:8081` which is not accessible over t
 
     If you're running the agent on a host with a public IP, simply install Caddy server and create a DNS A record. That way you can get a TLS certificate for the agent's endpoint.
 
+    ![Accessing the agent's endpoint using Caddy](images/direct-caddy.png)
+    > Pictured: Accessing the agent's control plane using Caddy to enable TLS encryption (HTTPS)
+
     We are looking to automate this process and make it easier, but for now, a bit of bash should do what you need.
 
     Edit the first two lines "export" and save the file as `install-caddy.sh`:
@@ -57,7 +60,12 @@ The agent serves HTTP traffic on `127.0.0.1:8081` which is not accessible over t
 
     You'll need a way to expose the client to the Internet, which includes HTTPS encryption and a sufficient amount of connections/traffic per minute.
 
-    [Inlets](https://inlets.dev/) provides a quick and secure solution here.
+    [Inlets](https://inlets.dev/) provides a quick and secure solution here. It is available on a [monthly subscription](https://openfaas.gumroad.com/l/inlets-subscription) where the "Personal (Essentials)" is usually reserved for personal use only. However, pilot customers can pick this cheaper option for their agent's tunnel.
+
+    ![Accessing the agent's private endpoint using an inlets-pro tunnel](images/direct-caddy.png)
+    > Pictured: Accessing the agent's private endpoint using an inlets-pro tunnel
+
+    Reach out to us if you'd like us to host a tunnel server for you, alternatively, you can follow the instructions below to set up your own.
 
     The [inletsctl](https://github.com/inlets/inletsctl) tool will create a HTTPS tunnel server with you on your favourite cloud with a HTTPS certificate obtained from Let's Encrypt.
     
@@ -87,6 +95,16 @@ The agent serves HTTP traffic on `127.0.0.1:8081` which is not accessible over t
         --upstream http://127.0.0.1:8081
     ```
 
-    [Inlets is available on a monthly subscription](https://openfaas.gumroad.com/l/inlets-subscription), the "Personal (Essentials)" license can be used for actuated pilot customers.
+    You can generate a systemd service (so that inlets restarts upon disconnection, and reboot) by adding `--generate=systemd > inlets.service` and running:
+
+    ```bash
+    sudo cp inlets.service /etc/systemd/system/
+    sudo systemctl daemon-reload
+    sudo systemctl enable inlets.service
+    sudo systemctl start inlets
+
+    # Check status with:
+    sudo systemctl status inlets
+    ```
 
     Your agent's endpoint URL is going to be: `https://$AGENT_DOMAIN`.

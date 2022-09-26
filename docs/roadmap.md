@@ -1,5 +1,11 @@
 # Roadmap
 
+Actuated is in a pilot phase, running builds for participating customers. The core product is functioning and we are dogfooding it for OpenFaaS and inlets.
+
+Our goal with the pilot is to prove that there's market fit for a solution like this, and if so, we'll invest more time in automation, user experience, agent autoscaling, dashboards and other polish.
+
+For now, if you're interested in participating and giving feedback, we believe actuated already solves pain at this stage.
+
 Shipped
 
 * [x] Firecracker MicroVM support for runners
@@ -14,5 +20,6 @@ Coming soon:
 
 * [ ] Subscription plans delivered by Gumroad
 * [ ] CLI or Portal for reviewing connected agents
+* [ ] Consider alternatives to having the control plane talk to agents over HTTPS, such as long polling and the agent connecting to the control plane.
 * [ ] Automated agent installation and bootstrap
 * [ ] Autoscaling for agents
