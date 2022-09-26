@@ -57,17 +57,19 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
 2. Generate an RSA keypair
 
-    `agent -genkey`
+    `agent keygen`
 
-    This should write: `key` and `key.pub` to the current working folder. Share `key.pub` with us via email or Slack. This key is not confidential, so don't worry about sharing it.
+    The RSA keypair is only used to encrypt messages and cannot. RSA keys are sometimes used with SSH sessions, however actuated does not use any form of SSH at this time.
+    
+    This will should write: `key_rsa` and `key_rsa.pub` to the current working folder. Share `key_rsa.pub` with us via email or Slack. This key is not confidential, so don't worry about sharing it.
 
-    Keep the `key` private, we will not ask you to share this file with us.
+    Keep the `key_rsa` private, we will not ask you to share this file with us.
 
 3. Install the agent's authentication token.
 
     Once you've sent us your public key, we will send you an authentication token for your agent. This will be used for any HTTP requests to the agent's endpoint (below).
 
-    Save the token as: `$HOME/agent-token.txt`
+    Save the token as: `$HOME/.actuated/TOKEN`
 
 4. Add HTTPS for the agent's endpoint
 
