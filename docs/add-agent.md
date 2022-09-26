@@ -53,6 +53,8 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
     Run the setup.sh script which will install all the required dependencies like containerd, CNI and Firecracker.
 
+    Create a folder with `mkdir -p $HOME/.actuated/` then save your Gumroad license key to `$HOME/.actuated/LICENSE`
+
 2. Generate an RSA keypair
 
     `agent -genkey`
