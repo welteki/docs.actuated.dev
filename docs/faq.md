@@ -10,6 +10,14 @@ Actuated has three main parts:
 
 The multi-tenant control plane is run and operated by OpenFaaS Ltd.
 
+![Conceptual flow of starting up a new ephemeral runner](images/conceptual.png)
+
+> The conceptual overview showing how a MicroVM is requested by the control plane.
+ 
+A short-lived token is used to register each new runner, which has been encrypted with the public key of the agent. This ensures no other agent could use the token to bootstrap a token to the wrong organisation.
+
+Learn more: [Self-hosted GitHub Actions API](https://docs.github.com/en/rest/actions/self-hosted-runners#create-a-registration-token-for-an-organization)
+
 ## What kind of machines do I need for the agent?
 
 You'll need either: a bare-metal host (your own, AWS i3.metal or Equinix Metal), or a VM that supports nested virtualisation such as those provided by GCP and DigitalOcean.

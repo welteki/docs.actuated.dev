@@ -24,15 +24,23 @@ The GitHub Actions runner has no idea how to efficiently distribute jobs across 
 
 Actuated provides a fast-booting microVM which can run Docker, Kubernetes and anything else you need, with full root on the VM, and no access to the host. Each environment is created just in time to take a build, and is removed immediately after.
 
+> What does "actuated" mean?
+> 
+> Something that activates or impels itself; specifically (a machine, device, etc.) that causes itself to begin operating automatically, self-activating.
+
 We maintain a VM image that is updated regularly, so you don't have to install SDKs, runtimes or language packs on your build machines.
 
 Just enable automated updates on your server then install the actuated agent. We'll do the rest including managing efficient allocation across your fleet of servers, and updating the CI image.
 
 And actuated will run your jobs efficiently across a fleet of hosts, or a single machine. They each need to be either bare-metal hosts (think: AWS, Equinix Metal, etc), or support nested virtualization (a feature available on GCP and DigitalOcean)
 
-> What does "actuated" mean?
-> 
-> Something that activates or impels itself; specifically (a machine, device, etc.) that causes itself to begin operating automatically, self-activating.
+Conceptual overview
+
+![Conceptual flow of starting up a new ephemeral runner](images/conceptual.png)
+
+> MicroVMs are started only when needed, and are registered with GitHub by the official GitHub Actions runner, using a short-lived registration token. The token is encrypted with the agent's public key before it's sent over the wire using HTTPS. This ensures a token for a runner cannot end up in the wrong hands.
+
+Learn more in the [FAQ](faq.md)
 
 ## Watch a live demo
 

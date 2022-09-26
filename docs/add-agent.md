@@ -63,7 +63,19 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
     Keep the `key` private, we will not ask you to share this file with us.
 
-3. Once we have your public key, we'll issue you with a token. Save it on your agent as `$HOME/agent-token.txt`
+3. Install the agent's authentication token.
+
+    Once you've sent us your public key, we will send you an authentication token for your agent. This will be used for any HTTP requests to the agent's endpoint (below).
+
+    Save the token as: `$HOME/agent-token.txt`
+
+4. Add HTTPS for the agent's endpoint
+
+    For the pilot, the agent's HTTP endpoint will need to be exposed on the Internet using a reverse proxy or an inlets tunnel. The actuated control plane will only communicate with a HTTPS endpoint to ensure properly encryption is in place.
+
+    We're considering other models for after the pilot, for instance GitHub's own API has the runner make an outbound connection and uses long-polling.
+
+    See also: [expose the agent with HTTPS](expose-agent.md)
 
 4. Start the agent
 
@@ -73,6 +85,6 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
 ## Next steps
 
-You can now add your first build, to run on your actuated agent.
+You can now start your first build and see it run on your actuated agent.
 
 [Start a build on your agent](test-build.md)
