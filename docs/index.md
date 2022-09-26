@@ -40,11 +40,11 @@ Alex's demo begins at 1:13:19 and shows the actuated control plane in action wit
 
 [![Live stream](https://img.youtube.com/vi/CYCsa5e2vqg/hqdefault.jpg)](https://www.youtube.com/watch?v=CYCsa5e2vqg?t=4399)
 
-## Register for the pilot
+## Get started
 
-Would you like to try out Actuated for your team and GitHub Organisation?
-
-[Register for the Actuated Pilot - managed self-hosted runners](https://forms.gle/8XmpTTWXbZwWkfqT6)
+* [Register for the pilot](registration.md)
+* [Read the FAQ](faq.md)
+* [Enable actuated for an existing repository](test-build.md)
 
 ## Got questions, comments or suggestions?
 
