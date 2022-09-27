@@ -81,9 +81,15 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
 4. Start the agent
 
-    The parameter for the start script includes a tag for the VM image, we are currently using version 35:
+    The parameter for the start script includes a tag for the VM image.
 
-    `./start.sh 35`
+    For Intel/AMD:
+
+    `./start.sh 34`
+
+    For ARM64:
+
+    `./start-arm64.sh 36`
 
 ## Next steps
 
