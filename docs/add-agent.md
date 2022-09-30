@@ -73,7 +73,11 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
 4. Add HTTPS for the agent's endpoint
 
-    For the pilot, the agent's HTTP endpoint will need to be exposed on the Internet using a reverse proxy or an inlets tunnel. The actuated control plane will only communicate with a HTTPS endpoint to ensure properly encryption is in place.
+    The actuated control plane will only communicate with a HTTPS endpoint to ensure properly encryption is in place. An API token is used in addition with the TLS connection for all requests.
+
+    In addition, any bootstrap tokens sent to the agent are further encrypted with the agent's public key.
+
+    For hosts with public IPs, you will need to use the built-in TLS provisioning with Let's Encrypt. For hosts behind a firewall, NAT or in a private datacenter, you can use inlets to create a secure tunnel to the agent.
 
     We're considering other models for after the pilot, for instance GitHub's own API has the runner make an outbound connection and uses long-polling.
 
