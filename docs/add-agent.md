@@ -96,3 +96,5 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 You can now start your first build and see it run on your actuated agent.
 
 [Start a build on your agent](test-build.md)
+
+See also: [Troubleshooting your agent](troubleshooting.md)
