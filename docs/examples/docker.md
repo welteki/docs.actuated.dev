@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Run a ping to Google with Docker
         run: |
-          docker run --rm -t -i alpine:latest ping -c 3 google.com
+          docker run --rm -i alpine:latest ping -c 3 google.com
 ```
 
 Build a container with Docker:
