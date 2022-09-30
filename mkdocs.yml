@@ -94,7 +94,10 @@ nav:
       - Register your GitHub Organisation: register.md
       - Add your first agent: add-agent.md
       - Start a build on your agent: test-build.md
-
+  - Examples:
+      - Kubernetes with K3s: examples/k3s.md
+      - Kubernetes with KinD: examples/kind.md
+      - Docker run/build: examples/docker.md
 
 # extra:
 #   analytics:
