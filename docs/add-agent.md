@@ -85,7 +85,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
     For Intel/AMD:
 
-    `./start.sh 34`
+    `./start.sh 35`
 
     For ARM64:
 
