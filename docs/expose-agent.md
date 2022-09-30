@@ -1,110 +1,150 @@
 ## Expose the agent's API over HTTPS
 
-The agent serves HTTP traffic on `127.0.0.1:8081` which is not accessible over the Internet. We expect most pilot customers to be using hosts with public IP addresses, so all you need to do is to install [Caddy](https://github.com/caddyserver/caddy) to get a HTTPS URL.
+The actuated agent serves HTTP, and must be accessible by the actuated control plane.
 
-1. For a host on a public cloud
+We expect most of our pilot customers to be using hosts with public IP addresses, and the combination of an API token plus TLS is a battle tested combination.
 
-    If you're running the agent on a host with a public IP, simply install Caddy server and create a DNS A record. That way you can get a TLS certificate for the agent's endpoint.
+For anyone running with private hosts, OpenFaaS Ltd's inlets product can be used to get incoming traffic over a secure tunnel
 
-    ![Accessing the agent's endpoint using Caddy](images/direct-caddy.png)
-    > Pictured: Accessing the agent's control plane using Caddy to enable TLS encryption (HTTPS)
+## For a host on a public cloud
 
-    We are looking to automate this process and make it easier, but for now, a bit of bash should do what you need.
+If you're running the agent on a host with a public IP, you can use the built-in TLS mechanism in the actuated agent to receive a certificate from Let's Encrypt, valid for 90 days. The certificate will be renewed by the actuated agent, so there are no additional administration tasks required.
 
-    Edit the first two lines "export" and save the file as `install-caddy.sh`:
-    
-    ```bash
-    export AGENT_DOMAIN=agent1.example.com
-    export LE_EMAIL=webmaster@agent1.example.com
+![Accessing the agent's endpoint built-in TLS and Let's Encrypt](images/builtin-tls.png)
+> Pictured: Accessing the agent's endpoint built-in TLS and Let's Encrypt
 
-    CADDY_VER=v2.4.3
-    arkade get --progress=false caddy -v ${CADDY_VER}
+Determine the public IP of your instance:
 
-    SUDO=sudo
-    if [ "$(id -u)" -eq 0 ]; then
-        SUDO=
-    fi
+```bash
+# curl -s http://checkip.amazonaws.com
 
-    $SUDO install -m 755 $HOME/.arkade/bin/caddy /usr/bin/caddy
+141.73.80.100
+```
 
-    $SUDO curl -fSLs https://raw.githubusercontent.com/caddyserver/dist/master/init/caddy.service --output /etc/systemd/system/caddy.service
+Now imagine that your sub-domain is `agent.example.com`, you need to create a DNS A record of `agent.example.com=141.73.80.100`, changing both the sub-domain and IP to your own.
 
-    $SUDO mkdir -p /etc/caddy
-    $SUDO mkdir -p /var/lib/caddy
-    
-    if $(id caddy >/dev/null 2>&1); then
-      echo "User caddy already exists."
-    else
-      $SUDO useradd --system --home /var/lib/caddy --shell /bin/false caddy
-    fi
+Once created, edit the start.sh file on the agent and add two flags:
 
-    $SUDO tee /etc/caddy/Caddyfile >/dev/null <<EOF
-    {
-        email "${LETSENCRYPT_EMAIL}"
-    }
-    ${AGENT_DOMAIN} {
-        reverse_proxy 127.0.0.1:8081
-    }
-    EOF
+```
+--letsencrypt-domain agent.example.com \
+--letsencrypt-email webmaster@agent.example.com
+```
 
-    $SUDO chown --recursive caddy:caddy /var/lib/caddy
-    $SUDO chown --recursive caddy:caddy /etc/caddy
+Your agent's endpoint URL is going to be: `https://agent.example.com` on port 443
 
-    $SUDO systemctl enable caddy
-    $SUDO systemctl start caddy
-    ```
+## Private hosts - on-premises, behind NAT or at home
 
-    Your agent's endpoint URL is going to be: `https://$AGENT_DOMAIN`.
+You'll need a way to expose the client to the Internet, which includes HTTPS encryption and a sufficient amount of connections/traffic per minute.
 
-2. You're running the agent on-premises, behind NAT or at home
+[Inlets](https://inlets.dev/) provides a quick and secure solution here. It is available on a [monthly subscription](https://openfaas.gumroad.com/l/inlets-subscription) where the "Personal (Essentials)" is usually reserved for personal use only. However, pilot customers can pick this cheaper option for their agent's tunnel.
 
-    You'll need a way to expose the client to the Internet, which includes HTTPS encryption and a sufficient amount of connections/traffic per minute.
+![Accessing the agent's private endpoint using an inlets-pro tunnel](images/tunnel-server.png)
+> Pictured: Accessing the agent's private endpoint using an inlets-pro tunnel
 
-    [Inlets](https://inlets.dev/) provides a quick and secure solution here. It is available on a [monthly subscription](https://openfaas.gumroad.com/l/inlets-subscription) where the "Personal (Essentials)" is usually reserved for personal use only. However, pilot customers can pick this cheaper option for their agent's tunnel.
+Reach out to us if you'd like us to host a tunnel server for you, alternatively, you can follow the instructions below to set up your own.
 
-    ![Accessing the agent's private endpoint using an inlets-pro tunnel](images/direct-caddy.png)
-    > Pictured: Accessing the agent's private endpoint using an inlets-pro tunnel
+The [inletsctl](https://github.com/inlets/inletsctl) tool will create a HTTPS tunnel server with you on your favourite cloud with a HTTPS certificate obtained from Let's Encrypt.
 
-    Reach out to us if you'd like us to host a tunnel server for you, alternatively, you can follow the instructions below to set up your own.
+```bash
+export AGENT_DOMAIN=agent1.example.com
+export LE_EMAIL=webmaster@agent1.example.com
 
-    The [inletsctl](https://github.com/inlets/inletsctl) tool will create a HTTPS tunnel server with you on your favourite cloud with a HTTPS certificate obtained from Let's Encrypt.
-    
-    ```bash
-    export AGENT_DOMAIN=agent1.example.com
-    export LE_EMAIL=webmaster@agent1.example.com
+arkade get inletsctl
+sudo mv $HOME/.arkade/bin/inletsctl /usr/local/bin/
 
-    arkade get inletsctl
-    sudo mv $HOME/.arkade/bin/inletsctl /usr/local/bin/
+inletsctl create \
+    --provider digitalocean \
+    --region lon1 \
+    --token-file $HOME/do-token \
+    --letsencrypt-email $LE_EMAIL \
+    --letsencrypt-domain $AGENT_DOMAIN
+```
 
-    inletsctl create \
-        --provider digitalocean \
-        --region lon1 \
-        --token-file $HOME/do-token \
-        --letsencrypt-email $LE_EMAIL \
-        --letsencrypt-domain $AGENT_DOMAIN
-    ```
+Note down the tunnel's wss:// URL and token.
 
-    Note down the tunnel's wss:// URL and token.
+Then run a HTTPS client to expose your agent:
 
-    Then run a HTTPS client to expose your agent:
+```bash
+inlets-pro http client \
+    --url $WSS_URL \
+    --token $TOKEN \
+    --upstream http://127.0.0.1:8081
+```
 
-    ```bash
-    inlets-pro http client \
-        --url $WSS_URL \
-        --token $TOKEN \
-        --upstream http://127.0.0.1:8081
-    ```
+You can generate a systemd service (so that inlets restarts upon disconnection, and reboot) by adding `--generate=systemd > inlets.service` and running:
 
-    You can generate a systemd service (so that inlets restarts upon disconnection, and reboot) by adding `--generate=systemd > inlets.service` and running:
+```bash
+sudo cp inlets.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable inlets.service
+sudo systemctl start inlets
 
-    ```bash
-    sudo cp inlets.service /etc/systemd/system/
-    sudo systemctl daemon-reload
-    sudo systemctl enable inlets.service
-    sudo systemctl start inlets
+# Check status with:
+sudo systemctl status inlets
+```
 
-    # Check status with:
-    sudo systemctl status inlets
-    ```
+Your agent's endpoint URL is going to be: `https://$AGENT_DOMAIN`.
 
-    Your agent's endpoint URL is going to be: `https://$AGENT_DOMAIN`.
+### Preventing the runner from accessing your local network
+
+!!! warning "Network segmentation"
+    Proper network segmentation of hosts running the actuated agent is required. This is to prevent runners from making outbound connections to other hosts on your local network. We will not accept any responsibility for your configuration.
+
+If hardware isolation is not available, iptables rules may provide an alternative for isolating the runners from your network.
+
+Imagine you were using a LAN range of `192.168.0.0/24`, with a router of `192.168.0.1`, then the following probes and tests show that the runner cannot access the host 192.168.0.101, and that nmap's scan will come up dry.
+
+We add a rule to allow access to the router, but reject packets going via TCP or UDP to any other hosts on the network.
+
+```bash
+sudo iptables --insert CNI-ADMIN \
+    --destination  192.168.0.1 --jump ACCEPT
+sudo iptables --insert CNI-ADMIN \
+    --destination  192.168.0.0/24 --jump REJECT -p tcp  --reject-with tcp-reset
+sudo iptables --insert CNI-ADMIN \
+    --destination  192.168.0.0/24 --jump REJECT -p udp --reject-with icmp-port-unreachable
+```
+
+You can test the efficacy of these rules by running nmap, mtr, ping and any other probing utilities within a GitHub workflow.
+
+```yaml
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - '*'
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  specs:
+    name: specs
+    runs-on: actuated
+    steps:
+      - uses: actions/checkout@v1
+      - name: addr
+        run: ip addr
+      - name: route
+        run: ip route
+      - name: pkgs
+        run: |
+             sudo apt-get update && \
+              sudo apt-get install traceroute mtr nmap netcat -qy
+      - name: traceroute
+        run: traceroute  192.168.0.101
+      - name: Connect to ssh
+        run: echo | nc  192.168.0.101 22
+      - name: mtr
+        run: mtr -rw  -c 1  192.168.0.101
+      - name: nmap for SSH
+        run: nmap -p 22  192.168.0.0/24
+      - name: Ping router
+        run: |
+          ping -c 1  192.168.0.1
+      - name: Ping 101
+        run: |
+          ping -c 1  192.168.0.101
+```
