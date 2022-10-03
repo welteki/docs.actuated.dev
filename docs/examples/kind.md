@@ -21,6 +21,9 @@ jobs:
   start-kind:
     runs-on: actuated
     steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 1
       - name: get arkade
         run: curl -sLS https://get.arkade.dev | sudo sh
       - name: get kind

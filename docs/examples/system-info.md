@@ -58,9 +58,6 @@ jobs:
     runs-on: actuated
     steps:
       - uses: actions/checkout@v1
-      - name: sleep
-        run: |
-          sleep 2
       - name: Check specs
         run: |
           ./specs.sh

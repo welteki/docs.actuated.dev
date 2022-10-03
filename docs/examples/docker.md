@@ -21,6 +21,9 @@ jobs:
   ping-google:
     runs-on: actuated
     steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 1
       - name: Run a ping to Google with Docker
         run: |
           docker run --rm -i alpine:latest ping -c 3 google.com
@@ -36,6 +39,9 @@ jobs:
   build-in-docker:
     runs-on: actuated
     steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 1
       - name: Build inlets-connect using Docker
         run: |
           git clone --depth=1 https://github.com/alexellis/inlets-connect
