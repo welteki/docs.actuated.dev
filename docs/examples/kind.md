@@ -9,7 +9,7 @@ Certified for:
 
 ## Try out the action on your agent
 
-Create a new file at: `.github/workspaces/build.yml` and commit it to the registry.
+Create a new file at: `.github/workspaces/build.yml` and commit it to the repository.
 
 Note that it's important to make sure Kubernetes is responsive before performing any commands like running a Pod or installing a helm chart.
 

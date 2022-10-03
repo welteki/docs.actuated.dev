@@ -39,7 +39,7 @@ echo PATH defined as:
 echo $PATH
 ```
 
-Create a new file at: `.github/workspaces/build.yml` and commit it to the registry.
+Create a new file at: `.github/workspaces/build.yml` and commit it to the repository.
 
 ```yaml
 name: CI

@@ -99,6 +99,7 @@ nav:
       - Kubernetes with K3s: examples/k3s.md
       - Kubernetes with KinD: examples/kind.md
       - Docker run/build: examples/docker.md
+      - Publish an OpenFaaS function: examples/openfaas.md
 
 # extra:
 #   analytics:
