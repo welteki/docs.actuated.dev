@@ -100,6 +100,7 @@ nav:
       - Kubernetes with KinD: examples/kind.md
       - Docker run/build: examples/docker.md
       - Publish an OpenFaaS function: examples/openfaas-publish.md
+      - Deploy a Helm chart: examples/openfaas-helm.md
 
 # extra:
 #   analytics:

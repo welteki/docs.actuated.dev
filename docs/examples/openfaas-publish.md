@@ -1,4 +1,4 @@
-*# Example: Publish an OpenFaaS function
+# Example: Publish an OpenFaaS function
 
 This example will publish an OpenFaaS function to GitHub's Container Registry (GHCR).
 

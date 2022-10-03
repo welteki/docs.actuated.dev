@@ -14,46 +14,35 @@ Create a new file at: `.github/workspaces/build.yml` and commit it to the reposi
 Note that it's important to make sure Kubernetes is responsive before performing any commands like running a Pod or installing a helm chart.
 
 ```yaml
-name: build
+name: k3sup-tester
 
 on: push
 jobs:
-  start-k3s:
+  k3sup-tester:
     runs-on: actuated
     steps:
-      - uses: actions/checkout@master
-        with:
-          fetch-depth: 1
-      - name: get arkade
-        run: curl -sLS https://get.arkade.dev | sudo sh
-      - name: get k3sup
-        run: arkade get k3sup
-      - name: get kubectl
-        run: arkade get kubectl
+      - name: Update developer tools
+        run: |
+          curl -sLS https://get.arkade.dev | sudo sh
+          arkade get \
+            kubectl \
+            k3sup@0.12.7
+          chmod +x $HOME/.arkade/bin/*
+          sudo mv $HOME/.arkade/bin/* /usr/local/bin/
       - name: Install K3s with k3sup
         run: |
           mkdir -p $HOME/.kube/
-          $HOME/.arkade/bin/k3sup install --local --local-path $HOME/.kube/config
-      - name: Wait for nodes to be ready
+          k3sup install --local --local-path $HOME/.kube/config
+      - name: Wait until nodes ready
         run: |
-          for i in {1..10};
-          do
-            $HOME/.arkade/bin/kubectl wait --for=condition=ready node --all --timeout=300s
-            retVal=$?
-            if [ "$retVal" -eq "0" ];
-            then
-              echo "Node ready"
-              break
-            fi
-            sleep 2
-          done
+          k3sup ready --quiet --kubeconfig $HOME/.kube/config --context default
       - name: Wait until CoreDNS is ready
         run: |
-          $HOME/.arkade/bin/kubectl rollout status deploy/coredns -n kube-system --timeout=300s
+          kubectl rollout status deploy/coredns -n kube-system --timeout=300s
       - name: Explore nodes
-        run: $HOME/.arkade/bin/kubectl get nodes -o wide
+        run: kubectl get nodes -o wide
       - name: Explore pods
-        run: $HOME/.arkade/bin/kubectl get pod -A -o wide
+        run: kubectl get pod -A -o wide
 ```
 
 See also: [actuated-samples/k3sup-tester](https://github.com/actuated-samples/k3sup-tester/blob/master/.github/workflows/build.yml)
