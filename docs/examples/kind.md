@@ -7,6 +7,9 @@ Certified for:
 - [x] `x86_64`
 - [x] `arm64` including Raspberry Pi 4
 
+!!! warning "Don't use a public repository"
+    Due to limitations in the design of GitHub's runner, we recommend using a private repository. Learn more in the [FAQ](/faq.md).
+
 ## Try out the action on your agent
 
 Create a new file at: `.github/workspaces/build.yml` and commit it to the repository.

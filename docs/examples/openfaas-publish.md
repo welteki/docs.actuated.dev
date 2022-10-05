@@ -14,6 +14,9 @@ Certified for:
 
 - [x] `x86_64`
 
+!!! warning "Don't use a public repository"
+    Due to limitations in the design of GitHub's runner, we recommend using a private repository. Learn more in the [FAQ](/faq.md).
+
 ## Try out the action on your agent
 
 For alexellis' repository called [alexellis/autoscaling-functions](https://github.com/alexellis/autoscaling-functions), then check out the `.github/workspaces/publish.yml` file:

@@ -4,6 +4,9 @@ Once you've [registered your GitHub organisation](register.md), and [set up your
 
 We suggest creating a test build so that you can see how everything works before moving over to an existing repository. 
 
+!!! warning "Don't use a public repository"
+    Due to limitations in the design of GitHub's runner, we recommend using a private repository. Learn more in the [FAQ](/faq.md).
+
 ## Create a test build
 
 This build will show you the specs, OS and Kernel name reported by the MicroVM.

@@ -13,6 +13,9 @@ Certified for:
 - [x] `x86_64`
 - [x] `arm64`
 
+!!! warning "Don't use a public repository"
+    Due to limitations in the design of GitHub's runner, we recommend using a private repository. Learn more in the [FAQ](/faq.md).
+
 ## Try out the action on your agent
 
 Create a new GitHub repository in your organisation.
