@@ -18,6 +18,18 @@ MicroVMs are only started when needed, and are registered with GitHub by the off
 
 Learn more: [Self-hosted GitHub Actions API](https://docs.github.com/en/rest/actions/self-hosted-runners#create-a-registration-token-for-an-organization)
 
+## Can GitHub's self-hosted runner be used on public repos?
+
+The GitHub team recommends only running their self-hosted runners on private repositories.
+
+Why?
+
+On first glance, it seems like this might be due to how most people re-use a runner, and register it to process many jobs. It may even be because a bad actor could scan the local network of the runner and attempt to gain access to other systems. Actuated and iptables can largely fix both of these issues.
+
+The challenge we discovered was that the runner requires a token to bootstrap itself, which is valid for 1 hour. With the current design of GitHub's self-hosted runner, that would allow anyone who sends a PR to obtain the runner and add malicious runners to your repo or organisation.
+
+So, can you use a self-hosted runner on a public repo? Technically it will work, but please don't do this. We hope that the GitHub will consider using short-lived tokens ~30s or limiting a token to only work once.
+
 ## What kind of machines do I need for the agent?
 
 You'll need either: a bare-metal host (your own, AWS i3.metal or Equinix Metal), or a VM that supports nested virtualisation such as those provided by GCP and DigitalOcean.
