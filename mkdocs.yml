@@ -101,6 +101,7 @@ nav:
       - Docker run/build: examples/docker.md
       - Publish an OpenFaaS function: examples/openfaas-publish.md
       - Deploy a Helm chart: examples/openfaas-helm.md
+      - Debug a job with SSH: examples/debug-ssh.md
 
 # extra:
 #   analytics:

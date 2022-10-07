@@ -4,7 +4,7 @@ Actuated brings blazingly fast, secure builds to self-hosted CI runners.
 
 ## Building containers on self-hosted runners is slow and insecure
 
-Most solutions that use containers for running Docker or Kubernetes in CI have very poor security boundaries. They require either privileged containers (root on the host), a shared Docker socket (root on the host), third-party tools which don't integrate well and still require root to mount folders, or user namespaces which come with their own limitations. We're looking squarely at you: [actions-controller-runtime](https://github.com/actions-runner-controller/actions-runner-controller), Jenkins and GitLab.
+Most solutions that use containers for running Docker or Kubernetes in CI have very poor security boundaries. They require either privileged containers (root on the host), a shared Docker socket (root on the host), third-party tools which don't integrate well and still require root to mount folders, or user namespaces which come with their own limitations. The chances are, if you use Docker or K8s in your CI, and run with: [actions-controller-runtime](https://github.com/actions-runner-controller/actions-runner-controller), Jenkins, or GitLab, then you may be compromising on security or user experience.
 
 ## Management is a nightmare
 
