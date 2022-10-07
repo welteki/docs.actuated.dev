@@ -113,9 +113,17 @@ We recommend you add your SSH key and disable login with a password.
 
 We're also considering an automated SSH gateway and a convenient CLI for actuated customers. Let us know if you'd like to try this out.
 
+## What do I need to change in my workflows?
+
+Very little, just add / set `runs-on: actuated`
+
 ## Is ARM64 supported?
 
-Yes, actuated is built to run on both Intel/AMD and ARM64 hosts, check your subscription plan to see if ARM64 is included.
+Yes, actuated is built to run on both Intel/AMD and ARM64 hosts, check your subscription plan to see if ARM64 is included. This includes a Raspberry Pi 4B, AWS Graviton, Oracle Cloud ARM instances and potentially any other ARM64 instances which support virtualisation.
+
+## Are Windows or MacOS supported?
+
+Linux is the only supported platform for actuated at this time on a AMD64 or ARM64 architecture. We may consider other operating systems in the future, feel free to reach out to us.
 
 ## Is Actuated free and open-source?
 
@@ -127,15 +135,11 @@ The website and documentation are available on GitHub and we plan to release som
 
 ## Is there a risk that we could get "locked-in" to actuated?
 
-No, you can move back to hosted runners, or self-managed self-hosted runners at any time, but you may run into the problems that actuated sets out to solve.
+No, you can move back to either hosted runners or self-managed self-hosted runners at any time. But beware that you may run into the problems that actuated sets out to solve.
 
 ## Why is the brand called "actuated" and "selfactuated"?
 
 The name of the software is actuated, in some places "actuated" is not available, and we liked "selfactuated" more than "actuatedhq" or "actuatedio" because it refers to the hybrid experience of self-hosted runners.
-
-## What do I need to change in my workflows?
-
-Very little, just add / set `runs-on: actuated`
 
 ## Where can I find example GitHub Actions for Docker, KinD, K3s or OpenFaaS?
 
