@@ -54,6 +54,16 @@ That means ARC runners can run pretty much anywhere, but actuated runners need t
 
 See also: [Where can I run my agents?](/add-agent.txt)
 
+### Doesn't Kaniko fix all this for ARC?
+
+[Kaniko](https://github.com/GoogleContainerTools/kaniko), by Google is an open source project for building containers. It's usually run as a container itself, and usually will require root privileges in order to mount the various filesystems layers required.
+
+If you're an ARC user and for various reasons, cannot migrate away to a more secure solution, Kaniko may be a step in the right direction. Google Cloud users could also create a dedicated node pool with gVisor enabled, for some additional isolation.
+
+However, it can only build containers, and still requires root, and itself is often run in Docker, so we're getting back to the same problems that actuated set out to solve.
+
+In addition, Kaniko cannot and will not help you to run that container that you've just built to validate it to run end to end tests, neither can it run a KinD cluster, or a Minikube cluster.
+
 ## Who is actuated for?
 
 actuated is primarily for software engineering teams who are currently using GitHub Actions. A GitHub organisation is required for installation, and runners are attached to individual repositories as required, to execute builds.
