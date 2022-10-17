@@ -28,26 +28,25 @@ jobs:
         with:
           fetch-depth: 1
       - name: get arkade
-        run: curl -sLS https://get.arkade.dev | sudo sh
-      - name: get kind
-        run: arkade get kind
-      - name: get kubectl
-        run: arkade get kubectl
+        uses: alexellis/setup-arkade@v1
+      - name: get kubectl and kubectl
+        uses: alexellis/arkade-get@master
+        with:
+          kubectl: latest
+          kind: latest
       - name: Install Kubernetes kind
         run: |
           mkdir -p $HOME/.kube/
-          $HOME/.arkade/bin/kind create cluster --wait 300s
+          kind create cluster --wait 300s
       - name: Wait until CoreDNS is ready
         run: |
-          $HOME/.arkade/bin/kubectl rollout status deploy/coredns -n kube-system --timeout=300s
+          kubectl rollout status deploy/coredns -n kube-system --timeout=300s
       - name: Explore nodes
-        run: $HOME/.arkade/bin/kubectl get nodes -o wide
+        run: kubectl get nodes -o wide
       - name: Explore pods
-        run: $HOME/.arkade/bin/kubectl get pod -A -o wide
+        run: kubectl get pod -A -o wide
       - name: Show kubelet logs
         run: docker exec kind-control-plane journalctl -u kubelet
 ```
-
-See also: [actuated-samples/kind-tester](https://github.com/actuated-samples/kind-tester)
 
 To run this on ARM64, just change the actuated label to `actuated-aarch64`.

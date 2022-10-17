@@ -24,14 +24,13 @@ jobs:
   k3sup-tester:
     runs-on: actuated
     steps:
-      - name: Update developer tools
-        run: |
-          curl -sLS https://get.arkade.dev | sudo sh
-          arkade get \
-            kubectl \
-            k3sup@0.12.7
-          chmod +x $HOME/.arkade/bin/*
-          sudo mv $HOME/.arkade/bin/* /usr/local/bin/
+      - name: get arkade
+        uses: alexellis/setup-arkade@v1
+      - name: get k3sup and kubectl
+        uses: alexellis/arkade-get@master
+        with:
+          kubectl: latest
+          k3sup: latest
       - name: Install K3s with k3sup
         run: |
           mkdir -p $HOME/.kube/
@@ -47,7 +46,5 @@ jobs:
       - name: Explore pods
         run: kubectl get pod -A -o wide
 ```
-
-See also: [actuated-samples/k3sup-tester](https://github.com/actuated-samples/k3sup-tester/blob/master/.github/workflows/build.yml)
 
 To run this on ARM64, just change the actuated label to `actuated-aarch64`.

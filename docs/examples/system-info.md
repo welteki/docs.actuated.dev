@@ -66,6 +66,4 @@ jobs:
           ./specs.sh
 ```
 
-See also: [actuated-samples/specs](https://github.com/actuated-samples/specs/)
-
 Note how the hostname changes every time the job is run.

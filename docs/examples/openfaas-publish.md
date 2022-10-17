@@ -86,4 +86,3 @@ jobs:
 ```
 
 If you'd like to deploy the function, check out a more comprehensive example of how to log in and deploy in [Serverless For Everyone Else](https://store.openfaas.com/l/serverless-for-everyone-else)
-

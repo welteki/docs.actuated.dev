@@ -44,15 +44,14 @@ jobs:
       - uses: actions/checkout@master
         with:
           fetch-depth: 1
-      - name: Get latest developer tools
-        run: |
-            curl -sLSf https://get.arkade.dev | sudo sh
-            arkade get \
-                faas-cli \
-                kubectl \
-                kind
-            chmod +x $HOME/.arkade/bin/*
-            sudo -E mv $HOME/.arkade/bin/* /usr/local/bin/
+      - name: get arkade
+        uses: alexellis/setup-arkade@v1
+      - name: get kubectl and kubectl
+        uses: alexellis/arkade-get@master
+        with:
+          kubectl: latest
+          kind: latest
+          faas-cli: latest
       - name: Install Kubernetes KinD
         run: |
           mkdir -p $HOME/.kube/
@@ -109,4 +108,3 @@ jobs:
 ```
 
 If you'd like to deploy the function, check out a more comprehensive example of how to log in and deploy in [Serverless For Everyone Else](https://store.openfaas.com/l/serverless-for-everyone-else)
-
