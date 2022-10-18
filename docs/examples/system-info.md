@@ -40,6 +40,9 @@ cat /etc/os-release
 
 echo PATH defined as:
 echo $PATH
+
+echo Egress IP defined as:
+curl -sLS https://checkip.amazonaws.com
 ```
 
 Create a new file at: `.github/workspaces/build.yml` and commit it to the repository.
