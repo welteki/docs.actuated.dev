@@ -37,39 +37,73 @@ There are three places you can run an agent:
 
     This option may not have the raw speed and throughput of a dedicated, bare-metal host, but keeps costs low and is convenient for getting started.
 
+The recommended Operating System for an Actuated Agent is: Ubuntu Server 22.04 or Ubuntu Server 20.04.
+
 ## Review the End User License Agreement (EULA)
 
 Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actuated/blob/master/EULA.md) before registering your organisation with the actuated GitHub App, or starting the agent binary on one of your hosts.
 
 ## Set up your first agent
 
-1. Download the agent binary
+1. Download the agent and installation script
 
-    Once you've decided where to set up your first agent, get in touch with us for a download link for the actuated agent binary.
+    Once you've decided where to set up your first agent, you'll need to download the installation package from a container registry
 
-    Transfer the agent binary over to the host along with the setup.sh script we provide.
+    Install [crane](https://github.com/google/go-containerregistry/releases), then:
 
-    Install the agent binary to `/usr/local/bin/`
+    ```bash
+    mkdir agent
+    crane export ghcr.io/openfaasltd/actuated-agent:latest | tar -xvf - -C ./agent
+    ```
+    
+    Install the agent binary to `/usr/local/bin/`:
+
+    ```bash
+    sudo mv ./agent/agent* /usr/local/bin/
+    ```
 
     Run the setup.sh script which will install all the required dependencies like containerd, CNI and Firecracker.
 
-    Create a folder with `mkdir -p $HOME/.actuated/` then save your Gumroad license key to `$HOME/.actuated/LICENSE`
+    ```bash
+    cd agent
+    sudo ./install.sh
+    ```
+
+    Create a file to store your license from Gumroad:
+
+    ```bash
+    mkdir -p ~/.actuated
+
+    # Paste the contents, hit enter, then Control + D
+    # Or edit the file with nano/vim
+    cat > $HOME/.actuated/LICENSE
+    ```
 
 2. Generate an RSA keypair
 
-    `agent keygen`
+    ```bash
+    cd ~/.actuated/
+    agent keygen
+    ```
 
     The RSA keypair is only used to encrypt messages and cannot. RSA keys are sometimes used with SSH sessions, however actuated does not use any form of SSH at this time.
     
-    This will should write: `key_rsa` and `key_rsa.pub` to the current working folder. Share `key_rsa.pub` with us via email or Slack. This key is not confidential, so don't worry about sharing it.
+    This will write: `key_rsa` and `key_rsa.pub` to the current working folder.
 
     Keep the `key_rsa` private, we will not ask you to share this file with us.
+    Share `key_rsa.pub` with us via email or Slack. This key is not confidential, so don't worry about sharing it.
 
 3. Install the agent's authentication token.
 
-    Once you've sent us your public key, we will send you an authentication token for your agent. This will be used for any HTTP requests to the agent's endpoint (below).
+    Create an API token for us to present when we send jobs to your Actuated Agent:
+    
+    ```bash
+    openssl rand -base64 32 > ~/.actuated/TOKEN
+    ```
 
-    Save the token as: `$HOME/.actuated/TOKEN`
+    Send us the contents of `~/.actuated/TOKEN`
+
+    Post-pilot, we will provide a more automated way to exchange this token.
 
 4. Add HTTPS for the agent's endpoint
 
@@ -85,15 +119,24 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
 4. Start the agent
 
-    The parameter for the start script includes a tag for the VM image.
+    For an Intel Actuated Agent, create a `start.sh` file:
 
-    For Intel/AMD:
+    ```bash
+    #!/bin/bash
 
-    `./start.sh 35`
+    echo Running Agent from: ./agent
+    DOMAIN=agent1.example.com
 
-    For ARM64:
+    sudo -E agent up \
+        --image-ref=ghcr.io/openfaasltd/actuated-ubuntu20.04:x86-64-dfb3ac12ae8d41ba00d5264e988256ce89acc9c6 \
+        --kernel-ref=ghcr.io/openfaasltd/actuated-kernel-5.10.77:x86-64-dfb3ac12ae8d41ba00d5264e988256ce89acc9c6 \
+        --letsencrypt-domain $DOMAIN \
+        --letsencrypt-email webmaster@$DOMAIN
+    ```
 
-    `./start-arm64.sh 36`
+    For ARM64 Actuated Agents, change `agent up` to `agent-arm64 up` and change the prefix of the image tags from `x86-64-` to `aarch64-`
+
+    You can also run the Actuated Agent software as a systemd unit file for automatic restarts and to start upon boot-up.
 
 ## Next steps
 
