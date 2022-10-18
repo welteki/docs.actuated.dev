@@ -62,7 +62,11 @@ This build will show you the specs, OS and Kernel name reported by the MicroVM.
     echo Kernel and OS info
     uname -a
 
+    echo OS
     cat /etc/os-release
+
+    echo Egress IP:
+    curl -s -L -S https://checkip.amazonaws.com
     ```
 
 2. Hit commit, and watch the VM boot up.
