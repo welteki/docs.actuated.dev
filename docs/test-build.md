@@ -19,25 +19,27 @@ This build will show you the specs, OS and Kernel name reported by the MicroVM.
     name: CI
 
     on:
-    pull_request:
-        branches:
-        - '*'
+        pull_request:
+            branches:
+            - '*'
     push:
         branches:
         - master
+        - main
 
     jobs:
-        specs:
-            name: specs
-            runs-on: actuated
-            steps:
-            - uses: actions/checkout@v1
-            - name: sleep
-                run: |
-                sleep 2
-            - name: Check specs
-                run: |
-                ./specs.sh
+    specs:
+        name: specs
+        runs-on: actuated
+        steps:
+        - uses: actions/checkout@v1
+        - name: sleep
+            run: |
+            sleep 2
+        - name: Check specs
+            run: |
+            ./specs.sh
+
     ```
 
     Note that the `runs-on:` field says `actuated` and not `ubuntu-latest`. This is how the actuated control plane knows to send this job to your agent.
