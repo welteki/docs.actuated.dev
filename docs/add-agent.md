@@ -93,6 +93,10 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     Keep the `key_rsa` private, we will not ask you to share this file with us.
     Share `key_rsa.pub` with us via email or Slack. This key is not confidential, so don't worry about sharing it.
 
+    ```bash
+    cat ~/.actuated/key_rsa.pub
+    ```
+
 3. Install the agent's authentication token.
 
     Create an API token for us to present when we send jobs to your Actuated Agent:
@@ -132,6 +136,18 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
         --kernel-ref=ghcr.io/openfaasltd/actuated-kernel-5.10.77:x86-64-dfb3ac12ae8d41ba00d5264e988256ce89acc9c6 \
         --letsencrypt-domain $DOMAIN \
         --letsencrypt-email webmaster@$DOMAIN
+    ```
+
+    For an Actuated Agent behind an [inlets tunnel](https://inlets.dev):
+
+    ```bash
+    #!/bin/bash
+
+    echo Running Agent from: ./agent
+    sudo -E agent up \
+        --image-ref=ghcr.io/openfaasltd/actuated-ubuntu20.04:x86-64-dfb3ac12ae8d41ba00d5264e988256ce89acc9c6 \
+        --kernel-ref=ghcr.io/openfaasltd/actuated-kernel-5.10.77:x86-64-dfb3ac12ae8d41ba00d5264e988256ce89acc9c6 \
+        --listen-addr 127.0.0.1:
     ```
 
     For ARM64 Actuated Agents, change `agent up` to `agent-arm64 up` and change the prefix of the image tags from `x86-64-` to `aarch64-`
