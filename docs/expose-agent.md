@@ -45,6 +45,8 @@ Reach out to us if you'd like us to host a tunnel server for you, alternatively,
 
 The [inletsctl](https://github.com/inlets/inletsctl) tool will create a HTTPS tunnel server with you on your favourite cloud with a HTTPS certificate obtained from Let's Encrypt.
 
+If you have just the one Actuated Agent:
+
 ```bash
 export AGENT_DOMAIN=agent1.example.com
 export LE_EMAIL=webmaster@agent1.example.com
@@ -60,7 +62,7 @@ inletsctl create \
     --letsencrypt-domain $AGENT_DOMAIN
 ```
 
-Note down the tunnel's wss:// URL and token.
+Then note down the tunnel's wss:// URL and token.
 
 Then run a HTTPS client to expose your agent:
 
@@ -69,6 +71,45 @@ inlets-pro http client \
     --url $WSS_URL \
     --token $TOKEN \
     --upstream http://127.0.0.1:8081
+```
+
+For two or more Actuated Agents:
+
+```bash
+export AGENT_DOMAIN1=agent1.example.com
+export AGENT_DOMAIN2=agent2.example.com
+export LE_EMAIL=webmaster@agent1.example.com
+
+arkade get inletsctl
+sudo mv $HOME/.arkade/bin/inletsctl /usr/local/bin/
+
+inletsctl create \
+    --provider digitalocean \
+    --region lon1 \
+    --token-file $HOME/do-token \
+    --letsencrypt-email $LE_EMAIL \
+    --letsencrypt-domain $AGENT_DOMAIN1 \
+    --letsencrypt-domain $AGENT_DOMAIN2
+```
+
+Then note down the tunnel's wss:// URL and token.
+
+Then run a HTTPS client to expose your agent, using the unique agent domain, run the inlets-pro client on the Actuated Agents:
+
+```bash
+export AGENT_DOMAIN1=agent1.example.com
+inlets-pro http client \
+    --url $WSS_URL \
+    --token $TOKEN \
+    --upstream $AGENT1_DOMAIN=http://127.0.0.1:8081
+```
+
+```bash
+export AGENT_DOMAIN2=agent2.example.com
+inlets-pro http client \
+    --url $WSS_URL \
+    --token $TOKEN \
+    --upstream $AGENT1_DOMAIN=http://127.0.0.1:8081
 ```
 
 You can generate a systemd service (so that inlets restarts upon disconnection, and reboot) by adding `--generate=systemd > inlets.service` and running:
