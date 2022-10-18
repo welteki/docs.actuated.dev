@@ -58,7 +58,8 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     ```
 
     ```bash
-    mkdir agent
+    rm -rf agent
+    mkdir -p agent
     crane export ghcr.io/openfaasltd/actuated-agent:latest | tar -xvf - -C ./agent
     ```
     
@@ -127,7 +128,9 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
     EOF
 
-    agent encrypt --key ./actuated.pem --in $HOME/.actuated/TOKEN --out $HOME/.actuated/TOKEN.enc
+    agent encrypt --key ./actuated.pem \
+        --in $HOME/.actuated/TOKEN \
+        --out $HOME/.actuated/TOKEN.enc
     ```
 
     Post-pilot, we will provide a more automated way to exchange this token.
