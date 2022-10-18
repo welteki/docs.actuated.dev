@@ -49,7 +49,13 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
     Once you've decided where to set up your first agent, you'll need to download the installation package from a container registry
 
-    Install [crane](https://github.com/google/go-containerregistry/releases), then:
+    Install [crane](https://github.com/google/go-containerregistry/releases):
+
+    ```bash
+    curl -sLS https://get.arkade.dev | sudo sh
+    arkade get crane
+    sudo mv crane /usr/local/bin/
+    ```
 
     ```bash
     mkdir agent
