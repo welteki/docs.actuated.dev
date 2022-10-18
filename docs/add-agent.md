@@ -111,7 +111,28 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     openssl rand -base64 32 > ~/.actuated/TOKEN
     ```
 
-    Send us the contents of `~/.actuated/TOKEN`
+    Encrypt the token with our public key and email `.actuated/TOKEN.ENC` to us, or share it with us on Slack:
+
+    ```bash
+    cat <<EOF > actuated.pem
+    -----BEGIN RSA PUBLIC KEY-----
+    MIIBigKCAYEAqq9l+a/EZc0cGvKxi4LwfdanPi5QkRT+rgnFzclf2Z87nLHnnGu9
+    B1wNPtJ6HaqmK7AyBcVV2Hvjq8NMNN3W2v5a2ovMnPIADkZePLWQfGzaZxQdYnlY
+    6tLlRGH8/dLU791xgtVMkgMC033o7tO/ixwsw0Vs9/4NtusbHRB0d7x/mvJhGTUA
+    mhqUZAtp0t+dIDrWDJPWMoMmj6+2JseE1CrWCRnI6eS/BV/wF2gMv3djTkA3iEC3
+    QMego7XC7ItEvjnmpmjNQkdRTSd1RUNYxeSu9G2dXxC+gmhEeeR9keFC8/hU1P5h
+    YAQ9XYy8MyQOnX3VtQkhoA90+lET0jqhE9P5WlKrJpHP9eedhb9degC1+j9nTjHy
+    t7vJOrSSjUy6e7KnVJ3i48TrgBIskiigwuC+DtdYoC6+jKI+3pgmDDzXP+Y7Bwv6
+    iUYW+LEKEUBrHCLZVNzq0/nxeijfWcbxyPKb7tTMXAgDX1xHfrnCpLvRUsmWPy2C
+    OqzC+G4k8FgLAgMBAAE=
+    -----END RSA PUBLIC KEY-----
+    EOF
+
+    openssl pkeyutl -encrypt -pubin \
+        -inkey ./actuated.pem \
+        -in .actuated/TOKEN \
+        -out - | base64 > .actuated/TOKEN.ENC
+    ```
 
     Post-pilot, we will provide a more automated way to exchange this token.
 
