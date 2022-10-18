@@ -32,38 +32,6 @@ We've heard in user interviews that the final point of dirty state can cause eng
 
 Actuated uses a one-shot VM that is destroyed immediately after a build is completed.
 
-## How does actuated compare to a actions-runtime-controller (ARC)?
-
-[actions-runtime-controller](https://github.com/actions-runner-controller/actions-runner-controller) is maintained by [Yusuke Kuoka](https://github.com/mumoshu).
-
-Its primary use-case is scale runners on a Kubernetes cluster using containers.
-
-If you're running `npm install` or `maven`, then this may be a suitable isolation boundary.
-
-The default mode is a reuseable runner, which could potentially have side-effects.
-
-If you need to build a container, in a container, on a Kubernetes node offers little isolation or security boundary.
-
-Actuated users get full access to root, and can run `docker build` without any tricks or having to lose access to `sudo`. That's the same experience you get from a hosted runner by GitHub, but it'll probably be faster.
-
-You can even run minikube, KinD, K3s and OpenShift with actuated without any changes.
-
-ARC runs a container, so that should work on any machine with a modern Kernel, however actuated runs a VM, in order to provide proper isolation.
-
-That means ARC runners can run pretty much anywhere, but actuated runners need to be on a bare-metal machine, or a VM that supports nested virtualisation.
-
-See also: [Where can I run my agents?](/add-agent.txt)
-
-### Doesn't Kaniko fix all this for ARC?
-
-[Kaniko](https://github.com/GoogleContainerTools/kaniko), by Google is an open source project for building containers. It's usually run as a container itself, and usually will require root privileges in order to mount the various filesystems layers required.
-
-If you're an ARC user and for various reasons, cannot migrate away to a more secure solution, Kaniko may be a step in the right direction. Google Cloud users could also create a dedicated node pool with gVisor enabled, for some additional isolation.
-
-However, it can only build containers, and still requires root, and itself is often run in Docker, so we're getting back to the same problems that actuated set out to solve.
-
-In addition, Kaniko cannot and will not help you to run that container that you've just built to validate it to run end to end tests, neither can it run a KinD cluster, or a Minikube cluster.
-
 ## Who is actuated for?
 
 actuated is primarily for software engineering teams who are currently using GitHub Actions. A GitHub organisation is required for installation, and runners are attached to individual repositories as required, to execute builds.
@@ -109,9 +77,33 @@ When a VM starts up, it runs the GitHub Actions Runner ephemeral (aka one-shot) 
 
 See also: [GitHub: ephemeral runners](https://docs.github.com/en/actions/hosting-your-own-runners/autoscaling-with-self-hosted-runners#using-ephemeral-runners-for-autoscaling)
 
+## How are VMs scheduled?
+
+VMs are placed efficiently across your Actuated Agents using a simple algorithm based upon the amount of RAM reserved for the VM.
+
+Autoscaling of VMs is automatic. Let's say that you had 10 jobs pending, but given the RAM configuration, only enough capacity to run 8 of them? The second two would be queued until capacity one or more of those 8 jobs completed.
+
+If you find yourself regularly getting into a queued state, there are three potential changes to consider:
+
+1. Using Actuated Agents with more RAM
+2. Allocated less RAM to each job
+3. Adding more Actuated Agents
+
+The plan you select will determine how many Actuated Agents you can run, so consider 1. and 2. before 3.
+
+## Do I need to auto-scale the Actuated Agents?
+
+If you haven't, read the previous section.
+
+Most teams that we've interviewed said that a small static pool of Actuated Agents would satisfy their build requirements. For the pilot period, we are not offering auto-scaling of Actuated Agents.
+
+If you feel that is a requirement for your team, set up some time to tell us why and we'll see if we can help.
+
 ## What's in the VM image and how is it built?
 
-The VM image will be publicly available in a container registry for you to explore.
+The VM image contains similar software to the hosted runner image: `ubuntu-latest` offered by GitHub. Unfortunately, GitHub does not publish this image, so we've done our best through user-testing to reconstruct it, including all the Kernel modules required to run Kubernetes and Docker.
+
+The image is built automatically using GitHub Actions and is available on a container registry.
 
 ## How easy is it to debug a runner?
 
@@ -131,9 +123,41 @@ Very little, just add / set `runs-on: actuated`
 
 Yes, actuated is built to run on both Intel/AMD and ARM64 hosts, check your subscription plan to see if ARM64 is included. This includes a Raspberry Pi 4B, AWS Graviton, Oracle Cloud ARM instances and potentially any other ARM64 instances which support virtualisation.
 
+## How does actuated compare to a actions-runtime-controller (ARC)?
+
+[actions-runtime-controller](https://github.com/actions-runner-controller/actions-runner-controller) is maintained by [Yusuke Kuoka](https://github.com/mumoshu).
+
+Its primary use-case is scale runners on a Kubernetes cluster using containers.
+
+If you're running `npm install` or `maven`, then this may be a suitable isolation boundary.
+
+The default mode is a reuseable runner, which could potentially have side-effects.
+
+If you need to build a container, in a container, on a Kubernetes node offers little isolation or security boundary.
+
+Actuated users get full access to root, and can run `docker build` without any tricks or having to lose access to `sudo`. That's the same experience you get from a hosted runner by GitHub, but it'll probably be faster.
+
+You can even run minikube, KinD, K3s and OpenShift with actuated without any changes.
+
+ARC runs a container, so that should work on any machine with a modern Kernel, however actuated runs a VM, in order to provide proper isolation.
+
+That means ARC runners can run pretty much anywhere, but actuated runners need to be on a bare-metal machine, or a VM that supports nested virtualisation.
+
+See also: [Where can I run my agents?](/add-agent.txt)
+
 ## Are Windows or MacOS supported?
 
 Linux is the only supported platform for actuated at this time on a AMD64 or ARM64 architecture. We may consider other operating systems in the future, feel free to reach out to us.
+
+### Doesn't Kaniko fix all this for ARC?
+
+[Kaniko](https://github.com/GoogleContainerTools/kaniko), by Google is an open source project for building containers. It's usually run as a container itself, and usually will require root privileges in order to mount the various filesystems layers required.
+
+If you're an ARC user and for various reasons, cannot migrate away to a more secure solution, Kaniko may be a step in the right direction. Google Cloud users could also create a dedicated node pool with gVisor enabled, for some additional isolation.
+
+However, it can only build containers, and still requires root, and itself is often run in Docker, so we're getting back to the same problems that actuated set out to solve.
+
+In addition, Kaniko cannot and will not help you to run that container that you've just built to validate it to run end to end tests, neither can it run a KinD cluster, or a Minikube cluster.
 
 ## Is Actuated free and open-source?
 
@@ -145,7 +169,7 @@ The website and documentation are available on GitHub and we plan to release som
 
 ## Is there a risk that we could get "locked-in" to actuated?
 
-No, you can move back to either hosted runners or self-managed self-hosted runners at any time. But beware that you may run into the problems that actuated sets out to solve.
+No, you can move back to either hosted runners (pay per minute from GitHub) or self-managed self-hosted runners at any time. Bear in mind that actuated solves for a certain set of issues with both of those approaches.
 
 ## Why is the brand called "actuated" and "selfactuated"?
 
