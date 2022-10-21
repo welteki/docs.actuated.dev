@@ -135,7 +135,7 @@ Yes, actuated is built to run on both Intel/AMD and ARM64 hosts, check your subs
 
 [actions-runtime-controller (ARC))](https://github.com/actions-runner-controller/actions-runner-controller) is maintained by [Yusuke Kuoka](https://github.com/mumoshu).
 
-Its primary use-case is scale runners on a Kubernetes cluster using containers.
+Its primary use-case is scale GitHub's self-hosted actions runner using Pods in a Kubernetes cluster. ARC is self-hosted software which means its setup and operation are complex, requiring you to create an properly configure a GitHub App along with its keys. For actuated, you only need to run a single binary on each of your runner hosts and send us an encrypted bootstrap token.
 
 If you're running `npm install` or `maven`, then this may be a suitable isolation boundary for you.
 
@@ -143,7 +143,7 @@ The default mode for ARC is a reuseable runner, which can run many jobs, and eac
 
 If you need to build a container, in a container, on a Kubernetes node offers little isolation or security boundary.
 
-Actuated users get full access to root, and can run `docker build` without any tricks or having to lose access to `sudo`. That's the same experience you get from a hosted runner by GitHub, but it'll probably be faster.
+What if ARC is configured to use "rootless" containers? With a rootless container, you lose access to "root" and `sudo`, both of which are essential in any kind of CI job. Actuated users get full access to root, and can run `docker build` without any tricks or losing access to `sudo`. That's the same experience you get from a hosted runner by GitHub, but it's faster because it's on your own hardware.
 
 You can even run minikube, KinD, K3s and OpenShift with actuated without any changes.
 
