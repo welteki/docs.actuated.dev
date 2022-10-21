@@ -16,23 +16,31 @@ If you haven't felt this pain yet, then perhaps you're blissfully unaware or are
 
 ## Self-managed runners are inefficient and overprovisioned
 
-Self-hosted runners are typically overprovisioned meaning you're spending too much money, because you never know how many jobs you'll have to run at once.
+Self-hosted runners are typically over-provisioned meaning you're spending too much money.
 
-The GitHub Actions runner has no idea how to efficiently distribute jobs across your build machines.
+Why are they over-provisioned? Because you never know how many jobs you'll have to run, so you have to make them bigger, or have too many hosts available.
+
+Why are they inefficient?
+
+By default, the self-hosted runner will only schedule one job per host at a time, because GitHub has no knowledge of the capacity of your machines. So each and every build you run could consume all the resources on the host. The second reason is that builds often conflict with one another causing side effects that only happen in CI and are really difficult to track down and reproduce.
+
+Actuated uses VMs to slice up the whole machine, and can run many builds in parallel. The net effect is that your build queue will get cleared down much more quickly.
 
 ## Hands-free, VM-level isolation
 
 Actuated provides a fast-booting microVM which can run Docker, Kubernetes and anything else you need, with full root on the VM, and no access to the host. Each environment is created just in time to take a build, and is removed immediately after.
 
+Boot time is usually ~1-2 seconds for the VM, that extra second is because we start Docker as part of the boot-up process.
+
 > What does "actuated" mean?
 > 
 > Something that activates or impels itself; specifically (a machine, device, etc.) that causes itself to begin operating automatically, self-activating.
 
-We maintain a VM image that is updated regularly, so you don't have to install SDKs, runtimes or language packs on your build machines.
+We maintain a VM image that is updated regularly through an automated build, so you don't have to install SDKs, runtimes or language packs on your build machines.
 
 Just enable automated updates on your server then install the actuated agent. We'll do the rest including managing efficient allocation across your fleet of servers, and updating the CI image.
 
-And actuated will run your jobs efficiently across a fleet of hosts, or a single machine. They each need to be either bare-metal hosts (think: AWS, Equinix Metal, etc), or support nested virtualization (a feature available on GCP and DigitalOcean)
+And actuated will run your jobs efficiently across a fleet of hosts, or a single machine. They each need to be either bare-metal hosts (think: AWS Metal / Graviton, Equinix Metal, etc), or support nested virtualization (a feature available on GCP and DigitalOcean)
 
 **Conceptual overview**
 
