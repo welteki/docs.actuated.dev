@@ -67,9 +67,17 @@ Why?
 
 On first glance, it seems like this might be due to how most people re-use a runner, and register it to process many jobs. It may even be because a bad actor could scan the local network of the runner and attempt to gain access to other systems. Actuated and iptables can largely fix both of these issues.
 
-The challenge we discovered was that the runner requires a token to bootstrap itself, which is valid for 1 hour. With the current design of GitHub's self-hosted runner, that would allow anyone who sends a PR to obtain the runner and add malicious runners to your repo or organisation.
+So, can you use a self-hosted runner on a public repo?
 
-So, can you use a self-hosted runner on a public repo? Technically it will work, but please don't do this. We hope that the GitHub will consider using short-lived tokens ~30s or limiting a token to only work once.
+Through VM-level isolation, the primary concerns is resolved, because every run is started in an immutable VM.
+
+> A bad actor could compromise the system or install malware leaving side-effects for future builds.
+
+The second issue is that a bad actor could use the runner to run network scans or attacks against remote hosts.
+
+This is a very hard problem to solve because a GitHub Action is a remote code execution (RCE) environment.
+
+With Actuated, we can restrict builds on public repositories to organisation members only. If that's of interest, let us know.
 
 ## How many builds does a single actuated VM run?
 
@@ -125,13 +133,13 @@ Yes, actuated is built to run on both Intel/AMD and ARM64 hosts, check your subs
 
 ## How does actuated compare to a actions-runtime-controller (ARC)?
 
-[actions-runtime-controller](https://github.com/actions-runner-controller/actions-runner-controller) is maintained by [Yusuke Kuoka](https://github.com/mumoshu).
+[actions-runtime-controller (ARC))](https://github.com/actions-runner-controller/actions-runner-controller) is maintained by [Yusuke Kuoka](https://github.com/mumoshu).
 
 Its primary use-case is scale runners on a Kubernetes cluster using containers.
 
-If you're running `npm install` or `maven`, then this may be a suitable isolation boundary.
+If you're running `npm install` or `maven`, then this may be a suitable isolation boundary for you.
 
-The default mode is a reuseable runner, which could potentially have side-effects.
+The default mode for ARC is a reuseable runner, which can run many jobs, and each job could leave side-effects or poison the runner for future job runs.
 
 If you need to build a container, in a container, on a Kubernetes node offers little isolation or security boundary.
 
@@ -175,7 +183,3 @@ No, you can move back to either hosted runners (pay per minute from GitHub) or s
 
 The name of the software is actuated, in some places "actuated" is not available, and we liked "selfactuated" more than "actuatedhq" or "actuatedio" because it refers to the hybrid experience of self-hosted runners.
 
-## Where can I find example GitHub Actions for Docker, KinD, K3s or OpenFaaS?
-
-* [AMD64/Intel examples](https://github.com/actuated-samples)
-* [AARCH64 / Graviton / Raspberry Pi 4 examples](https://github.com/actuated-samples-arm64)

@@ -23,9 +23,17 @@ There are three places you can run an agent:
 
     Make sure you segment or isolate the agent into its own subnet, VLAN, DMZ, or VPC so that it cannot access the rest of your network. If you are thinking of running an actuated runner at home, we can share some iptables rules that worked well for our own testing.
 
+    If you need to build for ARM64, we've shown that [a Raspberry Pi 4 is faster than emulating ARM on a GitHub Hosted Runner](https://twitter.com/alexellisuk/status/1583092051398524928?s=20&t=2SelTpdc5idJLmayIu3Djw)
+
 2. Bare-metal on the cloud (higher cost, convenient, high performance)
 
-    You can provision bare-metal hosts in the cloud using any number of providers. A couple examples would be: [AWS i3.metal instances](https://aws.amazon.com/ec2/instance-types/i3/) or [Equinix Metal](https://metal.equinix.com/).
+    You can provision bare-metal hosts in the cloud using any number of providers like AWS, Alibaba Cloud, Cherry Servers, Equinix Metal, FastHosts, OVHcloud, Scaleway and Vultr, [see a list here](https://github.com/alexellis/awesome-baremetal#bare-metal-cloud) 
+    
+    For Intel/AMD builds on AWS, you'll need to use [AWS i3.metal](https://aws.amazon.com/ec2/instance-types/i3/).
+
+    For ARM64 builds on AWS, the [a1.metal](https://aws.amazon.com/ec2/instance-types/a1/) is ideal.
+
+    If you're not using AWS, or want larger machines, [Equinix Metal](https://metal.equinix.com/) offer bare-metal as a service for both Intel/AMD and ARM64 machines.
 
     This option is both convenient and offers the highest performance available, however bare-metal machines tends to be priced higher than you may be used to with VMs.
 
@@ -33,7 +41,7 @@ There are three places you can run an agent:
 
 3. Cloud Virtual Machines (VMs) that support nested virtualization (lowest cost, convenient, mid-level performance)
 
-    Both [DigitalOcean](https://m.do.co/c/8d4e75e9886f) and [Google Compute Platform (GCP)](https://cloud.google.com/compute) (new customers get 300 USD free credits from GCP) have options to support nested virtualisation on their Virtual Machines (VMs).
+    Both [DigitalOcean](https://m.do.co/c/8d4e75e9886f) and [Google Compute Platform (GCP)](https://cloud.google.com/compute) (new customers get 300 USD free credits from GCP) support nested virtualisation on their Virtual Machines (VMs).
 
     This option may not have the raw speed and throughput of a dedicated, bare-metal host, but keeps costs low and is convenient for getting started.
 
@@ -149,7 +157,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
 4. Start the agent
 
-    For an Intel Actuated Agent, create a `start.sh` file:
+    For an Intel/AMD Actuated Agent, create a `start.sh` file:
 
     ```bash
     #!/bin/bash
@@ -171,12 +179,12 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
     echo Running Agent from: ./agent
     sudo -E agent up \
-        --image-ref=ghcr.io/openfaasltd/actuated-ubuntu20.04:x86-64-dfb3ac12ae8d41ba00d5264e988256ce89acc9c6 \
-        --kernel-ref=ghcr.io/openfaasltd/actuated-kernel-5.10.77:x86-64-dfb3ac12ae8d41ba00d5264e988256ce89acc9c6 \
+        --image-ref=ghcr.io/openfaasltd/actuated-ubuntu20.04:aarch64-dfb3ac12ae8d41ba00d5264e988256ce89acc9c6 \
+        --kernel-ref=ghcr.io/openfaasltd/actuated-kernel-5.10.77:aarch64-dfb3ac12ae8d41ba00d5264e988256ce89acc9c6 \
         --listen-addr 127.0.0.1:
     ```
 
-    For ARM64 Actuated Agents, change `agent up` to `agent-arm64 up` and change the prefix of the image tags from `x86-64-` to `aarch64-`
+    For ARM64 Actuated Agents, change the prefix of the image tags from `x86-64-` to `aarch64-`
 
     You can also run the Actuated Agent software as a systemd unit file for automatic restarts and to start upon boot-up.
 
