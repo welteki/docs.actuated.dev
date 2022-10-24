@@ -62,7 +62,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     ```bash
     curl -sLS https://get.arkade.dev | sudo sh
     arkade get crane
-    sudo mv crane /usr/local/bin/
+    sudo mv $HOME/.arkade/bin/crane /usr/local/bin/
     ```
 
     ```bash
@@ -166,8 +166,8 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     DOMAIN=agent1.example.com
 
     sudo -E agent up \
-        --image-ref=ghcr.io/openfaasltd/actuated-ubuntu20.04:x86-64-dfb3ac12ae8d41ba00d5264e988256ce89acc9c6 \
-        --kernel-ref=ghcr.io/openfaasltd/actuated-kernel-5.10.77:x86-64-dfb3ac12ae8d41ba00d5264e988256ce89acc9c6 \
+        --image-ref=ghcr.io/openfaasltd/actuated-ubuntu20.04:x86-64-latest \
+        --kernel-ref=ghcr.io/openfaasltd/actuated-kernel-5.10.77:x86-64-latest \
         --letsencrypt-domain $DOMAIN \
         --letsencrypt-email webmaster@$DOMAIN
     ```
@@ -179,8 +179,8 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
     echo Running Agent from: ./agent
     sudo -E agent up \
-        --image-ref=ghcr.io/openfaasltd/actuated-ubuntu20.04:aarch64-dfb3ac12ae8d41ba00d5264e988256ce89acc9c6 \
-        --kernel-ref=ghcr.io/openfaasltd/actuated-kernel-5.10.77:aarch64-dfb3ac12ae8d41ba00d5264e988256ce89acc9c6 \
+        --image-ref=ghcr.io/openfaasltd/actuated-ubuntu20.04:aarch64-latest \
+        --kernel-ref=ghcr.io/openfaasltd/actuated-kernel-5.10.77:aarch64-latest \
         --listen-addr 127.0.0.1:
     ```
 
