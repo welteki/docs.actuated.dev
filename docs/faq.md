@@ -44,7 +44,7 @@ You'll need either: a bare-metal host (your own, AWS i3.metal or Equinix Metal),
 
 For the pilot phase, we're targeting GitHub Actions because it has fine-grained access controls and the ability to schedule exactly one build to a runner. Most other CI systems expect self-hosted runners to perform many builds, and we believe that to be an anti-pattern. We'll offer advice to teams accepted into the pilot who wish to evaluate GitHub Actions or migrate away from another solution.
 
-That said, if you're using these tools within your organisation, and face similar issues or concerns, we'd like to hear from you.
+That said, if you're using these tools within your organisation, and face similar issues or concerns, we'd like to hear from you. And we have a proof of concept that works with GitLab CI, so feel free to reach out to us if you feel actuated would be a good fit for your team.
 
 Feel free to contact us at: [contact@openfaas.com](mailto:contact@openfaas.com)
 
