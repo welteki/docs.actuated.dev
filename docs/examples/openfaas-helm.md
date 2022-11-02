@@ -13,8 +13,8 @@ Certified for:
 - [x] `x86_64`
 - [x] `arm64`
 
-!!! info "Use a private repository"
-    GitHub recommends using a private repository with self-hosted runners. Learn why in the [FAQ](/faq).
+!!! info "Use a private repository if you're not using actuated yet"
+    GitHub recommends using a private repository with self-hosted runners because changes can be left over from a previous run, even when using Actions Controller Runtime. Actuated uses an ephemeral VM with an immutable image, so can be used on both public and private repos. Learn why in the [FAQ](/faq.md).
 
 ## Try out the action on your agent
 

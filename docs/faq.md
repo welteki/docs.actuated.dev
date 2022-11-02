@@ -65,19 +65,19 @@ The GitHub team recommends only running their self-hosted runners on private rep
 
 Why?
 
-On first glance, it seems like this might be due to how most people re-use a runner, and register it to process many jobs. It may even be because a bad actor could scan the local network of the runner and attempt to gain access to other systems. Actuated and iptables can largely fix both of these issues.
+I took some time to ask one of the engineers on the GitHub Actions team.
 
-So, can you use a self-hosted runner on a public repo?
+> With the standard self-hosted runner, a bad actor could compromise the system or install malware leaving side-effects for future builds.
 
-Through VM-level isolation, the primary concerns is resolved, because every run is started in an immutable VM.
+He replied that it's difficult for maintainers to secure their repos and workflows, and that bad actors could compromise a runner host due to the way they run multiple jobs, and are not a fresh environment for each build. It may even be because a bad actor could scan the local network of the runner and attempt to gain access to other systems.
 
-> A bad actor could compromise the system or install malware leaving side-effects for future builds.
+If you're wondering whether containers and Pods are a suitable isolation level, we would recommend against this since it usually involves one of either: mounting a docker socket (which can lead to escalation to root on the host) or running Docker In Docker (DIND) which requires a privileged container (which can lead to escalation to root on the host).
 
-The second issue is that a bad actor could use the runner to run network scans or attacks against remote hosts.
+So, can you use actuated on a public repo?
 
-This is a very hard problem to solve because a GitHub Action is a remote code execution (RCE) environment.
+Our contact at GitHub stated that through VM-level isolation and an immutable VM image, the primary concerns is resolved, because there is no way to have state left over or side effects from previous builds.
 
-With Actuated, we can restrict builds on public repositories to organisation members only. If that's of interest, let us know.
+Actuated fixes the isolation problem, and prevents side-effects between builds. We also have specific iptables rules in the [troubleshooting guide](/troubleshooting) which will isolate your runners from the rest of the network.
 
 ## How many builds does a single actuated VM run?
 
