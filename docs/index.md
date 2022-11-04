@@ -49,6 +49,10 @@ And actuated will run your jobs efficiently across a fleet of hosts, or a single
 
     [Addison van den Hoeven - DevOps Lead, Riskfuel](https://twitter.com/AddisonvdH/status/1588164307057102848?s=20&t=fMWKRXrmy3tE4C5CsMXKmQ)
 
+* "This is great, perfect for jobs that take forever on normal GitHub runners. I love what Alex is doing here."
+
+    [Richard Case, Principal Engineer, SUSE](https://twitter.com/fruit_case/status/1588584782765916160?s=20&t=nVnZS9rsdBD9rxrv4nI51Q)
+
 * "Thank you. I think actuated is amazing."
 
     Alan Sill, NSF Cloud and Autonomic Computing (CAC) Industry-University Cooperative Research Center
