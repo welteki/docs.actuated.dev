@@ -100,6 +100,7 @@ nav:
       - Compile a Kernel: examples/kernel.md
       - Kubernetes with K3s: examples/k3s.md
       - Kubernetes with KinD: examples/kind.md
+      - Kubernetes regression matrix: examples/matrix-k8s.md
       - Docker run/build: examples/docker.md
       - Publish an OpenFaaS function: examples/openfaas-publish.md
       - Deploy a Helm chart: examples/openfaas-helm.md
