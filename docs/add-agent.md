@@ -65,15 +65,13 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     sudo mv $HOME/.arkade/bin/crane /usr/local/bin/
     ```
 
+    Download the latest agent and install the binary to `/usr/local/bin/`:
+
     ```bash
     rm -rf agent
     mkdir -p agent
     crane export ghcr.io/openfaasltd/actuated-agent:latest | tar -xvf - -C ./agent
-    ```
-    
-    Install the agent binary to `/usr/local/bin/`:
 
-    ```bash
     sudo mv ./agent/agent* /usr/local/bin/
     ```
 
