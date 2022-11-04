@@ -6,6 +6,16 @@ All customers have access to a public Slack channel for support and collaboratio
 
 Enterprise customers may also have an upgraded SLA for support tickets via email and access to a private Slack channel.
 
+## A job is stuck as "queued"
+
+By default, we reject jobs on public repositories, however we can feature flag this on for you. Just ask us.
+
+If you're using a private repo and the job is queued, let us know on Slack and we'll check the audit database to try and find out why.
+
+You can also check `/var/log/actuated/` for log files, `tail -n 20 /var/log/actuated/*.txt` should show you any errors that may have occurred on any of the VM boot-ups or runner registrations.
+
+From time to time, GitHub Actions does have an outage.
+
 ## You need to rotate the authentication token used for your agent
 
 There should not be many reasons to rotate this token, however, if something's happened and it's been leaked or an employee has left the company, contact us via email for the update procedure.

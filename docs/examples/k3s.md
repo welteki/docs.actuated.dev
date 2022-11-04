@@ -8,7 +8,7 @@ Certified for:
 - [x] `arm64` including Raspberry Pi 4
 
 !!! info "Use a private repository if you're not using actuated yet"
-    GitHub recommends using a private repository with self-hosted runners because changes can be left over from a previous run, even when using Actions Controller Runtime. Actuated uses an ephemeral VM with an immutable image, so can be used on both public and private repos. Learn why in the [FAQ](/faq.md).
+    GitHub recommends using a private repository with self-hosted runners because changes can be left over from a previous run, even when using Actions Runtime Controller. Actuated uses an ephemeral VM with an immutable image, so can be used on both public and private repos. Learn why in the [FAQ](/faq.md).
 ## Try out the action on your agent
 
 Create a new file at: `.github/workspaces/build.yml` and commit it to the repository.
