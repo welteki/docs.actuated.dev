@@ -45,7 +45,7 @@ And actuated will run your jobs efficiently across a fleet of hosts, or a single
 
 ## What people are saying
 
-* "We've been piloting Actuated recently. It only took 30s create 5x isolated VMs inside our on-prem environment (no docker sock mounting shenanigans)! Pretty impressive stuff."
+* "We've been piloting Actuated recently. It only took 30s create 5x isolated VMs, run the jobs and tear them down again inside our on-prem environment (no Docker socket mounting shenanigans)! Pretty impressive stuff."
 
     [Addison van den Hoeven - DevOps Lead, Riskfuel](https://twitter.com/AddisonvdH/status/1588164307057102848?s=20&t=fMWKRXrmy3tE4C5CsMXKmQ)
 
