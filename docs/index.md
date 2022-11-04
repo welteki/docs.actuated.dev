@@ -42,13 +42,32 @@ Just enable automated updates on your server then install the actuated agent. We
 
 And actuated will run your jobs efficiently across a fleet of hosts, or a single machine. They each need to be either bare-metal hosts (think: AWS Metal / Graviton, Equinix Metal, etc), or support nested virtualization (a feature available on GCP and DigitalOcean)
 
-**Conceptual overview**
 
-![Conceptual flow of starting up a new ephemeral runner](images/conceptual-high-level.png)
+## What people are saying
 
-> Actuated will schedule builds across your fleet of agents, packing them in densely, without overloading the host. Each microVM will run just one build before being destroyed to ensure a clean, isolated build. 
+* "We've been piloting Actuated recently. It only took 30s create 5x isolated VMs inside our on-prem environment (no docker sock mounting shenanigans)! Pretty impressive stuff."
 
-Learn more in the [FAQ](faq.md)
+    [Addison van den Hoeven - DevOps Lead, Riskfuel](https://twitter.com/AddisonvdH/status/1588164307057102848?s=20&t=fMWKRXrmy3tE4C5CsMXKmQ)
+
+* "Thank you. I think actuated is amazing."
+
+    Alan Sill, NSF Cloud and Autonomic Computing (CAC) Industry-University Cooperative Research Center
+
+* "Nice work, security aspects alone with shared/stale envs on self-hosted runners."
+
+    [Matt Johnson, Palo Alto Networks](https://twitter.com/Metahertz/status/1573674735103348737?s=20&t=0K5tJD9BoaFjmJDqT9UxAw)
+
+* "Is there a way to pay github for runners that suck less?"
+
+    [Darren Shepherd, Acorn Labs](https://twitter.com/ibuildthecloud/status/1291571371357564928?s=20&t=0K5tJD9BoaFjmJDqT9UxAw)
+
+* "Excited to try out actuated! We use custom actions runners and I think there's something here 🔥"
+
+    [Nick Gerace, System Initiative](https://twitter.com/search?q=%40nickgeracehacks%20actuated&src=typed_query&f=top)
+
+* "This is awesome!" ([After reducing Parca build time from 33.5 minutes to 1 minute 26s](https://twitter.com/alexellisuk/status/1583089248084729856?s=20&t=0K5tJD9BoaFjmJDqT9UxAw))
+
+    [Frederic Branczyk, Co-founder, Polar Signals](https://twitter.com/fredbrancz/status/1583093268287741954?s=20&t=fMWKRXrmy3tE4C5CsMXKmQ)
 
 ## Watch a live demo
 
@@ -57,6 +76,14 @@ Alex shows you how actuated uses an isolated, immutable microVM to run K3s insid
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2o28iUC-J1w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 You can also watch a webinar that Alex recorded with Richard Case from Weaveworks on how microVMs compare to containers and legacy VMs, [you'll see Alex's demo at: 1:13:19](https://www.youtube.com/watch?v=CYCsa5e2vqg?t=4399).
+
+## Conceptual overview
+
+![Conceptual flow of starting up a new ephemeral runner](images/conceptual-high-level.png)
+
+> Actuated will schedule builds across your fleet of agents, packing them in densely, without overloading the host. Each microVM will run just one build before being destroyed to ensure a clean, isolated build. 
+
+Learn more in the [FAQ](faq.md)
 
 ## Get started
 
