@@ -69,6 +69,10 @@ And actuated will run your jobs efficiently across a fleet of hosts, or a single
 
     [Nick Gerace, System Initiative](https://twitter.com/search?q=%40nickgeracehacks%20actuated&src=typed_query&f=top)
 
+* [It is awesome to see the work of Alex Ellis with Firecracker VMs. They are provisioning and running Github Actions in isolated VMs in seconds (vs minutes)."
+
+    [Rinat Abdullin, ML & Innovation at Trustbit](https://twitter.com/abdullin/status/1588817424958521344)
+
 * "This is awesome!" ([After reducing Parca build time from 33.5 minutes to 1 minute 26s](https://twitter.com/alexellisuk/status/1583089248084729856?s=20&t=0K5tJD9BoaFjmJDqT9UxAw))
 
     [Frederic Branczyk, Co-founder, Polar Signals](https://twitter.com/fredbrancz/status/1583093268287741954?s=20&t=fMWKRXrmy3tE4C5CsMXKmQ)
