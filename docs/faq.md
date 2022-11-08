@@ -183,3 +183,32 @@ No, you can move back to either hosted runners (pay per minute from GitHub) or s
 
 The name of the software is actuated, in some places "actuated" is not available, and we liked "selfactuated" more than "actuatedhq" or "actuatedio" because it refers to the hybrid experience of self-hosted runners.
 
+## Privacy policy
+
+Actuated is a managed service operated by OpenFaaS Ltd, registered company number: 11076587.
+
+It has both a Software as a Service (SaaS) component ("Actuated") and an agent ("Actuated agent").
+
+The SaaS collects and stores:
+
+* Job events for the organisation where a label of "actuated*" is found, including:
+    * Organisation name
+    * Repository name
+    * Build name
+    * Build start / stop time
+    * Build status
+
+The following is collected from agents:
+
+* Agent version
+* Hostname & uptime
+* Platform information - Operating System and architecture
+* System capacity - total and available RAM & CPU
+
+In addition, for support incidents, we may need to collect logs remotely from:
+
+* VMs launched for jobs, stored at `/var/log/actuated/`
+
+This information is required to operate the SaaS including scheduling of VMs and for technical support.
+
+Traffic between the SaaS and agents is over HTTPS only with TLS encryption and unique API tokens.
