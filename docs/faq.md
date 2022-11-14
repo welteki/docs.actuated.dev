@@ -131,7 +131,22 @@ Very little, just add / set `runs-on: actuated`
 
 Yes, actuated is built to run on both Intel/AMD and ARM64 hosts, check your subscription plan to see if ARM64 is included. This includes a Raspberry Pi 4B, AWS Graviton, Oracle Cloud ARM instances and potentially any other ARM64 instances which support virtualisation.
 
-## How does actuated compare to a actions-runtime-controller (ARC)?
+## Comparison to other solutions
+
+Feel free [to book a call with us](register.md) if you'd like to understand this comparison in more detail.
+
+| Solution | VM-level isolation per build | Speed | Efficient spread of jobs | Safely build public repos? | ARM64 support | Maintenance required | Cost |
+| ----------- | ------------------------------------ | ------ | ---------- | ------------------------------ | --------------------- | ---- | ---- |
+| Hosted runners       | :material-check-all: | Poor | :material-check-all: | :material-check-all: | None | None | Per build minute |
+| actuated      | :material-check-all: | Best | :material-check-all: | :material-check-all: | Yes | Very little | Fixed monthly cost |
+| Standard self-hosted runners | :material-close: | Good | :material-close: | :material-close: | DIY | Very involved | OSS, needs management |
+| actions-runtime-controller |  :material-close:  | Very good | :material-check-all: | :material-close: | DIY | Very involved | OSS, needs management |
+
+*Builds on public GitHub repositories are free with the standard hosted runners, however private repositories require billing information, after the initial included minutes are consumed.*
+
+You can only get VM-level isolation from either GitHub hosted runners or Actuated. Standard self-hosted runners have no isolation between builds and actions-runtime-controller requires either a Docker socket to be mounted or Docker In Docker (a privileged container) to build and run containers.
+
+### How does actuated compare to a actions-runtime-controller (ARC)?
 
 [actions-runtime-controller (ARC))](https://github.com/actions-runner-controller/actions-runner-controller) is maintained by [Yusuke Kuoka](https://github.com/mumoshu).
 
@@ -153,9 +168,6 @@ That means ARC runners can run pretty much anywhere, but actuated runners need t
 
 See also: [Where can I run my agents?](/add-agent.txt)
 
-## Are Windows or MacOS supported?
-
-Linux is the only supported platform for actuated at this time on a AMD64 or ARM64 architecture. We may consider other operating systems in the future, feel free to reach out to us.
 
 ### Doesn't Kaniko fix all this for ARC?
 
@@ -166,6 +178,10 @@ If you're an ARC user and for various reasons, cannot migrate away to a more sec
 However, it can only build containers, and still requires root, and itself is often run in Docker, so we're getting back to the same problems that actuated set out to solve.
 
 In addition, Kaniko cannot and will not help you to run that container that you've just built to validate it to run end to end tests, neither can it run a KinD cluster, or a Minikube cluster.
+
+## Are Windows or MacOS supported?
+
+Linux is the only supported platform for actuated at this time on a AMD64 or ARM64 architecture. We may consider other operating systems in the future, feel free to reach out to us.
 
 ## Is Actuated free and open-source?
 

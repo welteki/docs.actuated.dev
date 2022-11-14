@@ -42,7 +42,6 @@ Just enable automated updates on your server then install the actuated agent. We
 
 And actuated will run your jobs efficiently across a fleet of hosts, or a single machine. They each need to be either bare-metal hosts (think: AWS Metal / Graviton, Equinix Metal, etc), or support nested virtualization (a feature available on GCP and DigitalOcean)
 
-
 ## What people are saying
 
 * "We've been piloting Actuated recently. It only took 30s create 5x isolated VMs, run the jobs and tear them down again inside our on-prem environment (no Docker socket mounting shenanigans)! Pretty impressive stuff."
@@ -98,6 +97,21 @@ Learn more in the [FAQ](faq.md)
 * [Register for the pilot](register.md)
 * [Read the FAQ](faq.md)
 * [Enable actuated for an existing repository](test-build.md)
+
+
+### Comparison
+
+
+Feel free [to book a call with us](register.md) if you'd like to understand this comparison in more detail.
+
+| Solution | VM-level isolation per build | Speed | Efficient spread of jobs | Safely build public repos? | ARM64 support | Maintenance required | Cost |
+| ----------- | ------------------------------------ | ------ | ---------- | ------------------------------ | --------------------- | ---- | ---- |
+| Hosted runners       | :material-check-all: | Poor | :material-check-all: | :material-check-all: | None | None | Per build minute |
+| actuated      | :material-check-all: | Best | :material-check-all: | :material-check-all: | Yes | Very little | Fixed monthly cost |
+| Standard self-hosted runners | :material-close: | Good | :material-close: | :material-close: | DIY | Very involved | OSS, needs management |
+| actions-runtime-controller |  :material-close:  | Very good | :material-check-all: | :material-close: | DIY | Very involved | OSS, needs management |
+
+*Builds on public GitHub repositories are free with the standard hosted runners, however private repositories require billing information, after the initial included minutes are consumed.*
 
 ## Got questions, comments or suggestions?
 
