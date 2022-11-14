@@ -38,7 +38,7 @@ actuated is primarily for software engineering teams who are currently using Git
 
 ## What kind of machines do I need for the agent?
 
-You'll need either: a bare-metal host (your own, AWS i3.metal or Equinix Metal), or a VM that supports nested virtualisation such as those provided by GCP and DigitalOcean.
+You'll need either: a bare-metal host (your own, AWS i3.metal or Equinix Metal), or a VM that supports nested virtualisation such as those provided by GCP, DigitalOcean and Azure.
 
 ## When will Jenkins, GitLab CI, BitBucket Pipeline Runners, Drone or Azure DevOps be supported?
 

@@ -33,7 +33,7 @@ There are three places you can run an agent:
 
     For ARM64 builds on AWS, the [a1.metal](https://aws.amazon.com/ec2/instance-types/a1/) is ideal.
 
-    If you're not using AWS, or want larger machines, [Equinix Metal](https://metal.equinix.com/) offer bare-metal as a service for both Intel/AMD and ARM64 machines.
+    If you're not using AWS, or want larger machines, [Equinix Metal](https://metal.equinix.com/) offer bare-metal as a service for both Intel/AMD and ARM64.
 
     This option is both convenient and offers the highest performance available, however bare-metal machines tends to be priced higher than you may be used to with VMs.
 
@@ -41,7 +41,7 @@ There are three places you can run an agent:
 
 3. Cloud Virtual Machines (VMs) that support nested virtualization (lowest cost, convenient, mid-level performance)
 
-    Both [DigitalOcean](https://m.do.co/c/8d4e75e9886f) and [Google Compute Platform (GCP)](https://cloud.google.com/compute) (new customers get 300 USD free credits from GCP) support nested virtualisation on their Virtual Machines (VMs).
+    We know of at least three providers which have options for nested virtualisation: [DigitalOcean](https://m.do.co/c/8d4e75e9886f) [Google Compute Platform (GCP)](https://cloud.google.com/compute) (new customers get 300 USD free credits from GCP) support nested virtualisation on their Virtual Machines (VMs), and [Azure](https://azure.com/) x86 VMs (ARM64 did not support nested virtualisation).
 
     This option may not have the raw speed and throughput of a dedicated, bare-metal host, but keeps costs low and is convenient for getting started.
 
