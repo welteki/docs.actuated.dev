@@ -97,10 +97,9 @@ Learn more in the [FAQ](faq.md)
 * [Register for the pilot](register.md)
 * [Read the FAQ](faq.md)
 * [Enable actuated for an existing repository](test-build.md)
-
+* [Read more in the announcement: Blazing fast CI with MicroVMs](https://blog.alexellis.io/blazing-fast-ci-with-microvms/)
 
 ### Comparison
-
 
 Feel free [to book a call with us](register.md) if you'd like to understand this comparison in more detail.
 
