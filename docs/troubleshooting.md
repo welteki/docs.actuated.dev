@@ -16,6 +16,16 @@ You can also check `/var/log/actuated/` for log files, `tail -n 20 /var/log/actu
 
 From time to time, GitHub Actions does have an outage.
 
+## You pull a lot of large images from the Docker Hub
+
+As much as we like to make our images as small as possible, sometimes we just have to pull down either large artifacts or many smaller ones. It just can't be helped.
+
+Since a MicroVM is a completely immutable environment, the pull needs to happen on each build, which is actually a *good thing*.
+
+The pull speed can be dramatically improved by using a registry mirror on each agent:
+
+* [Example: Set up a registry mirror](/examples/registry-mirror)
+
 ## You are running into rate limits when using container images from the Docker Hub
 
 The Docker Hub implements stringent rate limits of 100 pulls per 6 hours, and 200 pulls per 6 hours if you log in. Pro accounts get an increased limit of 5000 pulls per 6 hours.

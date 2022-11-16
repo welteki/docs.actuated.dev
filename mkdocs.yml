@@ -111,8 +111,8 @@ nav:
       - Deploy a Helm chart: examples/openfaas-helm.md
       - Debug a job with SSH: examples/debug-ssh.md
 
-# extra:
-#   analytics:
-#     provider: google
-#     property: UA-60759269-5
-#     anonymize_ip: true
+extra:
+  analytics:
+    provider: google
+    property: G-PTK21TFJ7V
+    anonymize_ip: true

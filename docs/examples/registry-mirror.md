@@ -17,7 +17,8 @@ We will create a mirror that:
 * Cannot support PUSH / PUT / DELETE events
 * Only has access to pull images from the Docker Hub
 * Is not exposed to the Internet, but only to Actuated VMs
-* When unavailable for any reason, won't block the build
+* When unavailable for any reason, the build continues without error
+* Works on both Intel/AMD and ARM64 hosts
 
 ## Set up the registry on an actuated agent
 
