@@ -97,6 +97,7 @@ nav:
       - Register your GitHub Organisation: register.md
       - Add your first agent: add-agent.md
       - Start a build on your agent: test-build.md
+      - Troubleshooting: troubleshooting.md
   - Examples:
       - System Info: examples/system-info.md
       - Job Matrix: examples/matrix.md
@@ -105,6 +106,7 @@ nav:
       - Kubernetes with KinD: examples/kind.md
       - Kubernetes regression matrix: examples/matrix-k8s.md
       - Docker run/build: examples/docker.md
+      - Local Registry Mirror: examples/registry-mirror.md
       - Publish an OpenFaaS function: examples/openfaas-publish.md
       - Deploy a Helm chart: examples/openfaas-helm.md
       - Debug a job with SSH: examples/debug-ssh.md

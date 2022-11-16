@@ -16,6 +16,14 @@ You can also check `/var/log/actuated/` for log files, `tail -n 20 /var/log/actu
 
 From time to time, GitHub Actions does have an outage.
 
+## You are running into rate limits when using container images from the Docker Hub
+
+The Docker Hub implements stringent rate limits of 100 pulls per 6 hours, and 200 pulls per 6 hours if you log in. Pro accounts get an increased limit of 5000 pulls per 6 hours.
+
+We've created simple instructions on how to set up a registry mirror to cache images on your actuated agents.
+
+* [Example: Set up a registry mirror](/examples/registry-mirror)
+
 ## You need to rotate the authentication token used for your agent
 
 There should not be many reasons to rotate this token, however, if something's happened and it's been leaked or an employee has left the company, contact us via email for the update procedure.
