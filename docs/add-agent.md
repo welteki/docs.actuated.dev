@@ -27,13 +27,15 @@ There are three places you can run an agent:
 
 2. Bare-metal on the cloud (higher cost, convenient, high performance)
 
-    You can provision bare-metal hosts in the cloud using any number of providers like AWS, Alibaba Cloud, Cherry Servers, Equinix Metal, FastHosts, OVHcloud, Scaleway and Vultr, [see a list here](https://github.com/alexellis/awesome-baremetal#bare-metal-cloud) 
+    You can provision bare-metal hosts in the cloud using any number of providers like AWS, Alibaba Cloud, Cherry Servers, Equinix Metal, OVHcloud, fasthosts, Scaleway and Vultr, [see a list here](https://github.com/alexellis/awesome-baremetal#bare-metal-cloud) 
     
-    For Intel/AMD builds we recommend using [Equinix Metal](https://deploy.equinix.com/) for the best price / performance ratio. They also have discounts for reserved instances.
+    For x86_64 builds we recommend using [Equinix Metal](https://deploy.equinix.com/) for the best price / performance ratio. They also have discounts for reserved instances.
+
+    Whilst we haven't got experience with them, OVHcloud have [a range of very economical bare-metal servers available](https://www.ovhcloud.com/en-gb/bare-metal/rise/) for x86_64.
 
     For ARM64 builds the cheapest option is to use the [a1.metal](https://aws.amazon.com/ec2/instance-types/a1/) instance on AWS. A Mac Mini M1 is also a good option with (Asahi Linux), if you want to optimise on costs.
 
-    [Equinix Metal](https://metal.equinix.com/) offer bare-metal as a service (with a REST API) for both Intel/AMD and ARM64.
+    [Equinix Metal](https://metal.equinix.com/) offer bare-metal as a service (with a REST API) for both x86_64 and ARM64. Check out the c3.small.x86, c2.small.x86 and c3.large.arm64.
 
     This option is both convenient and offers the highest performance available, however bare-metal machines tends to be priced higher than you may be used to with VMs.
 
