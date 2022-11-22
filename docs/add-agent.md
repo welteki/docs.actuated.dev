@@ -29,11 +29,11 @@ There are three places you can run an agent:
 
     You can provision bare-metal hosts in the cloud using any number of providers like AWS, Alibaba Cloud, Cherry Servers, Equinix Metal, FastHosts, OVHcloud, Scaleway and Vultr, [see a list here](https://github.com/alexellis/awesome-baremetal#bare-metal-cloud) 
     
-    For Intel/AMD builds on AWS, you'll need to use [AWS i3.metal](https://aws.amazon.com/ec2/instance-types/i3/).
+    For Intel/AMD builds we recommend using [Equinix Metal](https://deploy.equinix.com/) for the best price / performance ratio. They also have discounts for reserved instances.
 
-    For ARM64 builds on AWS, the [a1.metal](https://aws.amazon.com/ec2/instance-types/a1/) is ideal.
+    For ARM64 builds the cheapest option is to use the [a1.metal](https://aws.amazon.com/ec2/instance-types/a1/) instance on AWS. A Mac Mini M1 is also a good option with (Asahi Linux), if you want to optimise on costs.
 
-    If you're not using AWS, or want larger machines, [Equinix Metal](https://metal.equinix.com/) offer bare-metal as a service for both Intel/AMD and ARM64.
+    [Equinix Metal](https://metal.equinix.com/) offer bare-metal as a service (with a REST API) for both Intel/AMD and ARM64.
 
     This option is both convenient and offers the highest performance available, however bare-metal machines tends to be priced higher than you may be used to with VMs.
 
@@ -41,7 +41,7 @@ There are three places you can run an agent:
 
 3. Cloud Virtual Machines (VMs) that support nested virtualization (lowest cost, convenient, mid-level performance)
 
-    We know of at least three providers which have options for nested virtualisation: [DigitalOcean](https://m.do.co/c/8d4e75e9886f) [Google Compute Platform (GCP)](https://cloud.google.com/compute) (new customers get 300 USD free credits from GCP) support nested virtualisation on their Virtual Machines (VMs), and [Azure](https://azure.com/) x86 VMs (ARM64 did not support nested virtualisation).
+    We know of at least three providers which have options for nested virtualisation: [DigitalOcean](https://m.do.co/c/8d4e75e9886f) [Google Compute Platform (GCP)](https://cloud.google.com/compute) (new customers get 300 USD free credits from GCP) support nested virtualisation on their Virtual Machines (VMs), and [Azure](https://azure.com/) x86 VMs (ARM64 do not support nested virtualisation).
 
     This option may not have the raw speed and throughput of a dedicated, bare-metal host, but keeps costs low and is convenient for getting started.
 
