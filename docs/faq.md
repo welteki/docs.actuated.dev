@@ -107,6 +107,15 @@ Most teams that we've interviewed said that a small static pool of Actuated Agen
 
 If you feel that is a requirement for your team, set up some time to tell us why and we'll see if we can help.
 
+
+## What do I need to change in my workflows to use actuated?
+
+Very little, just add / set `runs-on: actuated`
+
+## Is ARM64 supported?
+
+Yes, actuated is built to run on both Intel/AMD and ARM64 hosts, check your subscription plan to see if ARM64 is included. This includes a Raspberry Pi 4B, AWS Graviton, Oracle Cloud ARM instances and potentially any other ARM64 instances which support virtualisation.
+
 ## What's in the VM image and how is it built?
 
 The VM image contains similar software to the hosted runner image: `ubuntu-latest` offered by GitHub. Unfortunately, GitHub does not publish this image, so we've done our best through user-testing to reconstruct it, including all the Kernel modules required to run Kubernetes and Docker.
@@ -117,19 +126,11 @@ The image is built automatically using GitHub Actions and is available on a cont
 
 OpenSSH is pre-installed, but it will be inaccessible from your workstation by default.
 
-So to connect to it, you can use an [inlets tunnel](https://inlets.dev/), Wireguard VPN or Tailscale ephemeral token (beware, Tailscale is not free for your commercial use) to log into any agent.
+To connect, you can use an [inlets tunnel](https://inlets.dev/), Wireguard VPN or Tailscale ephemeral token (remember: Tailscale is not free for your commercial use) to log into any agent.
 
-We recommend you add your SSH key and disable login with a password.
+We also offer a SSH gateway in some of our tiers, tell us if this is important to you in your initial contact, or reach out to us via email if you're already a customer.
 
-We're also considering an automated SSH gateway and a convenient CLI for actuated customers. Let us know if you'd like to try this out.
-
-## What do I need to change in my workflows?
-
-Very little, just add / set `runs-on: actuated`
-
-## Is ARM64 supported?
-
-Yes, actuated is built to run on both Intel/AMD and ARM64 hosts, check your subscription plan to see if ARM64 is included. This includes a Raspberry Pi 4B, AWS Graviton, Oracle Cloud ARM instances and potentially any other ARM64 instances which support virtualisation.
+See also: [Debug a GitHub Action with SSH](./examples/debug-ssh.md)
 
 ## Comparison to other solutions
 
@@ -168,18 +169,38 @@ That means ARC runners can run pretty much anywhere, but actuated runners need t
 
 See also: [Where can I run my agents?](/add-agent.txt)
 
-
 ### Doesn't Kaniko fix all this for ARC?
 
 [Kaniko](https://github.com/GoogleContainerTools/kaniko), by Google is an open source project for building containers. It's usually run as a container itself, and usually will require root privileges in order to mount the various filesystems layers required.
 
-If you're an ARC user and for various reasons, cannot migrate away to a more secure solution, Kaniko may be a step in the right direction. Google Cloud users could also create a dedicated node pool with gVisor enabled, for some additional isolation.
+See also: [Root user inside a container is root on the host](https://suraj.io/post/root-in-container-root-on-host/)
+
+If you're an ARC user and for various reasons, cannot migrate away to a more secure solution like actuated, Kaniko may be a step in the right direction. Google Cloud users could also create a dedicated node pool with gVisor enabled, for some additional isolation.
 
 However, it can only build containers, and still requires root, and itself is often run in Docker, so we're getting back to the same problems that actuated set out to solve.
 
 In addition, Kaniko cannot and will not help you to run that container that you've just built to validate it to run end to end tests, neither can it run a KinD cluster, or a Minikube cluster.
 
-## Are Windows or MacOS supported?
+## Do we need to run my actuated agents 24/7?
+
+Let's say that you wanted to access a single ARM64 runner to speed up your ARM builds from [33 minutes to < 2 minutes like in this example](https://blog.alexellis.io/blazing-fast-ci-with-microvms/).
+
+The two cheapest options for ARM64 hardware would be:
+
+* Buy a Mac Mini M1, host it in your office or a co-lo with Asahi Linux installed. That's a one-time cost and will last for several years.
+* Or you could rent an AWS a1.metal by the hour from AWS with very little up front cost, and pay for the time you use it.
+
+In both cases, we're not talking about a significant amount of money, *however we are sometimes asked about whether actuated agents need to be running 24/7*.
+
+The answer if that it's a trade-off between cost and convenience. We recommend running them continually, however you can turn them off when you're not using them if you think it is worth your time to do so.
+
+If you only needed to run ARM builds from 9-5pm, you could absolutely delete the VM and re-create it with a cron job, just make sure you restore the required files from the original registration of the agent. Feel free to reach out to us if you need help with this.
+
+## Is there GPU support?
+
+We are [currently exploring](https://twitter.com/alexellisuk/status/1594368789864501254?s=20&t=VwSXsR_yeC0hlU7wdFF4Mg) dedicating a GPU to a build. So if an actuated host had 4x GPUs, you could run 4x GPU-based builds on that host at once, each with one GPU, or two jobs with 2x GPUS or one job with 4x GPUs. Let us know if this is something you need when you get in touch with us.
+
+## Is Windows or MacOS supported?
 
 Linux is the only supported platform for actuated at this time on a AMD64 or ARM64 architecture. We may consider other operating systems in the future, feel free to reach out to us.
 
