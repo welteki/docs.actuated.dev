@@ -59,6 +59,8 @@ The actuated GitHub App will request:
 * Administrative access to add/remove GitHub Actions Runners to individual repositories
 * Events via webhook for Workflow Runs and Workflow Jobs
 
+Did you know? The actuated service does not need any access to your code or private or public repositories.
+
 ## Can GitHub's self-hosted runner be used on public repos?
 
 The GitHub team recommends only running their self-hosted runners on private repositories.
@@ -231,6 +233,7 @@ The SaaS collects and stores:
 * Job events for the organisation where a label of "actuated*" is found, including:
     * Organisation name
     * Repository name
+    * Actor name for each job
     * Build name
     * Build start / stop time
     * Build status
@@ -242,7 +245,7 @@ The following is collected from agents:
 * Platform information - Operating System and architecture
 * System capacity - total and available RAM & CPU
 
-In addition, for support incidents, we may need to collect logs remotely from:
+In addition, for support incidents only, we may need to collect the logs of the actuated agent process remotely from:
 
 * VMs launched for jobs, stored at `/var/log/actuated/`
 

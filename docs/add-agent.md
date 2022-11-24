@@ -17,35 +17,35 @@ There are three places you can run an agent:
 
 1. Bare-metal on-premises (cheap, convenient, high performance)
 
-    This could be a machine racked in your server room, under your desk, or in a co-lo somewhere.
+    Running bare-metal on-premises is a cost-effective and convenient way to re-use existing hardware investment.
 
-    It can be a cheap and convenient way to re-use existing hardware.
+    The machine could be racked in your server room, under your desk, or in a co-lo somewhere.
 
     Make sure you segment or isolate the agent into its own subnet, VLAN, DMZ, or VPC so that it cannot access the rest of your network. If you are thinking of running an actuated runner at home, we can share some iptables rules that worked well for our own testing.
 
-    If you need to build for ARM64, we've shown that [a Raspberry Pi 4 is faster than emulating ARM on a GitHub Hosted Runner](https://twitter.com/alexellisuk/status/1583092051398524928?s=20&t=2SelTpdc5idJLmayIu3Djw)
+    For on-premises ARM64 builds, we recommend the Mac Mini M1 (2020) with 16GB RAM and 512GB storage with Asahi Linux. The Raspberry Pi 4 also works, and in one instance [was much faster than using emulation with a Hosted GitHub Runner](https://twitter.com/alexellisuk/status/1583092051398524928?s=20&t=2SelTpdc5idJLmayIu3Djw).
 
 2. Bare-metal on the cloud (higher cost, convenient, high performance)
 
-    You can provision bare-metal hosts in the cloud using any number of providers like AWS, Alibaba Cloud, Cherry Servers, Equinix Metal, OVHcloud, fasthosts, Scaleway and Vultr, [see a list here](https://github.com/alexellis/awesome-baremetal#bare-metal-cloud) 
+    Bare-metal doesn't need to mean on-premises. You can deploy machines by API, pay-as-you-go and get the highest performance available.
     
-    For x86_64 builds we recommend using [Equinix Metal](https://deploy.equinix.com/) for the best price / performance ratio. They also have discounts for reserved instances.
+    Bear in mind that whilst the cost of bare-metal is higher than VMs, you will be able to pack more builds into them and get better throughput since actuated can schedule builds much more efficiently than GitHub's self-hosted runner.
 
-    Whilst we haven't got experience with them, OVHcloud have [a range of very economical bare-metal servers available](https://www.ovhcloud.com/en-gb/bare-metal/rise/) for x86_64.
+    There are at least a dozen options here: Equinix Metal, AWS, Cherry Servers, Alibaba Cloud, OVHcloud, fasthosts, Scaleway and Vultr, [see a list here](https://github.com/alexellis/awesome-baremetal#bare-metal-cloud)
+    
+    For x86_64 builds we recommend using [Equinix Metal](https://deploy.equinix.com/) for the best price / performance ratio. They also have discounts for reserved instances on contract. The smallest instances available are the c3.small.x86 and c2.small.x86.
 
-    For ARM64 builds the cheapest option is to use the [a1.metal](https://aws.amazon.com/ec2/instance-types/a1/) instance on AWS. A Mac Mini M1 is also a good option with (Asahi Linux), if you want to optimise on costs.
+    Whilst we don't yet have experience with OVHcloud, they have [a wide range bare-metal servers available](https://www.ovhcloud.com/en-gb/bare-metal/rise/) at a low cost. These tend to be paid for per month.
 
-    [Equinix Metal](https://metal.equinix.com/) offer bare-metal as a service (with a REST API) for both x86_64 and ARM64. Check out the c3.small.x86, c2.small.x86 and c3.large.arm64.
-
-    This option is both convenient and offers the highest performance available, however bare-metal machines tends to be priced higher than you may be used to with VMs.
-
-    Bear in mind that you may be able to run a single, larger bare-metal machine where you used to need half a dozen cloud VMs, since actuated can schedule builds much more efficiently than the built-in self-hosted runner from GitHub.
+    For ARM64 builds the cheapest option is to use the [a1.metal](https://aws.amazon.com/ec2/instance-types/a1/) instance on AWS. For a step up on specs, take a look at the c3.large.arm64 from [Equinix Metal](https://metal.equinix.com/).
 
 3. Cloud Virtual Machines (VMs) that support nested virtualization (lowest cost, convenient, mid-level performance)
 
-    We know of at least three providers which have options for nested virtualisation: [DigitalOcean](https://m.do.co/c/8d4e75e9886f) [Google Compute Platform (GCP)](https://cloud.google.com/compute) (new customers get 300 USD free credits from GCP) support nested virtualisation on their Virtual Machines (VMs), and [Azure](https://azure.com/) x86 VMs (ARM64 do not support nested virtualisation).
-
     This option may not have the raw speed and throughput of a dedicated, bare-metal host, but keeps costs low and is convenient for getting started.
+
+    We know of at least three providers which have options for nested virtualisation: [DigitalOcean](https://m.do.co/c/8d4e75e9886f) [Google Compute Platform (GCP)](https://cloud.google.com/compute) (new customers get 300 USD free credits from GCP) support nested virtualisation on their Virtual Machines (VMs), and [Azure](https://azure.com/).
+
+    We have tested ARM64 VMs on Oracle OCI, Azure and GCP and found that they do not currently allow for virtualisation. So whilst these clouds may be an option for x86, for ARM64, you'll need access to bare-metal.
 
 The recommended Operating System for an Actuated Agent is: Ubuntu Server 22.04 or Ubuntu Server 20.04.
 
@@ -58,6 +58,8 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 1. Download the agent and installation script
 
     Once you've decided where to set up your first agent, you'll need to download the installation package from a container registry
+
+    > Setting up an ARM64 agent? Wherever you see `agent` in a command, change it to: `agent-arm64`. So instead of `agent keygen` you'd run `agent-aarch64 keygen`.
 
     Install [crane](https://github.com/google/go-containerregistry/releases):
 
@@ -84,7 +86,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     sudo ./install.sh
     ```
 
-    Create a file to store your license from Gumroad:
+    Create a file to store your license. If you don't have it handy, go to [gumroad.com](https://gumroad.com), click "Library" then click "View content"
 
     ```bash
     mkdir -p ~/.actuated
@@ -104,13 +106,6 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     The RSA keypair is only used to encrypt messages and cannot. RSA keys are sometimes used with SSH sessions, however actuated does not use any form of SSH at this time.
     
     This will write: `key_rsa` and `key_rsa.pub` to the current working folder.
-
-    Keep the `key_rsa` private, we will not ask you to share this file with us.
-    Share `key_rsa.pub` with us via email or Slack. This key is not confidential, so don't worry about sharing it.
-
-    ```bash
-    cat ~/.actuated/key_rsa.pub
-    ```
 
 3. Install the agent's authentication token.
 
@@ -155,7 +150,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
     See also: [expose the agent with HTTPS](expose-agent.md)
 
-4. Start the agent
+5. Start the agent
 
     For an Intel/AMD Actuated Agent, create a `start.sh` file:
 
@@ -187,6 +182,23 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     For ARM64 Actuated Agents, change the prefix of the image tags from `x86-64-` to `aarch64-`
 
     You can also run the Actuated Agent software as a systemd unit file for automatic restarts and to start upon boot-up.
+
+6. Send us your agent's connection info
+
+    Share the following with us over Slack or email, these details are confidential.
+
+    ```bash
+    # Your agent's public key for encrypting messages
+    cat ~/.actuated/key_rsa.pub
+
+    # Your agent's encrypted API token
+    cat ~/.actuated/TOKEN.enc
+
+    # Your agent's endpoint
+    echo "https://agent1.example.com
+    ```
+
+    We'll let you know once we've added your agent to actuated and then it's over to you to start running your builds.
 
 ## Next steps
 
