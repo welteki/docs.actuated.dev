@@ -208,11 +208,13 @@ Linux is the only supported platform for actuated at this time on a AMD64 or ARM
 
 ## Is Actuated free and open-source?
 
-Actuated is commercial software developed by OpenFaaS Ltd. A subscription will be required to use the software.
+Actuated currently uses the [Firecracker project](https://github.com/firecracker-microvm/firecracker) to isolate CI jobs. Firecracker is an open source Virtual Machine Manager used by Amazon Web Services (AWS) to isolate serverless-style workloads such as AWS Lambda.
+
+Actuated is a commercial B2B product and service created and run by OpenFaaS Ltd. Customers require an active subscription to use the actuated.
 
 [Read the End User License Agreement (EULA)](https://github.com/self-actuated/actuated/blob/master/EULA.md)
 
-The website and documentation are available on GitHub and we plan to release some open source tools in the future for actuated customers. 
+The website and documentation are available on GitHub and we plan to release some open source tools in the future for customers around agent bootstrapping and autoscaling.
 
 ## Is there a risk that we could get "locked-in" to actuated?
 
