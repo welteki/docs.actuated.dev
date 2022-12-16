@@ -228,9 +228,9 @@ The name of the software is actuated, in some places "actuated" is not available
 
 Actuated is a managed service operated by OpenFaaS Ltd, registered company number: 11076587.
 
-It has both a Software as a Service (SaaS) component ("Actuated") and an agent ("Actuated agent").
+It has both a Software as a Service (SaaS) component ("Actuated") and an agent ("Actuated Agent"), which runs on an ("Actuated Host") supplied by the customer.
 
-The SaaS collects and stores:
+The SaaS portion collects and stores:
 
 * Job events for the organisation where a label of "actuated*" is found, including:
     * Organisation name
@@ -247,13 +247,13 @@ The following is collected from agents:
 * Platform information - Operating System and architecture
 * System capacity - total and available RAM & CPU
 
-In addition, for support incidents only, we may need to collect the logs of the actuated agent process remotely from:
+In addition, for support requests, we may need to collect the logs of the actuated agent process remotely from:
 
 * VMs launched for jobs, stored at `/var/log/actuated/`
 
 This information is required to operate the SaaS including scheduling of VMs and for technical support.
 
-Traffic between the SaaS and customer agents is only made over HTTPS, using TLS encryption and API tokens.
+Traffic between the SaaS and customer agents is only made over HTTPS, using TLS encryption and API tokens. In addition, the token required for GitHub Actions is double encrypted with an RSA key pair, so that only the intended agent can decrypt and use it. These tokens are short-lived and expire after 59 minutes.
 
 Event data recorded from GitHub Actions is stored and used to deliver quality of service and scheduling. This data is stored on a server managed by DigitalOcean LLC in the United Kingdom. The control plane is hosted with Linode LLC in the United Kingdom.
 
