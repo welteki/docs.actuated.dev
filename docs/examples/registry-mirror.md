@@ -2,7 +2,7 @@
 
 Use-cases:
 
-* Increase speed of pulls and builds by caching images on actuated agents
+* Increase speed of pulls and builds by caching images on Actuated Hosts
 * Reduce failed builds due to rate-limiting
 
 If you use Docker in your self-hosted builds, there is a chance that you'll run into the rather conservative rate-limits.

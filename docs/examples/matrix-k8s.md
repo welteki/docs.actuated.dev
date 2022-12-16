@@ -7,7 +7,7 @@ In the example, We're testing the CRD for the [inlets-operator](https://github.c
 See also: [Actuated with KinD](/examples/kind)
 
 ![Launching 10 Kubernetes clusters in parallel](/images/k3s-matrix.png)
-> Launching 10 Kubernetes clusters in parallel across your fleet of Actuated Agents.
+> Launching 10 Kubernetes clusters in parallel across your fleet of Actuated Hosts.
 
 Certified for:
 

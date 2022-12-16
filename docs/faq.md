@@ -89,23 +89,23 @@ See also: [GitHub: ephemeral runners](https://docs.github.com/en/actions/hosting
 
 ## How are VMs scheduled?
 
-VMs are placed efficiently across your Actuated Agents using a simple algorithm based upon the amount of RAM reserved for the VM.
+VMs are placed efficiently across your Actuated Hosts using a scheduling algorithm based upon the amount of RAM reserved for the VM.
 
 Autoscaling of VMs is automatic. Let's say that you had 10 jobs pending, but given the RAM configuration, only enough capacity to run 8 of them? The second two would be queued until capacity one or more of those 8 jobs completed.
 
 If you find yourself regularly getting into a queued state, there are three potential changes to consider:
 
-1. Using Actuated Agents with more RAM
+1. Using Actuated Hosts with more RAM
 2. Allocated less RAM to each job
-3. Adding more Actuated Agents
+3. Adding more Actuated Hosts
 
-The plan you select will determine how many Actuated Agents you can run, so consider 1. and 2. before 3.
+The plan you select will determine how many Actuated Hosts you can run, so consider 1. and 2. before 3.
 
-## Do I need to auto-scale the Actuated Agents?
+## Do I need to auto-scale the Actuated Hosts?
 
 If you haven't, read the previous section.
 
-Most teams that we've interviewed said that a small static pool of Actuated Agents would satisfy their build requirements. For the pilot period, we are not offering auto-scaling of Actuated Agents.
+Most teams that we've interviewed said that a small static pool of Actuated Hosts would satisfy their build requirements. For the pilot period, we are not offering auto-scaling of Actuated Hosts.
 
 If you feel that is a requirement for your team, set up some time to tell us why and we'll see if we can help.
 
@@ -183,7 +183,7 @@ However, it can only build containers, and still requires root, and itself is of
 
 In addition, Kaniko cannot and will not help you to run that container that you've just built to validate it to run end to end tests, neither can it run a KinD cluster, or a Minikube cluster.
 
-## Do we need to run my actuated agents 24/7?
+## Do we need to run my Actuated Hosts 24/7?
 
 Let's say that you wanted to access a single ARM64 runner to speed up your ARM builds from [33 minutes to < 2 minutes like in this example](https://blog.alexellis.io/blazing-fast-ci-with-microvms/).
 
@@ -192,7 +192,7 @@ The two cheapest options for ARM64 hardware would be:
 * Buy a Mac Mini M1, host it in your office or a co-lo with Asahi Linux installed. That's a one-time cost and will last for several years.
 * Or you could rent an AWS a1.metal by the hour from AWS with very little up front cost, and pay for the time you use it.
 
-In both cases, we're not talking about a significant amount of money, *however we are sometimes asked about whether actuated agents need to be running 24/7*.
+In both cases, we're not talking about a significant amount of money, *however we are sometimes asked about whether Actuated Hosts need to be running 24/7*.
 
 The answer if that it's a trade-off between cost and convenience. We recommend running them continually, however you can turn them off when you're not using them if you think it is worth your time to do so.
 
@@ -253,4 +253,8 @@ In addition, for support incidents only, we may need to collect the logs of the 
 
 This information is required to operate the SaaS including scheduling of VMs and for technical support.
 
-Traffic between the SaaS and agents is over HTTPS only with TLS encryption and unique API tokens.
+Traffic between the SaaS and customer agents is only made over HTTPS, using TLS encryption and API tokens.
+
+Event data recorded from GitHub Actions is stored and used to deliver quality of service and scheduling. This data is stored on a server managed by DigitalOcean LLC in the United Kingdom. The control plane is hosted with Linode LLC in the United Kingdom.
+
+No data is shared with third parties.

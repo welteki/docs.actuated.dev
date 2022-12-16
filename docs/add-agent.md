@@ -178,7 +178,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
         --listen-addr 127.0.0.1:
     ```
 
-    For ARM64 Actuated Agents, change the prefix of the image tags from `x86-64-` to `aarch64-`
+    For ARM64 Actuated Hosts, change the prefix of the image tags from `x86-64-` to `aarch64-`
 
     You can also run the Actuated Agent software as a systemd unit file for automatic restarts and to start upon boot-up.
 
