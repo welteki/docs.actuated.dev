@@ -23,19 +23,12 @@ We will create a mirror that:
 ## Set up the registry on an actuated agent
 
 ```bash
-curl -sLS https://github.com/distribution/distribution/releases/download/v2.8.1/registry_2.8.1_linux_amd64.tar.gz -o /tmp/registry.tgz
-```
+curl -sLS https://get.arkade.dev | sudo sh
 
-For ARM:
+sudo arkade system install registry
 
-```bash
-curl -sLS https://github.com/distribution/distribution/releases/download/v2.8.1/registry_2.8.1_linux_arm64.tar.gz -o /tmp/registry.tgz
-```
-
-Extract the binary:
-
-```bash
-sudo tar -xvf /tmp/registry.tgz -C /usr/local/bin registry
+sudo mkdir -p /etc/registry
+sudo mkdir -p /var/lib/registry
 ```
 
 Create a Docker Hub Access token with "Public repos only" scope, and save it as `~/hub.txt`.
@@ -43,8 +36,6 @@ Create a Docker Hub Access token with "Public repos only" scope, and save it as 
 Create a config file to make the registry only available on the Linux bridge for Actuated VMs:
 
 ```bash
-sudo mkdir -p /etc/registry
-
 export TOKEN=$(cat ~/hub.txt)
 export USERNAME=""
 
@@ -94,12 +85,16 @@ ExecStart=/usr/local/bin/registry serve /etc/registry/config.yml
 WantedBy=multi-user.target
 EOF
 
-sudo mkdir -p /var/lib/registry
 
 sudo mv /tmp/registry.service /etc/systemd/system/registry.service
 sudo systemctl daemon-reload
-sudo systemctl enable registry
-sudo systemctl start registry
+sudo systemctl enable registry --now
+```
+
+Check the status with:
+
+```bash
+sudo journalctl -u registry
 ```
 
 ## Use the registry within a workflow
@@ -156,4 +151,10 @@ Date: Wed, 16 Nov 2022 09:41:18 GMT
 Content-Length: 52
 
 {"repositories":["library/alpine","moby/buildkit"]}
+```
+
+You can check the status of the mirror at any time with:
+
+```bash
+sudo journalctl -u registry --since today
 ```
