@@ -20,6 +20,14 @@ We will create a mirror that:
 * When unavailable for any reason, the build continues without error
 * Works on both Intel/AMD and ARM64 hosts
 
+## Create a Docker Hub Access token
+
+Create a Docker Hub Access token with "Public repos only" scope, and save it as `~/hub.txt` on the Actuated Host.
+
+![Settings for a public token](/images/read-only-public-token.png)
+
+> Settings for an authorization token, with read-only permissions to public repositories
+
 ## Set up the registry on an actuated agent
 
 ```bash
@@ -30,8 +38,6 @@ sudo arkade system install registry
 sudo mkdir -p /etc/registry
 sudo mkdir -p /var/lib/registry
 ```
-
-Create a Docker Hub Access token with "Public repos only" scope, and save it as `~/hub.txt`.
 
 Create a config file to make the registry only available on the Linux bridge for Actuated VMs:
 
