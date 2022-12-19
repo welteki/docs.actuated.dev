@@ -19,11 +19,17 @@ Shipped
 * [x] Subscription plans delivered by Gumroad
 * [x] API for reviewing connected agents and queue depth
 * [x] Job event auditing for review via API
+* [x] Documentation site with detailed GitHub Actions examples
+* [x] Customer dashboard UI to show connected agents, build queue and daily stats
+* [x] Official website [actuated.dev](https://actuated.dev)
+* [x] Remote / automated update of agents via control plane
 
 Coming soon:
 
-* [ ] UI Portal to show connected agents, build queue and GitHub job events
+* [ ] Blog feature on actuated.dev with news, tutorials and updates from our team
 * [ ] Support for GitLab.com / self-hosted GitLab (contact us if you need this)
-* [ ] Consider alternatives to having the control plane talk to agents over HTTPS, such as long polling and the agent connecting to the control plane.
+* [ ] GPU pass-through support using vfio and Cloud Hypervisor
+* [ ] Autoscaling for agents for cost-sensitive teams, today you can use a cron schedule to suspend a machine or re-create it daily
 * [ ] Automated agent installation and bootstrap
-* [ ] Autoscaling for agents
+* [ ] Consider alternatives to having the control plane talk to agents over HTTPS, such as long polling and the agent connecting to the control plane.
+
