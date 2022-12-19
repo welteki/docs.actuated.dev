@@ -1,10 +1,14 @@
 # Roadmap
 
-Actuated is in a pilot phase, running builds for participating customers. The core product is functioning and we are dogfooding it for OpenFaaS and inlets.
+Actuated is in a pilot phase, running builds for participating customers. The core experience is functioning and we are dogfooding it for actuated itself, OpenFaaS Pro and inlets.
 
 Our goal with the pilot is to prove that there's market fit for a solution like this, and if so, we'll invest more time in automation, user experience, agent autoscaling, dashboards and other polish.
 
-For now, if you're interested in participating and giving feedback, we believe actuated already solves pain at this stage.
+The technology being used is run at huge scale in production by AWS (on Lambda and Fargate) and GitHub (self-hosted runners use the same runner software and control plane).
+
+We believe actuated solves a real problem making CI fast, efficient, and multi-arch.
+
+If you'd like to try it out for your team, [Register interest for the pilot](https://forms.gle/8XmpTTWXbZwWkfqT6).
 
 Shipped
 
