@@ -72,10 +72,6 @@ This build will show you the specs, OS and Kernel name reported by the MicroVM.
 
     You'll be able to see the runners registered for your organisation on the [Actuated Dashboard](https://dashboard.actuated.dev) along with the build queue and stats for the current day's builds.
 
-    Do you have any questions or comments?
-
-    Feel free to reach out to us over Slack in the public channel for support.
-
 3. If you're curious
 
     You can view the logs of the agent by logging into one of the Actuated Hosts with SSH and running the following commands:
@@ -93,8 +89,16 @@ This build will show you the specs, OS and Kernel name reported by the MicroVM.
     sudo cat /var/log/actuated/*
     ```
 
-## Enable an existing repository
+Do you have any questions or comments? Feel free to reach out to us over Slack in the public channel for support.
+
+## Enable actuated for an existing repository
 
 To add actuated to an existing repository, simply edit the workflow YAML file and change `runs-on:` to `runs-on: actuated`.
 
 If you want to go back to a hosted runner, edit the field back to `runs-on: ubuntu-latest` or whatever you used prior to that.
+
+## Recommended: Enable a Docker Hub mirror
+
+We provide an add-on for setting up a cache/mirror of the Docker Hub. If you do not enable this, and use the Docker Hub in your builds, then you may run into the rate limits imposed by Docker Hub for anonymous users.
+
+See also: [Set up a registry mirror](/examples/registry-mirror.md)
