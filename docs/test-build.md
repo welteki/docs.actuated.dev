@@ -70,9 +70,28 @@ This build will show you the specs, OS and Kernel name reported by the MicroVM.
 
 2. Hit commit, and watch the VM boot up.
 
+    You'll be able to see the runners registered for your organisation on the [Actuated Dashboard](https://dashboard.actuated.dev) along with the build queue and stats for the current day's builds.
+
     Do you have any questions or comments?
 
     Feel free to reach out to us over Slack in the public channel for support.
+
+3. If you're curious
+
+    You can view the logs of the agent by logging into one of the Actuated Hosts with SSH and running the following commands:
+
+    ```bash
+    sudo journalctl -u actuated -f -o cat
+
+    # Just today's logs:
+    sudo journalctl -u actuated --since today -o cat
+    ```
+
+    And each VM writes the logs from its console and the GitHub Actions Runner to `/var/log/actuated/`.
+
+    ```bash
+    sudo cat /var/log/actuated/*
+    ```
 
 ## Enable an existing repository
 
