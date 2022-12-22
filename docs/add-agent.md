@@ -27,15 +27,19 @@ There are three places you can run an agent:
 
 2. Bare-metal on the cloud (higher cost, convenient, high performance)
 
-    Bare-metal doesn't need to mean on-premises. You can deploy machines by API, pay-as-you-go and get the highest performance available.
+    Bare-metal doesn't have to mean managing hardware in your own physical datacenter. You can deploy machines by API, pay-as-you-go and get the highest performance available.
     
     Bear in mind that whilst the cost of bare-metal is higher than VMs, you will be able to pack more builds into them and get better throughput since actuated can schedule builds much more efficiently than GitHub's self-hosted runner.
 
-    There are at least a dozen options here: Equinix Metal, AWS, Cherry Servers, Alibaba Cloud, OVHcloud, fasthosts, Scaleway and Vultr, [see a list here](https://github.com/alexellis/awesome-baremetal#bare-metal-cloud)
+    We have seen the best performance from hosts with high clock speeds like the recent generation of AMD processors, combined with local NVMe storage. Rotational drives and SATA SSDs are significantly slower. At the lower end of bare-metal providers, you'll pay 40-50 EUR / mo per host, moving up to 80-150 EUR / mo for NVMe and AMD processors, when you go up to enterprise-grade bare-metal with 10Gbit uplinks, you'll be more in the range of 500-1500 USD / mo.
+
+    There are at least a dozen options for hosted bare-metal: [Equinix Metal](https://deploy.equinix.com/), [Ionos](https://ionos.co.uk), [Hetzner](https://hetzner.com), [AWS](https://aws.amazon.com/), [Cherry Servers](https://www.cherryservers.com/), [Alibaba Cloud](https://eu.alibabacloud.com/en), [OVHcloud](https://www.ovhcloud.com/en-gb/bare-metal/rise/), [fasthosts](https://www.fasthosts.co.uk/), [Scaleway](https://scaleway.com) and [Vultr](https://www.vultr.com/), [see a list here](https://github.com/alexellis/awesome-baremetal#bare-metal-cloud)
     
     For x86_64 builds we recommend using [Equinix Metal](https://deploy.equinix.com/) for the best price / performance ratio. They also have discounts for reserved instances on contract. The smallest instances available are the c3.small.x86 and c2.small.x86.
 
-    Whilst we don't yet have experience with OVHcloud, they have [a wide range bare-metal servers available](https://www.ovhcloud.com/en-gb/bare-metal/rise/) at a low cost. These tend to be paid for per month.
+    We have done customer testing with [Ionos](https://ionos.co.uk) with AMD CPUs and local NVMe, these are very quick and are good value.
+
+    [Having tested several of Scaleway's servers](https://twitter.com/alexellisuk/status/1605866713815437312?s=20&t=JGh5fGZJWklLTCTVkTVElg), we do not recommend their current generation of bare-metal due to I/O bottlenecks.
 
     For ARM64 builds the cheapest option is to use the [a1.metal](https://aws.amazon.com/ec2/instance-types/a1/) instance on AWS. For a step up on specs, take a look at the c3.large.arm64 from [Equinix Metal](https://metal.equinix.com/).
 
