@@ -81,6 +81,30 @@ Our contact at GitHub stated that through VM-level isolation and an immutable VM
 
 Actuated fixes the isolation problem, and prevents side-effects between builds. We also have specific iptables rules in the [troubleshooting guide](/troubleshooting) which will isolate your runners from the rest of the network.
 
+## Can I use the containers feature of GitHub Actions?
+
+GitHub Action's [Running jobs in a container](https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container) feature is supported, as is Docker, Buildx, Kubernetes, KinD, K3s, etc.
+
+Example of running commands with the `docker.io/node:16` image.
+
+```yaml
+
+jobs:
+  specs:
+    name: test
+    runs-on: actuated
+    container:
+      image: docker.io/node:16
+      env:
+        NODE_ENV: development
+      ports:
+        - 3000
+      options: --cpus 1
+    steps:
+      - name: Check for dockerenv file
+        run: node --version
+```
+
 ## How many builds does a single actuated VM run?
 
 When a VM starts up, it runs the GitHub Actions Runner ephemeral (aka one-shot) mode, so in can run at most one build. After that, the VM will be destroyed.
