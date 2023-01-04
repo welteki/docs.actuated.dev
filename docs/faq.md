@@ -52,7 +52,7 @@ Feel free to contact us at: [contact@openfaas.com](mailto:contact@openfaas.com)
 
 GitHub.com's Pro, Team and Enterprise Cloud plans are supported.
 
-[GitHub Enterprise Server (GHES)](https://docs.github.com/en/enterprise-server@3.5/admin/overview/about-github-enterprise-server) is a self-hosted version of GitHub, so may require a dedicated installation, feel free to reach out to discuss your organisation's needs.
+[GitHub Enterprise Server (GHES)](https://docs.github.com/en/enterprise-server@3.5/admin/overview/about-github-enterprise-server) is a self-hosted version of GitHub and may require additional configuration. Please reach out to us if you're interested in using actuated with your installation of GHES.
 
 ## What kind of access is required to my GitHub Organisation?
 
