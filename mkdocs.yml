@@ -90,11 +90,12 @@ nav:
       - Introduction: index.md
       - Roadmap: roadmap.md
       - FAQ: faq.md
+      - Contact us: contact.md
   - Onboarding:
       - Register your GitHub Organisation: register.md
       - Provision a Server: provision-server.md
       - Install the Agent: install-agent.md
-      - Start a build on your agent: test-build.md
+      - Run a test build: test-build.md
       - Troubleshooting: troubleshooting.md
   - Examples:
       - System Info: examples/system-info.md

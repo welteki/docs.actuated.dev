@@ -1,4 +1,4 @@
-# Start a build on your agent
+# Run a test build
 
 Now that you've [registered your GitHub organisation](/register.md), [created a server](/provision-server.md), and [configured the agent](/install-agent.md), you're ready for a test build.
 
@@ -6,7 +6,7 @@ We recommend you run the following build without changes to confirm that everyth
 
 The below steps should take less than 10 minutes.
 
-## Create a test build
+## Create a repository and workflow
 
 This build will show you the specs, OS and Kernel name reported by the MicroVM.
 
