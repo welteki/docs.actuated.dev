@@ -36,7 +36,7 @@ We regularly update our recommendations, which include bare-metal and cloud VMs 
 
     This option may not have the raw speed and throughput of a dedicated, bare-metal host, but keeps costs low and is convenient for getting started.
 
-    We know of at least three providers which have options for nested virtualisation: [DigitalOcean](https://m.do.co/c/8d4e75e9886f) [Google Compute Platform (GCP)](https://cloud.google.com/compute) (new customers get 300 USD free credits from GCP) support nested virtualisation on their Virtual Machines (VMs), and [Azure](https://azure.com/).
+    We know of at least three providers which have options for nested virtualisation: [DigitalOcean](https://m.do.co/c/8d4e75e9886f), [Google Compute Platform (GCP)](https://cloud.google.com/compute) (new customers get 300 USD free credits from GCP) support nested virtualisation on their Virtual Machines (VMs), and [Azure](https://azure.com/).
 
     We have tested ARM64 VMs on Oracle OCI, Azure and GCP and found that they do not currently allow for virtualisation. So whilst these clouds may be an option for x86, for ARM64, you'll need access to bare-metal.
 
