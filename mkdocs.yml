@@ -92,7 +92,8 @@ nav:
       - FAQ: faq.md
   - Onboarding:
       - Register your GitHub Organisation: register.md
-      - Add your first agent: add-agent.md
+      - Provision a Server: provision-server.md
+      - Install the Agent: install-agent.md
       - Start a build on your agent: test-build.md
       - Troubleshooting: troubleshooting.md
   - Examples:

@@ -107,15 +107,18 @@ Learn more in the [FAQ](faq.md)
 ### Comparison
 
 Feel free [to book a call with us](register.md) if you'd like to understand this comparison in more detail.
+| Solution                     | Isolated VM | Speed            | Efficient spread of jobs | Safely build public repos? | ARM64 support | Maintenance required  | Cost                  |
+|------------------------------|------------------------------|------------------|--------------------------|----------------------------|---------------|-----------------------|-----------------------|
+| Hosted runners               | :material-check-all:         | Poor             | :material-check-all:     | :material-check-all:       | None          | Free minutes in plan `*2`                 | Per build minute      |
+| actuated                     | :material-check-all:         | Bare-metal       | :material-check-all:     | :material-check-all:       | Yes           | Very little           | Fixed monthly cost    |
+| Standard self-hosted runners | :material-close:             | Good             | :material-close:         | :material-close:           | DIY           | Manual setup and updates         | OSS plus management costs  |
+| actions-runtime-controller   | :material-close:             | Varies `*2` | :material-close:         | :material-close:           | DIY           | Very involved | OSS plus management costs |
 
-| Solution | VM-level isolation per build | Speed | Efficient spread of jobs | Safely build public repos? | ARM64 support | Maintenance required | Cost |
-| ----------- | ------------------------------------ | ------ | ---------- | ------------------------------ | --------------------- | ---- | ---- |
-| Hosted runners       | :material-check-all: | Poor | :material-check-all: | :material-check-all: | None | None | Per build minute |
-| actuated      | :material-check-all: | Best | :material-check-all: | :material-check-all: | Yes | Very little | Fixed monthly cost |
-| Standard self-hosted runners | :material-close: | Good | :material-close: | :material-close: | DIY | Very involved | OSS, needs management |
-| actions-runtime-controller |  :material-close:  | Very good | :material-check-all: | :material-close: | DIY | Very involved | OSS, needs management |
+> `*1` actions-runtime-controller requires use of separate build tools such as Kaniko, which break the developer experience of using `docker` or `docker-compose`. If Docker in Docker (DinD) is used, then there is a severe performance penalty and security risk.
 
-*Builds on public GitHub repositories are free with the standard hosted runners, however private repositories require billing information, after the initial included minutes are consumed.*
+> `*2` Builds on public GitHub repositories are free with the standard hosted runners, however private repositories require billing information, after the initial included minutes are consumed.
+
+You can only get VM-level isolation from either GitHub hosted runners or Actuated. Standard self-hosted runners have no isolation between builds and actions-runtime-controller requires either a Docker socket to be mounted or Docker In Docker (a privileged container) to build and run containers.
 
 ## Got questions, comments or suggestions?
 

@@ -37,4 +37,6 @@ To manage or uninstall the Actuated app navigate to "Settings" for your reposito
 
 ## Next steps
 
-Then you'll [Add your first agent](add-agent.md)
+Now that you've installed the GitHub App, and picked a subscription plan:
+
+* [Provision a server](provision-server.md)

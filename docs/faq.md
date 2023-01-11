@@ -168,20 +168,23 @@ See also: [Debug a GitHub Action with SSH](./examples/debug-ssh.md)
 
 Feel free [to book a call with us](register.md) if you'd like to understand this comparison in more detail.
 
-| Solution | VM-level isolation per build | Speed | Efficient spread of jobs | Safely build public repos? | ARM64 support | Maintenance required | Cost |
-| ----------- | ------------------------------------ | ------ | ---------- | ------------------------------ | --------------------- | ---- | ---- |
-| Hosted runners       | :material-check-all: | Poor | :material-check-all: | :material-check-all: | None | None | Per build minute |
-| actuated      | :material-check-all: | Best | :material-check-all: | :material-check-all: | Yes | Very little | Fixed monthly cost |
-| Standard self-hosted runners | :material-close: | Good | :material-close: | :material-close: | DIY | Very involved | OSS, needs management |
-| actions-runtime-controller |  :material-close:  | Very good | :material-check-all: | :material-close: | DIY | Very involved | OSS, needs management |
 
-*Builds on public GitHub repositories are free with the standard hosted runners, however private repositories require billing information, after the initial included minutes are consumed.*
+| Solution                     | Isolated VM | Speed            | Efficient spread of jobs | Safely build public repos? | ARM64 support | Maintenance required  | Cost                  |
+|------------------------------|------------------------------|------------------|--------------------------|----------------------------|---------------|-----------------------|-----------------------|
+| Hosted runners               | :material-check-all:         | Poor             | :material-check-all:     | :material-check-all:       | None          | Free minutes in plan `*2`                 | Per build minute      |
+| actuated                     | :material-check-all:         | Bare-metal       | :material-check-all:     | :material-check-all:       | Yes           | Very little           | Fixed monthly cost    |
+| Standard self-hosted runners | :material-close:             | Good             | :material-close:         | :material-close:           | DIY           | Manual setup and updates         | OSS plus management costs  |
+| actions-runtime-controller   | :material-close:             | Varies `*2` | :material-close:         | :material-close:           | DIY           | Very involved | OSS plus management costs |
+
+> `*1` actions-runtime-controller requires use of separate build tools such as Kaniko, which break the developer experience of using `docker` or `docker-compose`. If Docker in Docker (DinD) is used, then there is a severe performance penalty and security risk.
+
+> `*2` Builds on public GitHub repositories are free with the standard hosted runners, however private repositories require billing information, after the initial included minutes are consumed.
 
 You can only get VM-level isolation from either GitHub hosted runners or Actuated. Standard self-hosted runners have no isolation between builds and actions-runtime-controller requires either a Docker socket to be mounted or Docker In Docker (a privileged container) to build and run containers.
 
 ### How does actuated compare to a actions-runtime-controller (ARC)?
 
-[actions-runtime-controller (ARC))](https://github.com/actions-runner-controller/actions-runner-controller) is maintained by [Yusuke Kuoka](https://github.com/mumoshu).
+[actions-runtime-controller (ARC))](https://github.com/actions-runner-controller/actions-runner-controller) is maintained by an individual developer called [Yusuke Kuoka](https://github.com/mumoshu).
 
 Its primary use-case is scale GitHub's self-hosted actions runner using Pods in a Kubernetes cluster. ARC is self-hosted software which means its setup and operation are complex, requiring you to create an properly configure a GitHub App along with its keys. For actuated, you only need to run a single binary on each of your runner hosts and send us an encrypted bootstrap token.
 
@@ -199,7 +202,7 @@ ARC runs a container, so that should work on any machine with a modern Kernel, h
 
 That means ARC runners can run pretty much anywhere, but actuated runners need to be on a bare-metal machine, or a VM that supports nested virtualisation.
 
-See also: [Where can I run my agents?](/add-agent.txt)
+See also: [Where can I run my agents?](/provision-server.md)
 
 ### Doesn't Kaniko fix all this for ARC?
 

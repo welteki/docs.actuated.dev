@@ -6,6 +6,17 @@ All customers have access to a public Slack channel for support and collaboratio
 
 Enterprise customers may also have an upgraded SLA for support tickets via email and access to a private Slack channel.
 
+## The Actuated Dashboard
+
+The first port of call should be the [Actuated Dashboard](https://dashboard.actuated.dev) where you can check the status of your agents and see the current queue of jobs.
+
+For security reasons, an administrator for your GitHub Organisation will need to approve the Actuated Dashboard for access to your organisation before team members will be able to see any data. Send them the link for the dashboard, and have them specifically tick the checkbox for your organisation when logging in for the first time.
+
+If you missed this step, have them head over to their [Applications Settings page](https://github.com/settings/apps/authorizations), click "Authorized OAuth Apps" and then "Actuated Dashboard". On this page, under "Organization access" they can click "Grant" for each of your organisations registered for actuated.
+
+![OAuth Access Page](/images/oauth-dashboard-access.png)
+> How to "Grant" access to the Dashboard.
+
 ## A job is stuck as "queued"
 
 By default, we reject jobs on public repositories, however we can feature flag this on for you. Just ask us.

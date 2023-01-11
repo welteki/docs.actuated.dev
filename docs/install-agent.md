@@ -2,8 +2,8 @@
 
 actuated is split into three parts:
 
-1. An agent that you run on your own machines or VMs, which can launch a VM with a single-use GitHub Actions runner
-2. A VM image launched by the agent, with all the preinstalled software found on a hosted GitHub Actions runner
+1. An Actuated Agent (agent) that you run on your own machines or VMs (server), which can launch a VM with a single-use GitHub Actions runner.
+2. A VM image launched by the agent, with all the preinstalled software found on a hosted GitHub Actions runner.
 3. Our own control plane that talks to GitHub on your behalf, and schedules builds across your fleet of agents.
 
 We look after 2 and 3 which means you just have to set up one or more agent to get started.
@@ -11,57 +11,17 @@ We look after 2 and 3 which means you just have to set up one or more agent to g
 !!! info "Have you registered your organisation yet?"
     Before you can add an agent, you or your GitHub organisation admin will need to install the: [Actuated GitHub App](register.md).
 
-## Decide where to run your agent
+### Pick your Actuated Hosts
 
-There are three places you can run an agent:
-
-1. Bare-metal on-premises (cheap, convenient, high performance)
-
-    Running bare-metal on-premises is a cost-effective and convenient way to re-use existing hardware investment.
-
-    The machine could be racked in your server room, under your desk, or in a co-lo somewhere.
-
-    Make sure you segment or isolate the agent into its own subnet, VLAN, DMZ, or VPC so that it cannot access the rest of your network. If you are thinking of running an actuated runner at home, we can share some iptables rules that worked well for our own testing.
-
-    For on-premises ARM64 builds, we recommend the Mac Mini M1 (2020) with 16GB RAM and 512GB storage with Asahi Linux. The Raspberry Pi 4 also works, and in one instance [was much faster than using emulation with a Hosted GitHub Runner](https://twitter.com/alexellisuk/status/1583092051398524928?s=20&t=2SelTpdc5idJLmayIu3Djw).
-
-2. Bare-metal on the cloud (higher cost, convenient, high performance)
-
-    Bare-metal doesn't have to mean managing hardware in your own physical datacenter. You can deploy machines by API, pay-as-you-go and get the highest performance available.
-    
-    Bear in mind that whilst the cost of bare-metal is higher than VMs, you will be able to pack more builds into them and get better throughput since actuated can schedule builds much more efficiently than GitHub's self-hosted runner.
-
-    We have seen the best performance from hosts with high clock speeds like the recent generation of AMD processors, combined with local NVMe storage. Rotational drives and SATA SSDs are significantly slower. At the lower end of bare-metal providers, you'll pay 40-50 EUR / mo per host, moving up to 80-150 EUR / mo for NVMe and AMD processors, when you go up to enterprise-grade bare-metal with 10Gbit uplinks, you'll be more in the range of 500-1500 USD / mo.
-
-    There are at least a dozen options for hosted bare-metal: [Equinix Metal](https://deploy.equinix.com/), [Ionos](https://ionos.co.uk), [Hetzner](https://hetzner.com), [AWS](https://aws.amazon.com/), [Cherry Servers](https://www.cherryservers.com/), [Alibaba Cloud](https://eu.alibabacloud.com/en), [OVHcloud](https://www.ovhcloud.com/en-gb/bare-metal/rise/), [fasthosts](https://www.fasthosts.co.uk/), [Scaleway](https://scaleway.com) and [Vultr](https://www.vultr.com/), [see a list here](https://github.com/alexellis/awesome-baremetal#bare-metal-cloud)
-    
-    For x86_64 builds we recommend using [Equinix Metal](https://deploy.equinix.com/) for the best price / performance ratio. They also have discounts for reserved instances on contract. The smallest instances available are the c3.small.x86 and c2.small.x86.
-
-    We have done customer testing with [Ionos](https://ionos.co.uk) with AMD CPUs and local NVMe, these are very quick and are good value.
-
-    [Having tested several of Scaleway's servers](https://twitter.com/alexellisuk/status/1605866713815437312?s=20&t=JGh5fGZJWklLTCTVkTVElg), we do not recommend their current generation of bare-metal due to I/O bottlenecks.
-
-    For ARM64 builds the cheapest option is to use the [a1.metal](https://aws.amazon.com/ec2/instance-types/a1/) instance on AWS. For a step up on specs, take a look at the c3.large.arm64 from [Equinix Metal](https://metal.equinix.com/).
-
-3. Cloud Virtual Machines (VMs) that support nested virtualization (lowest cost, convenient, mid-level performance)
-
-    This option may not have the raw speed and throughput of a dedicated, bare-metal host, but keeps costs low and is convenient for getting started.
-
-    We know of at least three providers which have options for nested virtualisation: [DigitalOcean](https://m.do.co/c/8d4e75e9886f) [Google Compute Platform (GCP)](https://cloud.google.com/compute) (new customers get 300 USD free credits from GCP) support nested virtualisation on their Virtual Machines (VMs), and [Azure](https://azure.com/).
-
-    We have tested ARM64 VMs on Oracle OCI, Azure and GCP and found that they do not currently allow for virtualisation. So whilst these clouds may be an option for x86, for ARM64, you'll need access to bare-metal.
-
-The recommended Operating System for an Actuated Agent is: Ubuntu Server 22.04 or Ubuntu Server 20.04.
+Pick your Actuated Hosts carefully using our guide: [Pick a host for actuated](/provision-server.md)
 
 ## Review the End User License Agreement (EULA)
 
 Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actuated/blob/master/EULA.md) before registering your organisation with the actuated GitHub App, or starting the agent binary on one of your hosts.
 
-## Set up your first agent
+## Install the Actuated Agent
 
-1. Download the agent and installation script
-
-    Once you've decided where to set up your first agent, you'll need to download the installation package from a container registry
+1. Download the Actuated Agent and installation script to the server
 
     > Setting up an ARM64 agent? Wherever you see `agent` in a command, change it to: `agent-arm64`. So instead of `agent keygen` you'd run `agent-aarch64 keygen`.
 

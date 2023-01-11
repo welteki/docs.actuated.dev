@@ -1,8 +1,10 @@
 # Start a build on your agent
 
-Once you've [registered your GitHub organisation](register.md), and [set up your first runner](add-agent.md), you can either add actuated to an existing GitHub workflow, or create a test repository to see it in action.
+Now that you've [registered your GitHub organisation](/register.md), [created a server](/provision-server.md), and [configured the agent](/install-agent.md), you're ready for a test build.
 
-We suggest creating a test build so that you can see how everything works before moving over to an existing repository. 
+We recommend you run the following build without changes to confirm that everything is working as expected. After that, you can modify an existing build and start using actuated for your team.
+
+The below steps should take less than 10 minutes.
 
 ## Create a test build
 
@@ -19,24 +21,21 @@ This build will show you the specs, OS and Kernel name reported by the MicroVM.
         pull_request:
             branches:
             - '*'
-    push:
-        branches:
-        - master
-        - main
+        push:
+            branches:
+            - master
+            - main
+        workflow_dispatch:
 
     jobs:
-    specs:
-        name: specs
-        runs-on: actuated
-        steps:
-        - uses: actions/checkout@v1
-        - name: sleep
-            run: |
-            sleep 2
-        - name: Check specs
-            run: |
-            ./specs.sh
-
+        specs:
+            name: specs
+            runs-on: actuated
+            steps:
+            - uses: actions/checkout@v1
+            - name: Check specs
+              run: |
+                ./specs.sh
     ```
 
     Note that the `runs-on:` field says `actuated` and not `ubuntu-latest`. This is how the actuated control plane knows to send this job to your agent.
