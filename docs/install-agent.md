@@ -11,9 +11,9 @@ We look after 2 and 3 which means you just have to set up one or more agent to g
 !!! info "Have you registered your organisation yet?"
     Before you can add an agent, you or your GitHub organisation admin will need to install the: [Actuated GitHub App](register.md).
 
-### Pick your Actuated Hosts
+### Pick your Actuated Servers
 
-Pick your Actuated Hosts carefully using our guide: [Pick a host for actuated](/provision-server.md)
+Pick your Actuated Servers carefully using our guide: [Pick a host for actuated](/provision-server.md)
 
 ## Review the End User License Agreement (EULA)
 
@@ -142,7 +142,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
         --listen-addr 127.0.0.1:
     ```
 
-    For ARM64 Actuated Hosts, change the prefix of the image tags from `x86-64-` to `aarch64-`
+    For ARM64 Actuated Servers, change the prefix of the image tags from `x86-64-` to `aarch64-`
 
     You can also run the Actuated Agent software as a systemd unit file for automatic restarts and to start upon boot-up.
 

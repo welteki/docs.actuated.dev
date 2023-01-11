@@ -73,7 +73,7 @@ inlets-pro http client \
     --upstream http://127.0.0.1:8081
 ```
 
-For two or more Actuated Hosts:
+For two or more Actuated Servers:
 
 ```bash
 export AGENT_DOMAIN1=agent1.example.com
@@ -94,7 +94,7 @@ inletsctl create \
 
 Then note down the tunnel's wss:// URL and token.
 
-Then run a HTTPS client to expose your agent, using the unique agent domain, run the inlets-pro client on the Actuated Hosts:
+Then run a HTTPS client to expose your agent, using the unique agent domain, run the inlets-pro client on the Actuated Servers:
 
 ```bash
 export AGENT_DOMAIN1=agent1.example.com

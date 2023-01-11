@@ -2,7 +2,7 @@
 
 Use-cases:
 
-* Increase speed of pulls and builds by caching images on Actuated Hosts
+* Increase speed of pulls and builds by caching images on Actuated Servers
 * Reduce failed builds due to rate-limiting
 
 If you use Docker in your self-hosted builds, there is a chance that you'll run into the rather conservative rate-limits.
@@ -22,7 +22,7 @@ We will create a mirror that:
 
 ## Create a Docker Hub Access token
 
-Create a Docker Hub Access token with "Public repos only" scope, and save it as `~/hub.txt` on the Actuated Host.
+Create a Docker Hub Access token with "Public repos only" scope, and save it as `~/hub.txt` on the Actuated Server.
 
 ![Settings for a public token](/images/read-only-public-token.png)
 

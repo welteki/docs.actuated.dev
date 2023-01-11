@@ -8,7 +8,7 @@ Actuated has three main parts:
 2. a VM image and Kernel that we build which has everything required for Docker, KinD and K3s
 3. a multi-tenant control plane that we host, which tells your agents to start VMs and register a runner on your GitHub organisation
 
-The multi-tenant control plane is run and operated by OpenFaaS Ltd.
+The multi-tenant control plane is run and operated by OpenFaaS Ltd as a SaaS.
 
 ![Conceptual flow of starting up a new ephemeral runner](images/conceptual.png)
 
@@ -17,6 +17,15 @@ The multi-tenant control plane is run and operated by OpenFaaS Ltd.
 MicroVMs are only started when needed, and are registered with GitHub by the official GitHub Actions runner, using a short-lived registration token. The token is been encrypted with the public key of the agent. This ensures no other agent could use the token to bootstrap a token to the wrong organisation.
 
 Learn more: [Self-hosted GitHub Actions API](https://docs.github.com/en/rest/actions/self-hosted-runners#create-a-registration-token-for-an-organization)
+
+## Glossary
+
+* `MicroVM` - a lightweight, single-use VM that is created by the Actuated Agent, and is destroyed after the build is complete. Common examples include [firecracker by AWS](https://firecracker-microvm.github.io/) and [Cloud Hypervisor](https://github.com/cloud-hypervisor/cloud-hypervisor)
+* `Guest Kernel` - a Linux kernel that is used together with a Root filesystem to boot a MicroVM and run your CI workloads
+* `Root filesystem` - an immutable image maintained by the actuated team containing all necessary software to perform a build
+* `Actuated` ('Control Plane') - a multi-tenant SaaS run by the actuated team responsible for scheduling MicroVMs to the Actuated Agent 
+* `Actuated Agent` - the software component installed on your Server which runs a MicroVM when instructed by Actuated
+* `Actuated Server` ('Server') - a server on which the Actuated Agent has been installed, where your builds will execute.
 
 ## How does actuated compare to a self-hosted runner?
 
@@ -119,26 +128,31 @@ See also: [GitHub: ephemeral runners](https://docs.github.com/en/actions/hosting
 
 ## How are VMs scheduled?
 
-VMs are placed efficiently across your Actuated Hosts using a scheduling algorithm based upon the amount of RAM reserved for the VM.
+VMs are placed efficiently across your Actuated Servers using a scheduling algorithm based upon the amount of RAM reserved for the VM.
 
 Autoscaling of VMs is automatic. Let's say that you had 10 jobs pending, but given the RAM configuration, only enough capacity to run 8 of them? The second two would be queued until capacity one or more of those 8 jobs completed.
 
 If you find yourself regularly getting into a queued state, there are three potential changes to consider:
 
-1. Using Actuated Hosts with more RAM
+1. Using Actuated Servers with more RAM
 2. Allocated less RAM to each job
-3. Adding more Actuated Hosts
+3. Adding more Actuated Servers
 
-The plan you select will determine how many Actuated Hosts you can run, so consider 1. and 2. before 3.
+The plan you select will determine how many Actuated Servers you can run, so consider 1. and 2. before 3.
 
-## Do I need to auto-scale the Actuated Hosts?
+## Do I need to auto-scale the Actuated Servers?
 
-If you haven't, read the previous section.
+Please read the section "How are VMs scheduled".
 
-Most teams that we've interviewed said that a small static pool of Actuated Hosts would satisfy their build requirements. For the pilot period, we are not offering auto-scaling of Actuated Hosts.
+Auto-scaling Pods or VMs is a quick, painless operation that makes sense for customer traffic, which is generally unpredictable and can be very bursty.
 
-If you feel that is a requirement for your team, set up some time to tell us why and we'll see if we can help.
+GitHub Actions tends to be driven by your internal development team, with a predictable pattern of activity. It's unlikely to vary massively day by day, which means autoscaling is less important than with a user-facing website.
 
+In addition to that, bare-metal servers can take 5-10 minutes to provision and may even include a setup fee or monthly commitment, meaning that what you're used to seeing with Kubernetes or AWS Autoscaling Groups may not translate well, or even be required for CI.
+
+If you are cost sensitive, you should review the options under [Provision a Server section](/docs/provision-server.md).
+
+Depending on your provider, you may also be able to hibernate or suspend servers on a cron schedule to save a few dollars. Actuated will hold jobs in a queue until a server is ready to take them again.
 
 ## What do I need to change in my workflows to use actuated?
 
@@ -168,17 +182,16 @@ See also: [Debug a GitHub Action with SSH](./examples/debug-ssh.md)
 
 Feel free [to book a call with us](register.md) if you'd like to understand this comparison in more detail.
 
+| Solution                     | Isolated VM          | Speed       | Efficient spread of jobs | Safely build public repos? | ARM64 support | Maintenance required      | Cost                      |
+|------------------------------|----------------------|-------------|--------------------------|----------------------------|---------------|---------------------------|---------------------------|
+| Hosted runners               | :material-check-all: | Poor        | :material-check-all:     | :material-check-all:       | None          | Free minutes in plan `*` | Per build minute          |
+| actuated                     | :material-check-all: | Bare-metal  | :material-check-all:     | :material-check-all:       | Yes           | Very little               | Fixed monthly cost        |
+| Standard self-hosted runners | :material-close:     | Good        | :material-close:         | :material-close:           | DIY           | Manual setup and updates  | OSS plus management costs |
+| actions-runtime-controller   | :material-close:     | Varies `*` | :material-close:         | :material-close:           | DIY           | Very involved             | OSS plus management costs |
 
-| Solution                     | Isolated VM | Speed            | Efficient spread of jobs | Safely build public repos? | ARM64 support | Maintenance required  | Cost                  |
-|------------------------------|------------------------------|------------------|--------------------------|----------------------------|---------------|-----------------------|-----------------------|
-| Hosted runners               | :material-check-all:         | Poor             | :material-check-all:     | :material-check-all:       | None          | Free minutes in plan `*2`                 | Per build minute      |
-| actuated                     | :material-check-all:         | Bare-metal       | :material-check-all:     | :material-check-all:       | Yes           | Very little           | Fixed monthly cost    |
-| Standard self-hosted runners | :material-close:             | Good             | :material-close:         | :material-close:           | DIY           | Manual setup and updates         | OSS plus management costs  |
-| actions-runtime-controller   | :material-close:             | Varies `*2` | :material-close:         | :material-close:           | DIY           | Very involved | OSS plus management costs |
+> `1` actions-runtime-controller requires use of separate build tools such as Kaniko, which break the developer experience of using `docker` or `docker-compose`. If Docker in Docker (DinD) is used, then there is a severe performance penalty and security risk.
 
-> `*1` actions-runtime-controller requires use of separate build tools such as Kaniko, which break the developer experience of using `docker` or `docker-compose`. If Docker in Docker (DinD) is used, then there is a severe performance penalty and security risk.
-
-> `*2` Builds on public GitHub repositories are free with the standard hosted runners, however private repositories require billing information, after the initial included minutes are consumed.
+> `2` Builds on public GitHub repositories are free with the standard hosted runners, however private repositories require billing information, after the initial included minutes are consumed.
 
 You can only get VM-level isolation from either GitHub hosted runners or Actuated. Standard self-hosted runners have no isolation between builds and actions-runtime-controller requires either a Docker socket to be mounted or Docker In Docker (a privileged container) to build and run containers.
 
@@ -216,7 +229,7 @@ However, it can only build containers, and still requires root, and itself is of
 
 In addition, Kaniko cannot and will not help you to run that container that you've just built to validate it to run end to end tests, neither can it run a KinD cluster, or a Minikube cluster.
 
-## Do we need to run my Actuated Hosts 24/7?
+## Do we need to run my Actuated Servers 24/7?
 
 Let's say that you wanted to access a single ARM64 runner to speed up your ARM builds from [33 minutes to < 2 minutes like in this example](https://blog.alexellis.io/blazing-fast-ci-with-microvms/).
 
@@ -225,15 +238,15 @@ The two cheapest options for ARM64 hardware would be:
 * Buy a Mac Mini M1, host it in your office or a co-lo with Asahi Linux installed. That's a one-time cost and will last for several years.
 * Or you could rent an AWS a1.metal by the hour from AWS with very little up front cost, and pay for the time you use it.
 
-In both cases, we're not talking about a significant amount of money, *however we are sometimes asked about whether Actuated Hosts need to be running 24/7*.
+In both cases, we're not talking about a significant amount of money, *however we are sometimes asked about whether Actuated Servers need to be running 24/7*.
 
 The answer if that it's a trade-off between cost and convenience. We recommend running them continually, however you can turn them off when you're not using them if you think it is worth your time to do so.
 
-If you only needed to run ARM builds from 9-5pm, you could absolutely delete the VM and re-create it with a cron job, just make sure you restore the required files from the original registration of the agent. Feel free to reach out to us if you need help with this.
+If you only needed to run ARM builds from 9-5pm, you could absolutely delete the VM and re-create it with a cron job, just make sure you restore the required files from the original registration of the agent. You may also be able to "suspend" or "hibernate" the host at a reduced cost, this depends on the hosting provider. Feel free to reach out to us if you need help with this.
 
 ## Is there GPU support?
 
-We are [currently exploring](https://twitter.com/alexellisuk/status/1594368789864501254?s=20&t=VwSXsR_yeC0hlU7wdFF4Mg) dedicating a GPU to a build. So if an actuated host had 4x GPUs, you could run 4x GPU-based builds on that host at once, each with one GPU, or two jobs with 2x GPUS or one job with 4x GPUs. Let us know if this is something you need when you get in touch with us.
+We are [currently exploring](https://twitter.com/alexellisuk/status/1594368789864501254?s=20&t=VwSXsR_yeC0hlU7wdFF4Mg) dedicating a GPU to a build. So if an Actuated Server had 4x GPUs, you could run 4x GPU-based builds on that host at once, each with one GPU, or two jobs with 2x GPUS or one job with 4x GPUs. Let us know if this is something you need when you get in touch with us.
 
 ## Is Windows or MacOS supported?
 
@@ -261,7 +274,7 @@ The name of the software is actuated, in some places "actuated" is not available
 
 Actuated is a managed service operated by OpenFaaS Ltd, registered company number: 11076587.
 
-It has both a Software as a Service (SaaS) component ("Actuated") and an agent ("Actuated Agent"), which runs on an ("Actuated Host") supplied by the customer.
+It has both a Software as a Service (SaaS) component ("Actuated") and an agent ("Actuated Agent"), which runs on an ("Actuated Server") supplied by the customer.
 
 The SaaS portion collects and stores:
 

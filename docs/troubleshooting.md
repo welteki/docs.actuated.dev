@@ -41,7 +41,7 @@ The pull speed can be dramatically improved by using a registry mirror on each a
 
 The Docker Hub implements stringent rate limits of 100 pulls per 6 hours, and 200 pulls per 6 hours if you log in. Pro accounts get an increased limit of 5000 pulls per 6 hours.
 
-We've created simple instructions on how to set up a registry mirror to cache images on your Actuated Hosts.
+We've created simple instructions on how to set up a registry mirror to cache images on your Actuated Servers.
 
 * [Example: Set up a registry mirror](/examples/registry-mirror)
 

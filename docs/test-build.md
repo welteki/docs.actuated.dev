@@ -73,7 +73,7 @@ This build will show you the specs, OS and Kernel name reported by the MicroVM.
 
 3. If you're curious
 
-    You can view the logs of the agent by logging into one of the Actuated Hosts with SSH and running the following commands:
+    You can view the logs of the agent by logging into one of the Actuated Servers with SSH and running the following commands:
 
     ```bash
     sudo journalctl -u actuated -f -o cat
