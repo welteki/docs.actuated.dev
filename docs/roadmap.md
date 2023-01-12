@@ -29,13 +29,18 @@ Shipped
 * [x] Remote / automated update of agents via control plane
 * [x] Blog feature on actuated.dev with news, tutorials and updates from our team
 * [x] Performance testing for Ionos & Scaleway for cost effective AMD bare-metal
-* [x] Daily build statistics on dashboard
+* [x] Daily build statistics on your dashboard
+* [x] Docker cache directly on the Actuated Hosts (servers) for much faster builds and avoiding rate-limiting
 
 Coming soon:
 
-* [ ] Detailed reports and statistics on the dashboard
+* [ ] Detailed insights across your organisation on usage
 * [ ] Support for private, self-hosted GitHub Enterprise Server (GHES) installations
-* [ ] Support for self-hosted GitLab (contact us if you need this)
+
+Under consideration:
+
+* [ ] Actuated for GitLab
+* [ ] Actuated for Jenkins
 * [ ] GPU pass-through support for ML and AI workloads
 * [ ] Automated agent installation and bootstrap
 
