@@ -34,7 +34,7 @@ jobs:
         with:
           kubectl: latest
           kind: latest
-      - name: Install Kubernetes kind
+      - name: Create a KinD cluster
         run: |
           mkdir -p $HOME/.kube/
           kind create cluster --wait 300s

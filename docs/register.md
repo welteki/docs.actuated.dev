@@ -11,9 +11,11 @@ Would you like to try out Actuated for your team and GitHub Organisation?
 
 ## Register for the pilot
 
-Fill out the Google Form below with as much detail as you can, and we'll be in touch with you. If we think that your team is a good fit for the pilot program, we'll send you further instructions.
+You can register for the pilot which includes free onboarding and support via Slack:
 
 [Register interest for the pilot](https://forms.gle/8XmpTTWXbZwWkfqT6)
+
+Or you can [check out the plans on Gumroad](https://openfaas.gumroad.com/l/actuated-pilot), and we'll send you an invite to Slack once you've picked the right plan for your current needs.
 
 ## Install the GitHub App
 
