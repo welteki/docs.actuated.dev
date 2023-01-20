@@ -270,13 +270,15 @@ No, you can move back to either hosted runners (pay per minute from GitHub) or s
 
 The name of the software is actuated, in some places "actuated" is not available, and we liked "selfactuated" more than "actuatedhq" or "actuatedio" because it refers to the hybrid experience of self-hosted runners.
 
-## Privacy policy
+## Privacy policy & data security
 
 Actuated is a managed service operated by OpenFaaS Ltd, registered company number: 11076587.
 
-It has both a Software as a Service (SaaS) component ("Actuated") and an agent ("Actuated Agent"), which runs on an ("Actuated Server") supplied by the customer.
+It has both a Software as a Service (SaaS) component ("control plane") aka ("Actuated") and an agent ("Actuated Agent"), which runs on a Server supplied by the customer ("Customer Server").
 
-The SaaS portion collects and stores:
+### Data storage
+
+The control-plane of actuated collects and stores:
 
 * Job events for the organisation where a label of "actuated*" is found, including:
     * Organisation name
@@ -297,10 +299,47 @@ In addition, for support requests, we may need to collect the logs of the actuat
 
 * VMs launched for jobs, stored at `/var/log/actuated/`
 
-This information is required to operate the SaaS including scheduling of VMs and for technical support.
+This information is required to operate the control plane including scheduling of VMs and for technical support.
 
-Traffic between the SaaS and customer agents is only made over HTTPS, using TLS encryption and API tokens. In addition, the token required for GitHub Actions is double encrypted with an RSA key pair, so that only the intended agent can decrypt and use it. These tokens are short-lived and expire after 59 minutes.
+Upon cancelling a subscription, a customer may request that their data is deleted. In addition, they can uninstall the GitHub App from their organisation, and deactivate the GitHub OAuth application used to authenticate to the Actuated Dashboard.
+
+### Data security & encryption
+
+TLS is enabled on the actuated control plane, the dashboard and on each agent. The TLS certificates have not expired and and have no known issues.
+
+Each customer is responsible for hosting their own Servers and installing appropriate firewalls or access control.
+
+Each Customer Server requires a unique token which is encrypted using public key cryptography, before being shared with OpenFaaS Ltd. This token is used to authenticate the agent to the control plane.
+
+Traffic between the control plane and Customer Server is only made over HTTPS, using TLS encryption and API tokens. In addition, the token required for GitHub Actions is double encrypted with an RSA key pair, so that only the intended agent can decrypt and use it. These tokens are short-lived and expire after 59 minutes.
 
 Event data recorded from GitHub Actions is stored and used to deliver quality of service and scheduling. This data is stored on a server managed by DigitalOcean LLC in the United Kingdom. The control plane is hosted with Linode LLC in the United Kingdom.
 
 No data is shared with third parties.
+
+### Software Development Life Cycle
+
+* A Version Control System (VCS) is being Used - GitHub is used by all employees to store code
+* Only Authorized Employees Access Version Control - multiple factor authentication (MFA) is required by all employees
+* Only Authorized Employees Change Code - no changes can be pushed to production without having a pull request approval from senior management
+* Production Code Changes Restricted - Only authorized employees can push orm make changes to production code
+* All changes are documented through pull requests tickets and commit messages
+* Vulnerability management - vulnerability management is provided by GitHub.com. Critical vulnerabilities are remediated in a timely manner
+
+Terminated Employee Access Revoked Within One Business Day - all access to source control management and production systems is revoked within one business day of an employee leaving the company.
+
+Access to corporate network, production machines, network devices, and support tools requires a unique ID. This ID is only issued to employees and is revoked upon termination.
+
+Policies Cover Employee Confidentiality - OpenFaaS Ltd policies require employees to keep confidential any information they learn while handling customer data.
+
+### Contact Information Available to Customers
+
+OpenFaaS Ltd has provided an email address in a customer-accessible support documentation where support contact information is readily available. Users are encouraged to contact appropriate OpenFaaS Ltd if they become aware of items such as operational or security failures, incidents, system problems, concerns, or other issues/complaints.
+
+### Reliability and uptime
+
+Authorized users have access to centralised logging endpoints, to query the logs of the Actuated agent installed on Customer Servers, ad-hoc, for the purpose of support and troubleshooting.
+
+Authorized users have access to alerts, dashboards and may use this data to improve the service, or to proactively contact customers when there is a suspected issue.
+
+Centralised monitoring and metrics gathered from the control plane have a 14-day retention period, after which data is automatically deleted.
