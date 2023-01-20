@@ -197,7 +197,7 @@ You can only get VM-level isolation from either GitHub hosted runners or Actuate
 
 ### How does actuated compare to a actions-runtime-controller (ARC)?
 
-[actions-runtime-controller (ARC))](https://github.com/actions-runner-controller/actions-runner-controller) is maintained by an individual developer called [Yusuke Kuoka](https://github.com/mumoshu).
+[actions-runtime-controller (ARC)](https://github.com/actions-runner-controller/actions-runner-controller) describes itself as "still in its early stage of development". It was created by an individual developer called [Yusuke Kuoka](https://github.com/mumoshu), and now receives updates from GitHub's team, after having been adopted into the [actions GitHub Organisation](https://github.com/actions/actions-runner-controller).
 
 Its primary use-case is scale GitHub's self-hosted actions runner using Pods in a Kubernetes cluster. ARC is self-hosted software which means its setup and operation are complex, requiring you to create an properly configure a GitHub App along with its keys. For actuated, you only need to run a single binary on each of your runner hosts and send us an encrypted bootstrap token.
 
