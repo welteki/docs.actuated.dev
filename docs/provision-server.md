@@ -74,4 +74,4 @@ Still not sure which option is right for your team? Get in touch with us on the 
 
 Now that you've created a Server or VM with the recommended Operating System, you'll need to install the actuated agent and get in touch with us, to register it.
 
-* [Install the Actuated Agent](/install-agent.md)
+* [Install the Actuated Agent](/install-agent)

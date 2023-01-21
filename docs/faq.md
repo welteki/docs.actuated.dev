@@ -150,7 +150,7 @@ GitHub Actions tends to be driven by your internal development team, with a pred
 
 In addition to that, bare-metal servers can take 5-10 minutes to provision and may even include a setup fee or monthly commitment, meaning that what you're used to seeing with Kubernetes or AWS Autoscaling Groups may not translate well, or even be required for CI.
 
-If you are cost sensitive, you should review the options under [Provision a Server section](/docs/provision-server.md).
+If you are cost sensitive, you should review the options under [Provision a Server section](/provision-server).
 
 Depending on your provider, you may also be able to hibernate or suspend servers on a cron schedule to save a few dollars. Actuated will hold jobs in a queue until a server is ready to take them again.
 
@@ -176,11 +176,11 @@ To connect, you can use an [inlets tunnel](https://inlets.dev/), Wireguard VPN o
 
 We also offer a SSH gateway in some of our tiers, tell us if this is important to you in your initial contact, or reach out to us via email if you're already a customer.
 
-See also: [Debug a GitHub Action with SSH](./examples/debug-ssh.md)
+See also: [Debug a GitHub Action with SSH](/examples/debug-ssh)
 
 ## Comparison to other solutions
 
-Feel free [to book a call with us](register.md) if you'd like to understand this comparison in more detail.
+Feel free [to book a call with us](register) if you'd like to understand this comparison in more detail.
 
 | Solution                     | Isolated VM          | Speed       | Efficient spread of jobs | Safely build public repos? | ARM64 support | Maintenance required      | Cost                      |
 |------------------------------|----------------------|-------------|--------------------------|----------------------------|---------------|---------------------------|---------------------------|
@@ -215,7 +215,7 @@ ARC runs a container, so that should work on any machine with a modern Kernel, h
 
 That means ARC runners can run pretty much anywhere, but actuated runners need to be on a bare-metal machine, or a VM that supports nested virtualisation.
 
-See also: [Where can I run my agents?](/provision-server.md)
+See also: [Where can I run my agents?](/provision-server)
 
 ### Doesn't Kaniko fix all this for ARC?
 

@@ -14,6 +14,6 @@ Actuated (tm) is a trademark of OpenFaaS Ltd.
 
 ### Anything else?
 
-Looking for technical details about actuated? Try the [FAQ](/faq.md).
+Looking for technical details about actuated? Try the [FAQ](/faq).
 
-Are you running into a problem? Try the [troubleshooting guide](/troubleshooting.md)
+Are you running into a problem? Try the [troubleshooting guide](/troubleshooting)

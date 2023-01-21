@@ -1,6 +1,6 @@
 # Run a test build
 
-Now that you've [registered your GitHub organisation](/register.md), [created a server](/provision-server.md), and [configured the agent](/install-agent.md), you're ready for a test build.
+Now that you've [registered your GitHub organisation](/register), [created a server](/provision-server), and [configured the agent](/install-agent), you're ready for a test build.
 
 We recommend you run the following build without changes to confirm that everything is working as expected. After that, you can modify an existing build and start using actuated for your team.
 
@@ -100,4 +100,4 @@ If you want to go back to a hosted runner, edit the field back to `runs-on: ubun
 
 We provide an add-on for setting up a cache/mirror of the Docker Hub. If you do not enable this, and use the Docker Hub in your builds, then you may run into the rate limits imposed by Docker Hub for anonymous users.
 
-See also: [Set up a registry mirror](/examples/registry-mirror.md)
+See also: [Set up a registry mirror](/examples/registry-mirror)

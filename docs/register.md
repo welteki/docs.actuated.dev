@@ -41,4 +41,4 @@ To manage or uninstall the Actuated app navigate to "Settings" for your reposito
 
 Now that you've installed the GitHub App, and picked a subscription plan:
 
-* [Provision a server](provision-server.md)
+* [Provision a server](/provision-server)
