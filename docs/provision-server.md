@@ -56,7 +56,7 @@ ARM CPUs are highly efficient when it comes to power consumption and pack in man
 
     Following on from that, you have the [a1.metal](https://aws.amazon.com/ec2/instance-types/a1/) instance on AWS with 16 cores and 30GB / RAM for roughly 300 USD / mo. This is ideal if you already have an account with AWS and want to pay per minute.
     
-    For a step up on specs, take a look at the c3.large.arm64 from [Equinix Metal](https://metal.equinix.com/) comes with enterprise-grade networking and faster uplinks. These machines come in at around 2.5 USD / hour, but are packed out with many cores and other benefits.
+    For a step up on specs, take a look at the c3.large.arm64 (Ampere Altra) from [Equinix Metal](https://metal.equinix.com/) comes with enterprise-grade networking and faster uplinks. These machines come in at around 2.5 USD / hour, but are packed out with many cores and other benefits.
 
 3. ARM VMs with nested virtualisation
 
