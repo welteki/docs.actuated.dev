@@ -52,7 +52,7 @@ ARM CPUs are highly efficient when it comes to power consumption and pack in man
 
 2. ARM on-demand, in the cloud
 
-    For ARM64, [Hetzner](https://hetzner.com) provides outstanding value in their [RX-Line](https://www.hetzner.com/dedicated-rootserver/matrix-rx) with 128GB / 256GB RAM coupled with NVMe and 80 cores for around 200 EUR / mo. There is a minimum commitment of one month, and an initial setup cost per server.
+    For ARM64, [Hetzner](https://hetzner.com) provides outstanding value in their [RX-Line](https://www.hetzner.com/dedicated-rootserver/matrix-rx) with 128GB / 256GB RAM coupled with NVMe and 80 cores for around 200 EUR / mo. These are [Ampere Altra Servers](https://amperecomputing.com/processors/ampere-altra/). There is a minimum commitment of one month, and an initial setup cost per server.
 
     Following on from that, you have the [a1.metal](https://aws.amazon.com/ec2/instance-types/a1/) instance on AWS with 16 cores and 30GB / RAM for roughly 300 USD / mo. This is ideal if you already have an account with AWS and want to pay per minute.
     
@@ -62,7 +62,7 @@ ARM CPUs are highly efficient when it comes to power consumption and pack in man
 
     The current generations of ARM servers available from cloud providers do not support KVM, or nested virtualisation, which means you need to pick from the previous two options.
 
-    There are ARM VMs available on Azure, GCP, and Oracle OCI. We have tested each and since they are based on the same generation of Ampere hardware, we can confirm that they do not have KVM available and will not work for running actuated builds.
+    There are ARM VMs available on Azure, GCP, and Oracle OCI. We have tested each and since they are based on the same generation of Ampere Altra hardware, we can confirm that they do not have KVM available and will not work for running actuated builds.
 
 ### Server Operating System
 
