@@ -95,18 +95,18 @@ You can also watch a webinar that Alex recorded with Richard Case from Weavework
 
 > Actuated will schedule builds across your fleet of agents, packing them in densely, without overloading the host. Each microVM will run just one build before being destroyed to ensure a clean, isolated build. 
 
-Learn more in the [FAQ](faq.md)
+Learn more in the [FAQ](faq)
 
 ## Get started
 
-* [Register for the pilot](register.md)
-* [Read the FAQ](faq.md)
-* [Enable actuated for an existing repository](test-build.md)
+* [Register for the pilot](register)
+* [Read the FAQ](faq)
+* [Enable actuated for an existing repository](test-build)
 * [Read more in the announcement: Blazing fast CI with MicroVMs](https://blog.alexellis.io/blazing-fast-ci-with-microvms/)
 
 ### Comparison
 
-Feel free [to book a call with us](register.md) if you'd like to understand this comparison in more detail.
+Feel free [to book a call with us](register) if you'd like to understand this comparison in more detail.
 
 
 | Solution                     | Isolated VM          | Speed       | Efficient spread of jobs | Safely build public repos? | ARM64 support | Maintenance required      | Cost                      |

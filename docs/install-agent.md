@@ -9,11 +9,11 @@ actuated is split into three parts:
 We look after 2 and 3 which means you just have to set up one or more agent to get started.
 
 !!! info "Have you registered your organisation yet?"
-    Before you can add an agent, you or your GitHub organisation admin will need to install the: [Actuated GitHub App](register.md).
+    Before you can add an agent, you or your GitHub organisation admin will need to install the: [Actuated GitHub App](register).
 
 ### Pick your Actuated Servers
 
-Pick your Actuated Servers carefully using our guide: [Pick a host for actuated](/provision-server.md)
+Pick your Actuated Servers carefully using our guide: [Pick a host for actuated](/provision-server)
 
 ## Review the End User License Agreement (EULA)
 
@@ -60,48 +60,21 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     cat > $HOME/.actuated/LICENSE
     ```
 
-2. Generate an RSA keypair
+2. Generate your enrollment file
+
+    You can generate an enrollment file at `$HOME/.actuated/agent.yaml` by running:
 
     ```bash
-    cd ~/.actuated/
-    agent keygen
+    agent enroll --url https://server1.example.com
     ```
 
-    The RSA keypair is only used to encrypt messages and cannot. RSA keys are sometimes used with SSH sessions, however actuated does not use any form of SSH at this time.
-    
-    This will write: `key_rsa` and `key_rsa.pub` to the current working folder.
+    The enrollment file contains:
 
-3. Install the agent's authentication token.
+    * The hostname of the server
+    * The public key of the agent which we use to encrypt tokens sent to the agent to bootstrap runners to GitHub Actions
+    * A unique API token encrypted with our public key, which is used by the control plane to authenticate each message sent to the agent
 
-    Create an API token for us to present when we send jobs to your Actuated Agent:
-    
-    ```bash
-    openssl rand -base64 32 > ~/.actuated/TOKEN
-    ```
-
-    Encrypt the token with our public key and email `.actuated/TOKEN.ENC` to us, or share it with us on Slack:
-
-    ```bash
-    cat <<EOF > actuated.pem
-    -----BEGIN RSA PUBLIC KEY-----
-    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo9EC7IrP8zTE9jm8agPa
-    m0D/sFfmAlchhskLZksO4ZYzDHK9fuQ9oEhPYVkgrU5TifbL5UchdsSn//ELSy2Q
-    TPRQoXVMdzPgLCrn15U+Xr7KpV3iNBV1go+ZzNE/ymdyS2kCCjxYiBLVuymn20hA
-    ZzqkHSyOeM6IrG+A462KfmN0vqIpubpMkoK/wSkSSDjN0SoMWc9gaAqEFEHkSt9+
-    t65fIdzG0sKSEMb613WG+K/A/WBrcdqGHWoMG2h2CpK12tNobZEt3yCL0WVgkAKU
-    VwaHniNYHn5niJHH/DgvXMWDECoKA1ZJyMdWC3MuIlyfWVzT5N7a/HPTzyzlrdCl
-    bwIDAQAB
-    -----END RSA PUBLIC KEY-----
-    EOF
-
-    agent encrypt --key ./actuated.pem \
-        --in $HOME/.actuated/TOKEN \
-        --out $HOME/.actuated/TOKEN.enc
-    ```
-
-    Post-pilot, we will provide a more automated way to exchange this token.
-
-4. Add HTTPS for the agent's endpoint
+4. Expose the agent's endpoint using HTTPS
 
     The actuated control plane will only communicate with a HTTPS endpoint to ensure properly encryption is in place. An API token is used in addition with the TLS connection for all requests.
 
@@ -111,7 +84,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
     We're considering other models for after the pilot, for instance GitHub's own API has the runner make an outbound connection and uses long-polling.
 
-    See also: [expose the agent with HTTPS](expose-agent.md)
+    See also: [expose the agent with HTTPS](expose-agent)
 
 5. Start the agent
 
@@ -186,18 +159,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
 6. Send us your agent's connection info
 
-    Share the following with us over Slack or email, these details are confidential.
-
-    ```bash
-    # Your agent's public key for encrypting messages
-    cat ~/.actuated/key_rsa.pub
-
-    # Your agent's encrypted API token
-    cat ~/.actuated/TOKEN.enc
-
-    # Your agent's endpoint
-    echo "https://agent1.example.com
-    ```
+    Share the `$HOME/.actuated/agent.yaml` file with us so we can add your agent to the actuated control plane.
 
     We'll let you know once we've added your agent to actuated and then it's over to you to start running your builds.
 
@@ -205,6 +167,6 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
 You can now start your first build and see it run on your actuated agent.
 
-[Start a build on your agent](test-build.md)
+[Start a build on your agent](test-build)
 
-See also: [Troubleshooting your agent](troubleshooting.md)
+See also: [Troubleshooting your agent](troubleshooting)
