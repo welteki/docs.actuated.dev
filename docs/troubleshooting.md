@@ -17,6 +17,8 @@ If you missed this step, have them head over to their [Applications Settings pag
 ![OAuth Access Page](/images/oauth-dashboard-access.png)
 > How to "Grant" access to the Dashboard.
 
+Try a direct link here: [Actuated Dashboard OAuth App](https://github.com/settings/connections/applications/8c5dc5d9750ff2a8396a)
+
 ## A job is stuck as "queued"
 
 By default, we reject jobs on public repositories, however we can feature flag this on for you. Just ask us.
