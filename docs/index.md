@@ -2,11 +2,6 @@
 
 Actuated brings blazingly fast, secure builds to self-hosted CI runners.
 
-!!! info "Register your interest"
-    You can register your interest to pilot actuated with us. [Fill out this form](https://forms.gle/8XmpTTWXbZwWkfqT6), and we'll get in touch shortly after with next steps.
-
-See also: [Official website](https://actuated.dev/)
-
 ## Building containers on self-hosted runners is slow and insecure
 
 Most solutions that use containers for running Docker or Kubernetes in CI have very poor security boundaries. They require either privileged containers (root on the host), a shared Docker socket (root on the host), third-party tools which don't integrate well and still require root to mount folders, or user namespaces which come with their own limitations. The chances are, if you use Docker or K8s in your CI, and run with: [actions-runner-controller](https://github.com/actions-runner-controller/actions-runner-controller), Jenkins, or GitLab, then you may be compromising on security or user experience.
@@ -99,7 +94,7 @@ Learn more in the [FAQ](faq)
 
 ## Get started
 
-* [Register for the pilot](register)
+* [Start a subscription or book a call to find out more](register)
 * [Read the FAQ](faq)
 * [Enable actuated for an existing repository](test-build)
 * [Read more in the announcement: Blazing fast CI with MicroVMs](https://blog.alexellis.io/blazing-fast-ci-with-microvms/)
@@ -107,7 +102,6 @@ Learn more in the [FAQ](faq)
 ### Comparison
 
 Feel free [to book a call with us](register) if you'd like to understand this comparison in more detail.
-
 
 | Solution                     | Isolated VM          | Speed       | Efficient spread of jobs | Safely build public repos? | ARM64 support | Maintenance required      | Cost                      |
 |------------------------------|----------------------|-------------|--------------------------|----------------------------|---------------|---------------------------|---------------------------|
