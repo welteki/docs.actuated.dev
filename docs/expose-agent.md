@@ -36,7 +36,7 @@ Your agent's endpoint URL is going to be: `https://agent.example.com` on port 44
 
 You'll need a way to expose the client to the Internet, which includes HTTPS encryption and a sufficient amount of connections/traffic per minute.
 
-[Inlets](https://inlets.dev/) provides a quick and secure solution here. It is available on a [monthly subscription](https://openfaas-subscribe.lemonsqueezy.com/checkout/buy/73f8e5d3-aa8a-485d-9549-9aa3544255b7?discount=0), bear in mind that the "Personal" plan is not for this kind of commercial use.
+[Inlets](https://inlets.dev/) provides a quick and secure solution here. It is available on a [monthly subscription](https://openfaas.gumroad.com/l/inlets-subscription), bear in mind that the "Personal" plan is not for this kind of commercial use.
 
 ![Accessing the agent's private endpoint using an inlets-pro tunnel](images/tunnel-server.png)
 > Pictured: Accessing the agent's private endpoint using an inlets-pro tunnel
