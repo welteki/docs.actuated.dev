@@ -50,7 +50,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     sudo ./install.sh
     ```
 
-    Create a file to store your license. If you don't have it handy, go to [gumroad.com](https://gumroad.com), click "Library" then click "View content"
+    Create a file to store your license. If you don't have it handy, check your email for your receipt.
 
     ```bash
     mkdir -p ~/.actuated

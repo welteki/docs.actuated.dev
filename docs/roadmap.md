@@ -31,6 +31,8 @@ Shipped
 * [x] Performance testing for Ionos & Scaleway for cost effective AMD bare-metal
 * [x] Daily build statistics on your dashboard
 * [x] Docker cache directly on the Actuated Hosts (servers) for much faster builds and avoiding rate-limiting
+* [x] Subscriptions: migration to LemonSqueezy for lower fees, and more payment options
+* [x] Dashboard - animation on all data pages for better feedback when refreshing data
 
 Coming soon:
 
