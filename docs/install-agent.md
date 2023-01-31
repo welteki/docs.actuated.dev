@@ -84,7 +84,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
     We're considering other models for after the pilot, for instance GitHub's own API has the runner make an outbound connection and uses long-polling.
 
-    See also: [expose the agent with HTTPS](expose-agent)
+    See also: [expose the agent with HTTPS](/expose-agent/)
 
 5. Start the agent
 
