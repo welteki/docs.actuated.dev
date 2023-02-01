@@ -20,6 +20,8 @@ We will create a mirror that:
 * When unavailable for any reason, the build continues without error
 * Works on both Intel/AMD and ARM64 hosts
 
+This tutorial shows you how to set up what was previously known as "Docker's Open Source Registry" and is now a CNCF project called [distribution](https://github.com/distribution/distribution).
+
 ## Create a Docker Hub Access token
 
 Create a Docker Hub Access token with "Public repos only" scope, and save it as `~/hub.txt` on the Actuated Server.
@@ -164,3 +166,8 @@ You can check the status of the mirror at any time with:
 ```bash
 sudo journalctl -u registry --since today
 ```
+
+## Further reading
+
+* [Docker: Configuration for the registry](https://docs.docker.com/registry/configuration/)
+* [GitHub: View the project on GitHub](https://github.com/distribution/distribution)

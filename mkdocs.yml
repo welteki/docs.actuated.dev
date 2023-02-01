@@ -104,6 +104,7 @@ nav:
       - Kubernetes with K3s: examples/k3s.md
       - Kubernetes with KinD: examples/kind.md
       - Kubernetes regression matrix: examples/matrix-k8s.md
+      - Multi-arch images with buildx: examples/multiarch-buildx.md
       - Docker run/build: examples/docker.md
       - Local Registry Mirror: examples/registry-mirror.md
       - Publish an OpenFaaS function: examples/openfaas-publish.md
