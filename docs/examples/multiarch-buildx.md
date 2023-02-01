@@ -1,8 +1,48 @@
 # Example: Multi-arch with buildx
 
-This example is taken from the Open Source [inlets-operator](https://github.com/inlets/inlets-operator)
+A multi-arch or multi-platform container is effectively where you build the same container image for multiple different Operating Systems or CPU architectures, and link them together under a single name.
 
-It builds a container image using a Dockerfile in the root of the repository and publishes it for a number of architectures - Arm, Intel, etc to GitHub's Container Registry (GHCR). The action itself is able to authenticate to GHCR using a built-in, short-lived token. This is dependent on the "permissions" section and "packages: write" being set.
+So you may publish an image named: `ghcr.io/inlets-operator/latest`, but when this image is fetched by a user, a manifest file is downloaded, which directs the user to the appropriate image for their architecture.
+
+If you'd like to see what these look like, run the following with [arkade](https://arkade.dev):
+
+```bash
+arkade get crane
+
+crane manifest ghcr.io/inlets/inlets-operator:latest
+```
+
+You'll see a manifests array, with a platform section for each image:
+
+```json
+{
+  "mediaType": "application/vnd.docker.distribution.manifest.list.v2+json",
+  "manifests": [
+    {
+      "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+      "digest": "sha256:bae8025e080d05f1db0e337daae54016ada179152e44613bf3f8c4243ad939df",
+      "platform": {
+        "architecture": "amd64",
+        "os": "linux"
+      }
+    },
+    {
+      "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+      "digest": "sha256:3ddc045e2655f06653fc36ac88d1d85e0f077c111a3d1abf01d05e6bbc79c89f",
+      "platform": {
+        "architecture": "arm64",
+        "os": "linux"
+      }
+    }
+  ]
+}
+```
+
+## Try an example
+
+This example is taken from the Open Source [inlets-operator](https://github.com/inlets/inlets-operator).
+
+It builds a container image containing a Go binary and uses a Dockerfile in the root of the repository. All of the images and corresponding manifest are published to GitHub's Container Registry (GHCR). The action itself is able to authenticate to GHCR using a built-in, short-lived token. This is dependent on the "permissions" section and "packages: write" being set.
 
 View [publish.yaml](https://github.com/inlets/inlets-operator/blob/master/.github/workflows/publish.yaml), adapted for actuated:
 
@@ -16,15 +56,8 @@ on:
 
 jobs:
   publish:
-    permissions:
-      actions: read
-      checks: write
-      contents: read
-      issues: read
-      packages: write
-      pull-requests: read
-      repository-projects: read
-      statuses: read
++    permissions:
++      packages: write
 
 -   runs-on: ubuntu-latest
 +   runs-on: actuated
@@ -70,6 +103,8 @@ jobs:
 
 You'll see that we added a `Setup mirror` step, this explained in the [Registry Mirror example](/examples/registry-mirror)
 
+The `docker/setup-qemu-action@v2` step is responsible for setting up QEMU, which is used to emulate the different CPU architectures.
+
 The `docker/build-push-action@v3` step is responsible for passing in a number of platform combinations such as: `linux/amd64` for cloud, `linux/arm64` for Arm servers and `linux/arm/v6` for Raspberry Pi.
 
 Within [the Dockerfile](https://github.com/inlets/inlets-operator/blob/master/Dockerfile), we needed to make a couple of changes.
@@ -88,6 +123,16 @@ GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o inlets-operator
 ```
 
 Learn more in the Docker Documentation: [Multi-platform images](https://docs.docker.com/build/building/multi-platform/)
+
+## Is it slow to build for Arm?
+
+Using QEMU can be slow at times, especially when building an image for Arm using a hosted GitHub Runner.
+
+We found that we could increase an Open Source project's build time by 22x - from ~ 36 minutes to 1 minute 26 seconds.
+
+See also [How to make GitHub Actions 22x faster with bare-metal Arm](https://actuated.dev/blog/native-arm64-for-github-actions)
+
+To build a separate image for Arm on an Arm runner, and one for amd64, you could use a [matrix build](/examples/matrix).
 
 ## Need a hand with GitHub Actions?
 
