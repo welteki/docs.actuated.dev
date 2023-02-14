@@ -15,7 +15,7 @@ You can register for the pilot which includes free onboarding and support via Sl
 
 [Register interest for the pilot](https://forms.gle/8XmpTTWXbZwWkfqT6)
 
-Or you can [check out the plans](https://subscribe.openfaas.com/checkout/buy/73f8e5d3-aa8a-485d-9549-9aa3544255b7?discount=0), and we'll send you an invite to Slack once you've picked the right plan for your current needs.
+Or you can [check out the plans for the actuated pilot](https://subscribe.openfaas.com/), and we'll send you an invite to Slack once you've picked the right plan for your current needs.
 
 ## Install the GitHub App
 
