@@ -246,7 +246,18 @@ If you only needed to run ARM builds from 9-5pm, you could absolutely delete the
 
 ## Is there GPU support?
 
-We are [currently exploring](https://twitter.com/alexellisuk/status/1594368789864501254?s=20&t=VwSXsR_yeC0hlU7wdFF4Mg) dedicating a GPU to a build. So if an Actuated Server had 4x GPUs, you could run 4x GPU-based builds on that host at once, each with one GPU, or two jobs with 2x GPUS or one job with 4x GPUs. Let us know if this is something you need when you get in touch with us.
+We are [currently exploring](https://twitter.com/alexellisuk/status/1594368789864501254?s=20&t=VwSXsR_yeC0hlU7wdFF4Mg) dedicating a GPU to a build. So if an Actuated Server had 8x GPUs, you could run 8x GPU-based builds on that host at once, each with one GPU, or 2x jobs with 4x GPUS etc. Let us know if this is something you need when you get in touch with us.
+
+## Can Virtual Machines be launched within a GitHub Action?
+
+It is possible to launch a Virtual Machine (VM) with KVM from within a Firecracker MicroVM.
+
+Use-cases may include: building and snapshotting VM images, accelerating the Android emulator, building packages for NixOS and other testing which requires KVM.
+
+However, there are some caveats:
+
+* We have disabled it for security reasons, so you will need to request our custom Kernel build
+* Firecracker's isolation doesn't extend to nested virtualisation, so you should not run untrusted code on the host 
 
 ## Is Windows or MacOS supported?
 
@@ -254,13 +265,13 @@ Linux is the only supported platform for actuated at this time on a AMD64 or ARM
 
 ## Is Actuated free and open-source?
 
-Actuated currently uses the [Firecracker project](https://github.com/firecracker-microvm/firecracker) to isolate CI jobs. Firecracker is an open source Virtual Machine Manager used by Amazon Web Services (AWS) to isolate serverless-style workloads such as AWS Lambda.
+Actuated currently uses the [Firecracker project](https://github.com/firecracker-microvm/firecracker) to launch MicroVMs to isolate jobs during CI. Firecracker is an open source Virtual Machine Manager used by Amazon Web Services (AWS) to run serverless-style workloads for AWS Lambda.
 
-Actuated is a commercial B2B product and service created and run by OpenFaaS Ltd. Customers require an active subscription to use the actuated.
+Actuated is a commercial B2B product and service created and operated by OpenFaaS Ltd.
 
 [Read the End User License Agreement (EULA)](https://github.com/self-actuated/actuated/blob/master/EULA.md)
 
-The website and documentation are available on GitHub and we plan to release some open source tools in the future for customers around agent bootstrapping and autoscaling.
+The website and documentation are available on GitHub and we plan to release some open source tools in the future to improve customer experience.
 
 ## Is there a risk that we could get "locked-in" to actuated?
 
