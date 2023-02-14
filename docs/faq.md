@@ -258,6 +258,7 @@ However, there are some caveats:
 
 * We have disabled it for security reasons, so you will need to request our custom Kernel build
 * Firecracker's isolation doesn't extend to nested virtualisation, so you should not run untrusted code on the host 
+* At time of writing, only Intel and AMD CPUs support nested virtualisation
 
 ## Is Windows or MacOS supported?
 
