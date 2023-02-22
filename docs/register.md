@@ -9,13 +9,19 @@ Would you like to try out Actuated for your team and GitHub Organisation?
 * Administrative access to add our GitHub App
 * One or more bare-metal hosts or VMs that support nested virtualisation (if you need a recommendation, feel free to ask)
 
-## Register for the pilot
+## Sign-up for the pilot
 
-You can register for the pilot which includes free onboarding and support via Slack:
+Actuated is a managed service. We run a SaaS platform, integration with GitHub and VM images. All you need to do, is to install our agent on a number servers.
 
-[Register interest for the pilot](https://forms.gle/8XmpTTWXbZwWkfqT6)
+What is a pilot?
 
-Or you can [check out the plans for the actuated pilot](https://subscribe.openfaas.com/), and we'll send you an invite to Slack once you've picked the right plan for your current needs.
+Actuated is already being used by commercial teams to run their pipelines, so why do we need a pilot? The pilot is a way for us to:
+
+* build the right thing with customer feedback from day one
+* land on the right pricing model
+* find companies that are excited to work with us on solving this problem
+
+[Sign-up for the pilot](https://forms.gle/8XmpTTWXbZwWkfqT6)
 
 ## Install the GitHub App
 
