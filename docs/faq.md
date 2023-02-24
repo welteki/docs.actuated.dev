@@ -252,13 +252,13 @@ We are [currently exploring](https://twitter.com/alexellisuk/status/159436878986
 
 It is possible to launch a Virtual Machine (VM) with KVM from within a Firecracker MicroVM.
 
-Use-cases may include: building and snapshotting VM images, accelerating the Android emulator, building packages for NixOS and other testing which requires KVM.
+Use-cases may include: building and snapshotting VM images, running Packer, launching VirtualBox and Vagrant, accelerating the Android emulator, building packages for NixOS and other testing which requires KVM.
 
-However, there are some caveats:
+It's disabled by default, but you can opt-in to the feature by following the steps in this article:
 
-* We have disabled it for security reasons, so you will need to request our custom Kernel build
-* Firecracker's isolation doesn't extend to nested virtualisation, so you should not run untrusted code on the host 
-* At time of writing, only Intel and AMD CPUs support nested virtualisation
+[How to run a KVM guest in your GitHub Actions](https://actuated.dev/blog/kvm-in-github-actions)
+
+At time of writing, only Intel and AMD CPUs support nested virtualisation. This may be on by default, but if not, you can enable it in the system's BIOS or out of band console.
 
 ## Is Windows or MacOS supported?
 
