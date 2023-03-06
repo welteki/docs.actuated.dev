@@ -17,9 +17,9 @@ What is a pilot?
 
 Actuated is already being used by commercial teams to run their pipelines, so why do we need a pilot? The pilot is a way for us to:
 
-* build the right thing with customer feedback from day one
+* build the right thing with direct customer feedback
 * land on the right pricing model
-* find companies that are excited to work with us on solving this problem
+* find teams who can benefit from our help
 
 [Sign-up for the pilot](https://forms.gle/8XmpTTWXbZwWkfqT6)
 
