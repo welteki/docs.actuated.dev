@@ -17,9 +17,9 @@ Create a specs.sh file:
 ```bash
 #!/bin/bash
 
-hostname
+echo Hostname: $(hostname)
 
-whoami
+echo whoami: $(whoami)
 
 echo Information on main disk
 df -h /
@@ -28,7 +28,7 @@ echo Memory info
 free -h
 
 echo Total CPUs:
-echo CPUs: nproc
+echo CPUs: $(nproc)
 
 echo CPU Model
 cat /proc/cpuinfo |grep "model name"
@@ -36,13 +36,18 @@ cat /proc/cpuinfo |grep "model name"
 echo Kernel and OS info
 uname -a
 
-cat /etc/os-release
+if ! [ -e /dev/kvm ]; then
+  echo "/dev/kvm does not exist"
+else
+  echo "/dev/kvm exists"
+fi
 
-echo PATH defined as:
-echo $PATH
+echo OS info: $(cat /etc/os-release)
 
-echo Egress IP defined as:
-curl -sLS https://checkip.amazonaws.com
+echo PATH: ${PATH}
+
+echo Egress IP:
+curl -s -L -S https://checkip.amazonaws.com
 ```
 
 Create a new file at: `.github/workspaces/build.yml` and commit it to the repository.
