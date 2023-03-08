@@ -24,13 +24,13 @@ There are a number of names and codenames for what we all know as "regular PCs" 
 
     We have seen the best performance from hosts with high clock speeds like the recent generation of AMD processors, combined with local NVMe storage. Rotational drives and SATA SSDs are significantly slower. At the lower end of bare-metal providers, you'll pay 40-50 EUR / mo per host, moving up to 80-150 EUR / mo for NVMe and AMD processors, when you go up to enterprise-grade bare-metal with 10Gbit uplinks, you'll be more in the range of 500-1500 USD / mo.
 
-    There are at least a dozen options for hosted bare-metal: [Equinix Metal](https://deploy.equinix.com/), [Ionos](https://ionos.co.uk), [Hetzner](https://hetzner.com), [AWS](https://aws.amazon.com/), [Cherry Servers](https://www.cherryservers.com/), [Alibaba Cloud](https://eu.alibabacloud.com/en), [OVHcloud](https://www.ovhcloud.com/en-gb/bare-metal/rise/), [fasthosts](https://www.fasthosts.co.uk/), [Scaleway](https://scaleway.com) and [Vultr](https://www.vultr.com/), [see a list here](https://github.com/alexellis/awesome-baremetal#bare-metal-cloud)
-    
-    For x86_64 builds we recommend using [Equinix Metal](https://deploy.equinix.com/) for the best price / performance ratio. They also have discounts for reserved instances on contract. The smallest instances available are the c3.small.x86 and c2.small.x86.
+    There are at least a dozen options for hosted bare-metal: [Equinix Metal](https://deploy.equinix.com/), [Ionos](https://ionos.co.uk), [Hetzner](https://hetzner.com), [AWS](https://aws.amazon.com/), [Cherry Servers](https://www.cherryservers.com/), [Alibaba Cloud](https://eu.alibabacloud.com/en), [OVHcloud](https://www.ovhcloud.com/en-gb/bare-metal/rise/), [fasthosts](https://www.fasthosts.co.uk/), [Scaleway](https://scaleway.com) and [Vultr](https://www.vultr.com/), [see a list here](https://github.com/alexellis/awesome-baremetal#bare-metal-cloud).
 
-    We have done customer testing with [Ionos](https://ionos.co.uk) with AMD CPUs and local NVMe, these are very quick and are good value.
+    [Equinix Metal](https://deploy.equinix.com/) have partnered with us to offer 500 USD of credit for new customers to use on actuated. You'll get the discount code after signing up with us. We've tested their c3.small.x86 and c2.small.x86 machines, and they are very fast, with enterprise-grade networking and support included, with many different regions available.
 
-    [Having tested several of Scaleway's servers](https://twitter.com/alexellisuk/status/1605866713815437312?s=20&t=JGh5fGZJWklLTCTVkTVElg), we do not recommend their current generation of bare-metal due to I/O bottlenecks.
+    Both [Ionos](https://ionos.co.uk) and [Hetzner](https://hetzner.com) have excellent value, with NVMe storage very fast AMD CPUs available.
+
+    [Having tested several of Scaleway's servers](https://twitter.com/alexellisuk/status/1605866713815437312?s=20&t=JGh5fGZJWklLTCTVkTVElg), we do not recommend their current generation of bare-metal due to slow I/O and CPU speeds.
 
 3. Cloud Virtual Machines (VMs) that support nested virtualization (lowest cost, convenient, mid-level performance)
 
@@ -54,9 +54,11 @@ ARM CPUs are highly efficient when it comes to power consumption and pack in man
 
     For ARM64, [Hetzner](https://hetzner.com) provides outstanding value in their [RX-Line](https://www.hetzner.com/dedicated-rootserver/matrix-rx) with 128GB / 256GB RAM coupled with NVMe and 80 cores for around 200 EUR / mo. These are [Ampere Altra Servers](https://amperecomputing.com/processors/ampere-altra/). There is a minimum commitment of one month, and an initial setup cost per server.
 
-    Following on from that, you have the [a1.metal](https://aws.amazon.com/ec2/instance-types/a1/) instance on AWS with 16 cores and 30GB / RAM for roughly 300 USD / mo. This is ideal if you already have an account with AWS and want to pay per minute.
+    Following on from that, you have the [a1.metal](https://aws.amazon.com/ec2/instance-types/a1/) instance on AWS with 16 cores and 30GB / RAM for roughly 300 USD / mo. This is ideal if you already have an account with AWS and want to pay per minute. The instances are configured with an 8GB EBS volume by default, which will need to be increased to around 60-80GB. Optionally, the storage class can also be upgraded from gp2 (default) to gp3 for better baseline performance.
     
-    For a step up on specs, take a look at the c3.large.arm64 (Ampere Altra) from [Equinix Metal](https://metal.equinix.com/) comes with enterprise-grade networking and faster uplinks. These machines come in at around 2.5 USD / hour, but are packed out with many cores and other benefits.
+    For a step up on specs, features like BGP and enterprise-grade networking, take a look at the c3.large.arm64 (Ampere Altra) from [Equinix Metal](https://metal.equinix.com/) comes with enterprise-grade networking and faster uplinks. These machines come in at around 2.5 USD / hour, but are packed out with many cores and other benefits.
+
+    Equinix Metal have partnered with us to offer 500 USD of credit for new customers to use on actuated. You'll get the discount code after signing up with us.
 
 3. ARM VMs with nested virtualisation
 
