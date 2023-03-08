@@ -103,7 +103,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
         --letsencrypt-email webmaster@$DOMAIN
     ```
 
-    For an Arm64 server:
+    For an Arm64 server, not the change in the tags from `x86-64` to `aarch64` and in the binary name from `agent` to `agent-arm64`:
 
         ```bash
     #!/bin/bash
@@ -111,7 +111,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     echo Running Agent from: ./agent
     DOMAIN=agent1.example.com
 
-    sudo -E agent up \
+    sudo -E agent-arm64 up \
         --image-ref=ghcr.io/openfaasltd/actuated-ubuntu20.04:aarch64-latest  \
         --kernel-ref=ghcr.io/openfaasltd/actuated-kernel-5.10.77:aarch64-latest \
         --letsencrypt-domain $DOMAIN \
