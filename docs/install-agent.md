@@ -103,19 +103,22 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
         --letsencrypt-email webmaster@$DOMAIN
     ```
 
-    For an Actuated Agent behind an [inlets tunnel](https://inlets.dev):
+    For an Arm64 server:
 
-    ```bash
+        ```bash
     #!/bin/bash
 
     echo Running Agent from: ./agent
+    DOMAIN=agent1.example.com
+
     sudo -E agent up \
-        --image-ref=ghcr.io/openfaasltd/actuated-ubuntu20.04:aarch64-latest \
+        --image-ref=ghcr.io/openfaasltd/actuated-ubuntu20.04:aarch64-latest  \
         --kernel-ref=ghcr.io/openfaasltd/actuated-kernel-5.10.77:aarch64-latest \
-        --listen-addr 127.0.0.1:
+        --letsencrypt-domain $DOMAIN \
+        --letsencrypt-email webmaster@$DOMAIN
     ```
 
-    For ARM64 Actuated Servers, change the prefix of the image tags from `x86-64-` to `aarch64-`
+    For an Actuated Agent behind an [inlets tunnel](https://inlets.dev), do not include the `--letsencrypt-*` flags, and instead add `--listen-addr 127.0.0.1:`.
 
     You can also run the Actuated Agent software as a systemd unit file for automatic restarts and to start upon boot-up.
 
