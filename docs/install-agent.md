@@ -105,7 +105,7 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
     For an Arm64 server, not the change in the tags from `x86-64` to `aarch64` and in the binary name from `agent` to `agent-arm64`:
 
-        ```bash
+    ```bash
     #!/bin/bash
 
     echo Running Agent from: ./agent
