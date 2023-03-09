@@ -88,7 +88,11 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
 
 5. Start the agent
 
-    For an Intel/AMD Actuated Agent, create a `start.sh` file:
+    We suggest starting the agent through a script or tmux session initially, then once we've confirmed it's enrolled correctly, switch over to systemd.
+
+    The easiest way to configure everything is to run as root, however, you can also use a non-root user with passwordless `sudo`, if you prefer.
+
+    For an Intel/AMD Actuated Agent, create a `/root/start.sh` file:
 
     ```bash
     #!/bin/bash
@@ -139,25 +143,18 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     WantedBy=multi-user.target
     EOF
     ```
-    Double-check the `ExecStart` directive to make sure it includes the path to your `start.sh` file.
-    
-    The usual place to save the unit file is: `/etc/systemd/system/actuated.service`:
 
-    ```bash
+    Install the service and start it:
     sudo cp actuated.service /etc/systemd/system/
-    ```
-
-    After saving your service file, you can start the service for the first time.
-
-    ```bash
     sudo systemctl daemon-reload
     sudo systemctl enable --now actuated
     ```
 
-    Verify that it is running:
+    Check the status with:
 
     ```bash
-    systemctl status actuated
+    sudo systemctl status actuated
+    sudo journalctl -u actuated --since today -f
     ```
 
 6. Send us your agent's connection info
