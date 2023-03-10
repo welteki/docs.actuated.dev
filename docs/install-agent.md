@@ -6,7 +6,7 @@ actuated is split into three parts:
 2. A VM image launched by the agent, with all the preinstalled software found on a hosted GitHub Actions runner.
 3. Our own control plane that talks to GitHub on your behalf, and schedules builds across your fleet of agents.
 
-We look after 2 and 3 which means you just have to set up one or more agent to get started.
+All we need you to do is to install our agent on one or more servers, then we take care of the rest. We'll even be able to tell you if your server goes offline for any reason.
 
 !!! info "Have you registered your organisation yet?"
     Before you can add an agent, you or your GitHub organisation admin will need to install the: [Actuated GitHub App](register).
@@ -19,6 +19,8 @@ Pick your Actuated Servers carefully using our guide: [Pick a host for actuated]
 
 Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actuated/blob/master/EULA.md) before registering your organisation with the actuated GitHub App, or starting the agent binary on one of your hosts.
 
+If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 22.04 as the host operating system on your Server.
+
 ## Install the Actuated Agent
 
 1. Download the Actuated Agent and installation script to the server
@@ -28,41 +30,48 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     Install [crane](https://github.com/google/go-containerregistry/releases):
 
     ```bash
+    (
     curl -sLS https://get.arkade.dev | sudo sh
     arkade get crane
     sudo mv $HOME/.arkade/bin/crane /usr/local/bin/
+    )
     ```
 
     Download the latest agent and install the binary to `/usr/local/bin/`:
 
     ```bash
-    rm -rf agent
+    (
+    rm -rf agent || :
     mkdir -p agent
-    crane export ghcr.io/openfaasltd/actuated-agent:latest | tar -xvf - -C ./agent
 
+    crane export ghcr.io/openfaasltd/actuated-agent:latest | tar -xvf - -C ./agent
     sudo mv ./agent/agent* /usr/local/bin/
+    )
     ```
 
     Run the setup.sh script which will install all the required dependencies like containerd, CNI and Firecracker.
 
     ```bash
+    (
     cd agent
     sudo ./install.sh
+    mkdir -p ~/.actuated
+    )
     ```
 
-    Create a file to store your license. If you don't have it handy, check your email for your receipt.
+    Create a file to store your license. If you don't have it handy, check your email for your receipt. If someone else in your organisation purchased the subscription, they should be able to forward it to you.
+
+    Run the following, then paste in your license, hit enter once, then Control + D.
 
     ```bash
-    mkdir -p ~/.actuated
-
-    # Paste the contents, hit enter, then Control + D
-    # Or edit the file with nano/vim
     cat > $HOME/.actuated/LICENSE
     ```
 
 2. Generate your enrollment file
 
-    You can generate an enrollment file at `$HOME/.actuated/agent.yaml` by running:
+    You'll need to create a DNS A or CNAME record for each server you add to actuated, this could be something like `server1.example.com` for instance.
+
+    Run the following to create an enrollment file at `$HOME/.actuated/agent.yaml`:
 
     ```bash
     agent enroll --url https://server1.example.com
@@ -157,11 +166,21 @@ Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actua
     sudo journalctl -u actuated --since today -f
     ```
 
-6. Send us your agent's connection info
+6. Check that the control-plane is accessible
+
+    ```bash
+    curl -i https://server1.example.com
+    ```
+
+    A correct response is a *403*.
+
+7. Send us your agent's connection info
 
     Share the `$HOME/.actuated/agent.yaml` file with us so we can add your agent to the actuated control plane.
 
     We'll let you know once we've added your agent to actuated and then it's over to you to start running your builds.
+
+    Once you've run our test build, you need to run the steps for systemd mentioned above.
 
 ## Next steps
 
