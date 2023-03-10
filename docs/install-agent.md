@@ -101,7 +101,9 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
 
     The easiest way to configure everything is to run as root, however, you can also use a non-root user with passwordless `sudo`, if you prefer.
 
-    For an Intel/AMD Actuated Agent, create a `/root/start.sh` file:
+    These steps are for hosts with public IP addresses, if you want to [use inlets](/expose-agent/), jump to the end of this step.
+
+    For an *x86_64* server, add the following to: `/root/start.sh`:
 
     ```bash
     #!/bin/bash
@@ -116,7 +118,7 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
         --letsencrypt-email webmaster@$DOMAIN
     ```
 
-    For an Arm64 server, not the change in the tags from `x86-64` to `aarch64` and in the binary name from `agent` to `agent-arm64`:
+    For an Arm64 server, add the following to `/root/start.sh` instead: 
 
     ```bash
     #!/bin/bash
@@ -130,41 +132,10 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
         --letsencrypt-domain $DOMAIN \
         --letsencrypt-email webmaster@$DOMAIN
     ```
+    
+    Note the different binary name: `agent-arm64` and suffix on the image references: `aarch64-latest`.
 
     For an Actuated Agent behind an [inlets tunnel](https://inlets.dev), do not include the `--letsencrypt-*` flags, and instead add `--listen-addr 127.0.0.1:`.
-
-    You can also run the Actuated Agent software as a systemd unit file for automatic restarts and to start upon boot-up.
-
-    An example of a systemd file you can use:
-
-    ```bash
-    cat <<EOF > actuated.service
-    [Unit]
-    Description=Actuated Agent
-    [Service]
-    User=root
-    Type=simple
-    ExecStart=/root/start.sh
-    Restart=always
-    RestartSec=5s
-
-    [Install]
-    WantedBy=multi-user.target
-    EOF
-    ```
-
-    Install the service and start it:
-    sudo cp actuated.service /etc/systemd/system/
-    sudo systemctl daemon-reload
-    sudo systemctl enable --now actuated
-    ```
-
-    Check the status with:
-
-    ```bash
-    sudo systemctl status actuated
-    sudo journalctl -u actuated --since today -f
-    ```
 
 6. Check that the control-plane is accessible
 
@@ -173,6 +144,21 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
     ```
 
     A correct response is a *403*.
+
+    If you see the expected response, go ahead and install the service as a systemd service:
+
+    ```bash
+    sudo agent install-service \
+        --path /root/start.sh \
+        --user root
+    ```
+
+    Check the service's status with:
+    
+    ```bash
+    sudo systemctl status actuated
+    sudo journalctl -u actuated --since today -f
+    ```
 
 7. Send us your agent's connection info
 
