@@ -195,6 +195,14 @@ Feel free [to book a call with us](register) if you'd like to understand this co
 
 You can only get VM-level isolation from either GitHub hosted runners or Actuated. Standard self-hosted runners have no isolation between builds and actions-runtime-controller requires either a Docker socket to be mounted or Docker In Docker (a privileged container) to build and run containers.
 
+### What about IAM permissions for AWS?
+
+If you need to publish images to Amazon Elastic Container Registry (ECR), you can either assign a role to any EC2 bare-metal instances that you're using with actuated, or use GitHub's built-in OpenID Connect support.
+
+Web Identity Federation means that a job can assume a role within AWS using Secure Token Service (STS) without needing any long-lived credentials.
+
+Read more: [Configuring OpenID Connect in Amazon Web Services](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)
+
 ### How does actuated compare to a actions-runtime-controller (ARC)?
 
 [actions-runtime-controller (ARC)](https://github.com/actions-runner-controller/actions-runner-controller) describes itself as "still in its early stage of development". It was created by an individual developer called [Yusuke Kuoka](https://github.com/mumoshu), and now receives updates from GitHub's team, after having been adopted into the [actions GitHub Organisation](https://github.com/actions/actions-runner-controller).
