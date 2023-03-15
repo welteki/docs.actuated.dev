@@ -7,6 +7,8 @@ Use-cases:
 
 If you use Docker in your self-hosted builds, there is a chance that you'll run into the rather conservative rate-limits.
 
+See also: [Docker.com: Download rate limit](https://docs.docker.com/docker-hub/download-rate-limit/)
+
 The Docker Hub allows for 100 image pulls within a 6 hour period, but this can be extended to 200 by logging in, or to 5000 by paying for a Pro license.
 
 A registry mirror / pull-through cache running on an actuated agent is significantly faster than pulling from a remote server.
