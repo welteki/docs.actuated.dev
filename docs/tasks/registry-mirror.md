@@ -24,6 +24,11 @@ We will create a mirror that:
 
 This tutorial shows you how to set up what was previously known as "Docker's Open Source Registry" and is now a CNCF project called [distribution](https://github.com/distribution/distribution).
 
+Certified for:
+
+- [x] `x86_64`
+- [x] `arm64`
+
 ## Create a Docker Hub Access token
 
 Create a Docker Hub Access token with "Public repos only" scope, and save it as `~/hub.txt` on the Actuated Server.
