@@ -176,7 +176,7 @@ To connect, you can use an [inlets tunnel](https://inlets.dev/), Wireguard VPN o
 
 We also offer a SSH gateway in some of our tiers, tell us if this is important to you in your initial contact, or reach out to us via email if you're already a customer.
 
-See also: [Debug a GitHub Action with SSH](/examples/debug-ssh)
+See also: [Debug a GitHub Action with SSH](/tasks/debug-ssh)
 
 ## Comparison to other solutions
 

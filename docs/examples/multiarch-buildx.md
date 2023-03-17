@@ -101,7 +101,7 @@ jobs:
             ghcr.io/${{ env.REPO_OWNER }}/inlets-operator:latest
 ```
 
-You'll see that we added a `Setup mirror` step, this explained in the [Registry Mirror example](/examples/registry-mirror)
+You'll see that we added a `Setup mirror` step, this explained in the [Registry Mirror example](/tasks/registry-mirror)
 
 The `docker/setup-qemu-action@v2` step is responsible for setting up QEMU, which is used to emulate the different CPU architectures.
 

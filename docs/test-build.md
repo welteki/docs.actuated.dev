@@ -106,4 +106,4 @@ If you want to go back to a hosted runner, edit the field back to `runs-on: ubun
 
 We provide an add-on for setting up a cache/mirror of the Docker Hub. If you do not enable this, and use the Docker Hub in your builds, then you may run into the rate limits imposed by Docker Hub for anonymous users.
 
-See also: [Set up a registry mirror](/examples/registry-mirror)
+See also: [Set up a registry mirror](/tasks/registry-mirror)

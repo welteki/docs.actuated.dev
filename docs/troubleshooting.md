@@ -37,7 +37,7 @@ Since a MicroVM is a completely immutable environment, the pull needs to happen 
 
 The pull speed can be dramatically improved by using a registry mirror on each agent:
 
-* [Example: Set up a registry mirror](/examples/registry-mirror)
+* [Example: Set up a registry mirror](/tasks/registry-mirror)
 
 ## You are running into rate limits when using container images from the Docker Hub
 
@@ -45,7 +45,7 @@ The Docker Hub implements stringent rate limits of 100 pulls per 6 hours, and 20
 
 We've created simple instructions on how to set up a registry mirror to cache images on your Actuated Servers.
 
-* [Example: Set up a registry mirror](/examples/registry-mirror)
+* [Example: Set up a registry mirror](/tasks/registry-mirror)
 
 ## You need to rotate the authentication token used for your agent
 
