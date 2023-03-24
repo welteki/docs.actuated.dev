@@ -174,4 +174,14 @@ You can now start your first build and see it run on your actuated agent.
 
 [Start a build on your agent](/test-build)
 
+If you'd like to install a firewall, [ufw](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-20-04) should be relatively quick to configure.
+
+You will need the following ports open:
+
+* `443` - the encrypted control plane for actuated
+* `80` - used with Let's Encrypt to obtain a TLS certificate during the HTTP01 challenge
+* `22` - we recommend leaving port 22 open so that you can log into the machine with SSH, if needed. You could also change this to a high or random port
+
+We do not recommend restricting outgoing traffic on the server as this will probably cause you issues with your builds.
+
 See also: [Troubleshooting your agent](/troubleshooting)

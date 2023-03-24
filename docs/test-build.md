@@ -40,7 +40,7 @@ This build will show you the specs, OS and Kernel name reported by the MicroVM.
 
     Note that the `runs-on:` field says `actuated` and not `ubuntu-latest`. This is how the actuated control plane knows to send this job to your agent.
 
-    Then add `specs.sh` to the root of the repository:
+    Then add `specs.sh` to the root of the repository, and remember, that you must run `chmod +x specs.sh` afterwards to make it executable.
 
     ```bash
     #!/bin/bash
@@ -71,6 +71,13 @@ This build will show you the specs, OS and Kernel name reported by the MicroVM.
 
     echo Egress IP:
     curl -s -L -S https://checkip.amazonaws.com
+    ```
+
+    Don't leave out this step!
+
+    ```bash
+    chmod +x ./specs.sh
+    ```
     ```
 
 2. Hit commit, and watch the VM boot up.
@@ -104,6 +111,14 @@ If you want to go back to a hosted runner, edit the field back to `runs-on: ubun
 
 ## Recommended: Enable a Docker Hub mirror
 
-We provide an add-on for setting up a cache/mirror of the Docker Hub. If you do not enable this, and use the Docker Hub in your builds, then you may run into the rate limits imposed by Docker Hub for anonymous users.
+Do you use the Docker Hub in your builds?
+
+Any Dockerfile with a `FROM` that doesn't include a server name will be pulled from `docker.io`, and there are strict rate-limits for unauthenticated users.
+
+One option is to simply log into the Docker Hub with `docker login` or the [Docker Login Action](https://github.com/docker/login-action).
+
+But, we have a more efficient option available.
+
+We provide configuration and a custom action to set up a cache/mirror of the Docker Hub on your server. In advantage to meaning you only have to change one thing, subsequent builds will run much quicker and use less bandwidth.
 
 See also: [Set up a registry mirror](/tasks/registry-mirror)
