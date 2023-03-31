@@ -88,7 +88,7 @@ Install and start the registry with a systemd unit file:
 cat >> /tmp/registry.service <<EOF
 [Unit]
 Description=Registry
-After=network.target
+After=network.target actuated.service
 
 [Service]
 Type=simple
