@@ -78,7 +78,6 @@ This build will show you the specs, OS and Kernel name reported by the MicroVM.
     ```bash
     chmod +x ./specs.sh
     ```
-    ```
 
 2. Hit commit, and watch the VM boot up.
 
@@ -101,24 +100,18 @@ This build will show you the specs, OS and Kernel name reported by the MicroVM.
     sudo cat /var/log/actuated/*
     ```
 
-Do you have any questions or comments? Feel free to reach out to us over Slack in the public channel for support.
+Do you have any questions or comments? Feel free to reach out to us over Slack in the `#onboarding` channel.
 
 ## Enable actuated for an existing repository
 
-To add actuated to an existing repository, simply edit the workflow YAML file and change `runs-on:` to `runs-on: actuated`.
-
-If you want to go back to a hosted runner, edit the field back to `runs-on: ubuntu-latest` or whatever you used prior to that.
+To add actuated to an existing repository, simply edit the workflow YAML file and change `runs-on:` to `runs-on: actuated` and for Arm builds, change it to: `runs-on: actuated-aarch64`.
 
 ## Recommended: Enable a Docker Hub mirror
 
-Do you use the Docker Hub in your builds?
+Do you use the Docker Hub in your builds? Any Dockerfile with a `FROM` that doesn't include a server name will be pulled from `docker.io`, and there are strict rate-limits for unauthenticated users.
 
-Any Dockerfile with a `FROM` that doesn't include a server name will be pulled from `docker.io`, and there are strict rate-limits for unauthenticated users.
+1) Option 1
+    Run `docker login` or use the [Docker Login Action](https://github.com/docker/login-action) just before you run Docker build or pull down any images with tooling like KinD
 
-One option is to simply log into the Docker Hub with `docker login` or the [Docker Login Action](https://github.com/docker/login-action).
-
-But, we have a more efficient option available.
-
-We provide configuration and a custom action to set up a cache/mirror of the Docker Hub on your server. In advantage to meaning you only have to change one thing, subsequent builds will run much quicker and use less bandwidth.
-
-See also: [Set up a registry mirror](/tasks/registry-mirror)
+2) Option 2
+    Use our guide to [Set up a registry cache and mirror](/tasks/registry-mirror) - this uses less bandwidth and increases the speed of builds where images are already present in the cache.
