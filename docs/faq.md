@@ -160,7 +160,7 @@ Very little, just add / set `runs-on: actuated`
 
 ## Is ARM64 supported?
 
-Yes, actuated is built to run on both Intel/AMD and ARM64 hosts, check your subscription plan to see if ARM64 is included. This includes a Raspberry Pi 4B, AWS Graviton, Oracle Cloud ARM instances and potentially any other ARM64 instances which support virtualisation.
+Yes, actuated is built to run on both Intel/AMD and ARM64 hosts, check your subscription plan to see if ARM64 is included. This includes a Raspberry Pi 4B, AWS Graviton, Oracle Cloud Arm instances and potentially any other ARM64 instances which support virtualisation.
 
 ## What's in the VM image and how is it built?
 
@@ -239,7 +239,7 @@ In addition, Kaniko cannot and will not help you to run that container that you'
 
 ## Do we need to run my Actuated Servers 24/7?
 
-Let's say that you wanted to access a single ARM64 runner to speed up your ARM builds from [33 minutes to < 2 minutes like in this example](https://blog.alexellis.io/blazing-fast-ci-with-microvms/).
+Let's say that you wanted to access a single ARM64 runner to speed up your Arm builds from [33 minutes to < 2 minutes like in this example](https://blog.alexellis.io/blazing-fast-ci-with-microvms/).
 
 The two cheapest options for ARM64 hardware would be:
 
@@ -250,7 +250,7 @@ In both cases, we're not talking about a significant amount of money, *however w
 
 The answer if that it's a trade-off between cost and convenience. We recommend running them continually, however you can turn them off when you're not using them if you think it is worth your time to do so.
 
-If you only needed to run ARM builds from 9-5pm, you could absolutely delete the VM and re-create it with a cron job, just make sure you restore the required files from the original registration of the agent. You may also be able to "suspend" or "hibernate" the host at a reduced cost, this depends on the hosting provider. Feel free to reach out to us if you need help with this.
+If you only needed to run Arm builds from 9-5pm, you could absolutely delete the VM and re-create it with a cron job, just make sure you restore the required files from the original registration of the agent. You may also be able to "suspend" or "hibernate" the host at a reduced cost, this depends on the hosting provider. Feel free to reach out to us if you need help with this.
 
 ## Is there GPU support?
 

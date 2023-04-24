@@ -24,7 +24,7 @@ For alexellis' repository called [alexellis/autoscaling-functions](https://githu
 * The "Setup QEMU" and "Set up Docker Buildx" steps configure the builder to produce a multi-arch image.
 * The "OWNER" variable means this action can be run on any organisation without having to hard-code a username for GHCR.
 * Only the bcrypt function is being built with the `--filter` command added, remove it to build all functions in the stack.yml.
-* `--platforms linux/amd64,linux/arm64,linux/arm/v7` will build for regular Intel/AMD machines, 64-bit ARM and 32-bit ARM i.e. Raspberry Pi, most users can reduce this list to just "linux/amd64" for a speed improvement
+* `--platforms linux/amd64,linux/arm64,linux/arm/v7` will build for regular Intel/AMD machines, 64-bit Arm and 32-bit Arm i.e. Raspberry Pi, most users can reduce this list to just "linux/amd64" for a speed improvement
 
 Make sure you edit `runs-on:` and set it to `runs-on: actuated`
 
