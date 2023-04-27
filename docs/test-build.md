@@ -10,6 +10,8 @@ The below steps should take less than 10 minutes.
 
 This build will show you the specs, OS and Kernel name reported by the MicroVM.
 
+Note that if you're running on an Arm64 machine, instead of `runs-on: actuated`, you'll need to specify `runs-on: actuated-aarch64`.
+
 1. Create a test repository and a GitHub Action
 
     Create `./.github/workflows/ci.yaml`:
@@ -30,6 +32,7 @@ This build will show you the specs, OS and Kernel name reported by the MicroVM.
     jobs:
         specs:
             name: specs
+            # runs-on: actuated-aarch64
             runs-on: actuated
             steps:
             - uses: actions/checkout@v1
