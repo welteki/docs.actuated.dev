@@ -88,8 +88,9 @@ markdown_extensions:
 nav:
   - Overview:
       - Introduction: index.md
-      - Roadmap: roadmap.md
+      - Dashboard: dashboard.md
       - FAQ: faq.md
+      - Roadmap: roadmap.md
       - Contact us: contact.md
   - Onboarding:
       - Register your GitHub Organisation: register.md
