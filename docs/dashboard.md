@@ -4,10 +4,22 @@ The actuated dashboard is available to customers for their enrolled organisation
 
 For each organisation, you can see:
 
+* Today's builds so far - a quick picture of today's activity across all enrolled organisations
 * Runners - Your build servers and their status
 * Build queue - All builds queued for processing and their status
 * CLI - install the CLI for management via command line
 * Insights - full build history and usage by organisation, repo and user
+
+## Today's builds so far
+
+On this page, you'll get today's total builds, total build minutes and a break-down on the statuses - to see if you have a majority of successful or unsuccessful builds.
+
+![Today at a glance](/images/today-glance.png)
+> Today's activity at a glance
+
+Underneath this section, there are a number of tips for enabling a container cache, adjusting your subscription plan and for joining the actuated Slack.
+
+More detailed reports are available on the insights page.
 
 ## Runners
 
@@ -29,9 +41,11 @@ Find out how many builds are pending or running across your organisation and on 
 
 Three sets of insights are offered - all at the organisation level, so every repository is taken into account.
 
-You can also switch the time window between 28 days, 14 days or 7 days.
+You can also switch the time window between 28 days, 14 days, 7 days or today.
 
 The data is contrasted to the previous period to help you identify spikes and potential issues.
+
+The data for reports always starts from the last complete day of data, so the last 7 days will start from the previous day.
 
 ### Build history and usage by organisation.
 
