@@ -38,14 +38,14 @@ jobs:
     runs-on: actuated
     steps:
       - name: Setup SSH server for Actor
-        uses: alexellis/setup-sshd-actor@master
+        uses: self-actuated/setup-sshd-for-actor@master
       - name: Connect to the actuated SSH gateway
-        uses: alexellis/actuated-ssh-gateway-action@master
+        uses: self-actuated/connect-ssh-gateway@master
         with:
           gatewayaddr: ${{ secrets.SSH_GATEWAY }}
           secure: true
       - name: Setup a blocking tmux session
-        uses: alexellis/block-with-tmux-action@master
+        uses: self-actuated/block-with-tmux@master
 ```
 
 Next, trigger a build.
