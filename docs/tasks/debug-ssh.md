@@ -12,20 +12,16 @@ Certified for:
 
 ## Try out the action on your agent
 
-Create a secret for the repo or organisation for `SSH_GATEWAY` using the hostname that you were provided with by your support team, minus the `https://` prefix.
-
 Create a `.github/workflows/workflow.yaml` file
 
 ```yaml
 name: connect
 
 on:
-  pull_request:
-    branches:
-      - '*'
   push:
     branches:
       - master
+  workflow_dispatch:
 
 permissions:
   id-token: write
@@ -36,23 +32,21 @@ jobs:
   connect:
     name: connect
     runs-on: actuated
-    steps:
-      - name: Setup SSH server for Actor
-        uses: self-actuated/setup-sshd-for-actor@master
-      - name: Connect to the actuated SSH gateway
-        uses: self-actuated/connect-ssh-gateway@master
-        with:
-          gatewayaddr: ${{ secrets.SSH_GATEWAY }}
-          secure: true
-      - name: Setup a blocking tmux session
-        uses: self-actuated/block-with-tmux@master
+     steps:
+      - uses: self-actuated/setup-sshd-for-actor@master
+      - uses: self-actuated/connect-ssh-gateway@master
+      - uses: self-actuated/block-with-tmux@master
 ```
 
-Next, trigger a build.
+Next, trigger a build via the workflow_dispatch event or a git push to the master branch.
 
 Open `https://$SSH_GATEWAY/list` in your browser and look for your session, you can log in using the SSH command outputted for you.
 
 Alternatively, you can view your own SSH sessions from the [actuated dashboard](https://dashboard.actuated.dev).
+
+Whenever you have a build that you just can't figure out - or if you want to explore the runner and tune it up to your needs, then you can add those three "uses" lines into a build. It'll pause the build right there and wait for you to connect.
+
+To release the session run `unblock` or `sudo reboot` from the SSH session.
 
 Watch a demo:
 
