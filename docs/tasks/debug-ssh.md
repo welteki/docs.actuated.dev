@@ -1,6 +1,6 @@
 # Example: Debug a job with SSH
 
-If your tier and subscription includes debugging with SSH, then you can follow these instructions to get a shell into your self-hosted runner.
+If your it's included within your actuated plan, then you can get a shell into any self-hosted runner - including GitHub's own hosted runners.
 
 Certified for:
 
