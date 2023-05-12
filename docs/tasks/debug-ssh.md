@@ -12,7 +12,7 @@ Certified for:
 
 ## Try out the action on your agent
 
-Create a secret for the repo or organisation for `SSH_GATEWAY_IP` using the IP address, or DNS address that you were provided with by your support team.
+Create a secret for the repo or organisation for `SSH_GATEWAY` using the hostname that you were provided with by your support team, minus the `https://` prefix.
 
 Create a `.github/workflows/workflow.yaml` file
 
@@ -42,7 +42,7 @@ jobs:
       - name: Connect to the actuated SSH gateway
         uses: alexellis/actuated-ssh-gateway-action@master
         with:
-          gatewayaddr: ${{ secrets.SSH_GATEWAY_IP }}
+          gatewayaddr: ${{ secrets.SSH_GATEWAY }}
           secure: true
       - name: Setup a blocking tmux session
         uses: alexellis/block-with-tmux-action@master
@@ -50,7 +50,9 @@ jobs:
 
 Next, trigger a build.
 
-Open `https://$SSH_GATEWAY_IP/list` in your browser and look for your session, you can log in using the SSH command outputted for you.
+Open `https://$SSH_GATEWAY/list` in your browser and look for your session, you can log in using the SSH command outputted for you.
+
+Alternatively, you can view your own SSH sessions from the [actuated dashboard](https://dashboard.actuated.dev).
 
 Watch a demo:
 
