@@ -40,12 +40,14 @@ Create a Docker Hub Access token with "Public repos only" scope, and save it as 
 ## Set up the registry on an actuated agent
 
 ```bash
-curl -sLS https://get.arkade.dev | sudo sh
+(
+  curl -sLS https://get.arkade.dev | sudo sh
 
-sudo arkade system install registry
+  sudo arkade system install registry
 
-sudo mkdir -p /etc/registry
-sudo mkdir -p /var/lib/registry
+  sudo mkdir -p /etc/registry
+  sudo mkdir -p /var/lib/registry
+)
 ```
 
 Create a config file to make the registry only available on the Linux bridge for Actuated VMs:
@@ -85,6 +87,7 @@ sudo mv /tmp/registry.yml /etc/registry/config.yml
 Install and start the registry with a systemd unit file:
 
 ```bash
+(
 cat >> /tmp/registry.service <<EOF
 [Unit]
 Description=Registry
@@ -100,16 +103,16 @@ ExecStart=/usr/local/bin/registry serve /etc/registry/config.yml
 WantedBy=multi-user.target
 EOF
 
-
 sudo mv /tmp/registry.service /etc/systemd/system/registry.service
 sudo systemctl daemon-reload
 sudo systemctl enable registry --now
+)
 ```
 
 Check the status with:
 
 ```bash
-sudo journalctl -u registry
+sudo journalctl -u registry -f
 ```
 
 ## Use the registry within a workflow
