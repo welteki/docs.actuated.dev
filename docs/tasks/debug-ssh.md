@@ -33,9 +33,7 @@ jobs:
     name: connect
     runs-on: actuated
      steps:
-      - uses: self-actuated/setup-sshd-for-actor@master
-      - uses: self-actuated/connect-ssh-gateway@master
-      - uses: self-actuated/block-with-tmux@master
+      - uses: self-actuated/connect-ssh@master
 ```
 
 Next, trigger a build via the workflow_dispatch event or a git push to the master branch.
@@ -44,7 +42,7 @@ Open `https://$SSH_GATEWAY/list` in your browser and look for your session, you 
 
 Alternatively, you can view your own SSH sessions from the [actuated dashboard](https://dashboard.actuated.dev).
 
-Whenever you have a build that you just can't figure out - or if you want to explore the runner and tune it up to your needs, then you can add those three "uses" lines into a build. It'll pause the build right there and wait for you to connect.
+Whenever you have a build that you just can't figure out - or if you want to explore the runner and tune it up to your needs, then you can simply add `- uses: self-actuated/connect-ssh@master` where you want to pause the build.
 
 To release the session run `unblock` or `sudo reboot` from the SSH session.
 
