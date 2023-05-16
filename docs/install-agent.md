@@ -23,7 +23,18 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
 
 ## Install the Actuated Agent
 
-1. Download the Actuated Agent and installation script to the server
+1. Install your license for actuated
+
+    The license is available in the email you received when you purchased your subscription. If someone else bought the subscription, they should be able to forward it to you.
+
+    Run the following, then paste in your license, hit enter once, then Control + D to save the file.
+
+    ```bash
+    mkdir -p ~/.actuated
+    cat > ~/.actuated/LICENSE
+    ```
+
+2. Download the Actuated Agent and installation script to the server
 
     > Setting up an ARM64 agent? Wherever you see `agent` in a command, change it to: `agent-arm64`. So instead of `agent keygen` you'd run `agent-arm64 keygen`.
 
@@ -59,15 +70,7 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
     )
     ```
 
-    Create a file to store your license. If you don't have it handy, check your email for your receipt. If someone else in your organisation purchased the subscription, they should be able to forward it to you.
-
-    Run the following, then paste in your license, hit enter once, then Control + D.
-
-    ```bash
-    cat > $HOME/.actuated/LICENSE
-    ```
-
-2. Generate your enrollment file
+3. Generate your enrollment file
 
     You'll need to create a DNS A or CNAME record for each server you add to actuated, this could be something like `server1.example.com` for instance.
 
@@ -130,7 +133,14 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
     sudo journalctl -u actuated --since today -f
     ```
 
-    For an Actuated Agent behind an [inlets tunnel](https://inlets.dev), do not include the `--letsencrypt-*` flags, and instead add `--listen-addr 127.0.0.1:`. See [expose the agent with HTTPS](/expose-agent/) for instructions on how the setup inlets.
+    For an Actuated Agent behind an [inlets tunnel](https://inlets.dev), do not include the `--letsencrypt-*` flags, and instead add `--listen-addr "127.0.0.1:"`. See [expose the agent with HTTPS](/expose-agent/) for instructions on how the setup inlets.
+
+    For example (with inlets):
+
+    ```bash
+    sudo -E agent install-service \
+        --listen-addr "127.0.0.1:"
+    ```
 
 5. Check that the control-plane is accessible
 
