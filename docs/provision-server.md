@@ -1,11 +1,24 @@
 ## Provision a Server for actuated
 
-You'll need to provision or allocate a Server which is capable of virtualisation. This is because each of your builds will run in an isolated microVM, with its own networking, Kernel and filesystem.
+You'll need to provision or allocate a Server which is capable of virtualisation with Linux KVM. Each of your builds will run in an isolated microVM, with its own networking, Kernel and immutable filesystem.
 
-We regularly update our recommendations, which include bare-metal and cloud VMs which support nested virtualisation. These do not need to be overly expensive, if performance is not a concern, DigitalOcean VMs are available from tens of dollars per month, but a bare-metal server with a CPU that will run at a burst capacity of 4.4GHz, is around 100 USD / mo. If you have your own hardware, this can also be a really cost effective way of adopting actuated.
+We update our recommendations on this page regularly to include both bare-metal and cloud VMs which support nested virtualisation. Servers for actuated do not need to be expensive at all. Bare metal from Hetzner is available between 50-150 EUR / mo, and VMs on GCP, Azure and DigitalOcean are all available within a similar budget range. Using your own hardware can also be really cost effective.
 
 !!! info "500 USD free credit for bare-metal"
     [Equinix Metal](https://metal.equinix.com/) have partnered with us to offer 500 USD of credit for new customers to use on actuated. You can request the discount code after purchasing your actuated subscription.
+
+So what makes a one server quicker than another?
+
+* CPU Clock speed - the base and turbo speeds affect how some builds perform like Go and Rust
+* Core core - The amount of vCPU allocated to a build affects multi-processing
+* RAM and disk space - tune these to your needs to prevent builds slowing down
+* Generation of hardware - hosted runners use very old hardware - you can use the latest technology 
+* Network bandwidth - this affects downloading images, and uploading results
+* Storage - the only option we'd recommend is local NVMe, which means a high throughput and low latency
+* Multi-tenancy - if you're using a managed service, that means your builds may be affected by other users
+
+!!! tip "Want us to recommend a provider?"
+    There's a lot of options when it comes to picking a server. We're happy to recommend a provider based upon your performance requirements, budget and vendor preferences. Just send us an email.
 
 ### Intel/AMD
 
