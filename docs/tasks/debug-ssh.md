@@ -32,8 +32,8 @@ jobs:
   connect:
     name: connect
     runs-on: actuated
-     steps:
-      - uses: self-actuated/connect-ssh@master
+    steps:
+    - uses: self-actuated/connect-ssh@master
 ```
 
 Next, trigger a build via the workflow_dispatch event or a git push to the master branch.
