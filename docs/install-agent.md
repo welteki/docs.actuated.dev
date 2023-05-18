@@ -114,7 +114,7 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
       --letsencrypt-email webmaster@$DOMAIN
     ```
 
-    For an *Arm64* server, run: 
+    For an *Arm* server, run: 
 
     ```bash
     DOMAIN=agent1.example.com
@@ -124,7 +124,7 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
       --letsencrypt-email webmaster@$DOMAIN
     ```
     
-    Note the different binary name: `agent-arm64`
+    > Note the different binary name: `agent-arm64`
 
     This creates an env file, /etc/default/actuated, with the agent configuration and starts a systemd service.
 
