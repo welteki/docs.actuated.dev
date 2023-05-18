@@ -188,9 +188,9 @@ You can use the same approach to mirror other registries, but you'll need to run
 ```yaml
 uses: self-actuated/hub-mirror@master
 with:
-  insecureRegistries: "192.168.128.1:5000,192.168.128.1:5001"
-  registryMirrors: "http://192.168.128.1:5000,http://192.168.128.1:5001"
-  buildkitRegistryMirror: "192.168.128.1:5000,192.168.128.1:5001"
+  insecureRegistries: "\"192.168.128.1:5000\", \"192.168.128.1:5001\""
+  registryMirrors: "\"http://192.168.128.1:5000\", \"http://192.168.128.1:5001\""
+  buildkitRegistryMirror: "\"192.168.128.1:5000\", \"192.168.128.1:5001\""
 ```
 
 The action updates `/etc/docker/daemon.json` and also configures containerd and buildx using the `docker/setup-buildx-action@v2` action. 
