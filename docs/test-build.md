@@ -58,7 +58,7 @@ Note that if you're running on an Arm64 machine, instead of `runs-on: actuated`,
     echo CPUs: $(nproc)
 
     echo CPU Model
-    cat /proc/cpuinfo |grep "model name"
+    cat /proc/cpuinfo |grep -i "Model"|head -n 2
 
     echo Kernel and OS info
     uname -a
