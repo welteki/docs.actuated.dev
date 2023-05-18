@@ -33,18 +33,26 @@ Shipped
 * [x] Docker cache directly on the Actuated Hosts (servers) for much faster builds and avoiding rate-limiting
 * [x] Subscriptions: migration to LemonSqueezy for lower fees, and more payment options
 * [x] Dashboard - animation on all data pages for better feedback when refreshing data
+* [x] Detailed insights across your organisation on usage
+* [x] Detailed insights across your repos
+* [x] Detailed insights by committer
+* [x] Integrated SSH debug experience
+* [x] At a glance insights for the day's activity so far
+* [x] CLI/API for remote logs of VMs and the actuated agent
+* [x] CLI/API for restarting the agent and rebooting a server
+* [x] OIDC Proxy for OpenFaaS CE/Standard/Enterprise users for keyless login
 
 Coming soon:
 
-* [ ] Detailed insights across your organisation on usage
+* [ ] Specify a custom runner size for an individual workflow - i.e. `actuated-8cpu-12gb`
+* [ ] Actuated for self-hosted GitLab.
 * [ ] Support for private, self-hosted GitHub Enterprise Server (GHES) installations
 
 Under consideration:
 
-* [ ] Actuated for GitLab
-* [ ] Actuated for Jenkins
-* [ ] GPU pass-through support for ML and AI workloads
 * [ ] Automated agent installation and bootstrap
+* [ ] GPU pass-through support for ML and AI workloads
+* [ ] Actuated for Jenkins
 
 Is there something else you need? If you're already a customer, contact us via [the actuated Slack](https://self-actuated.slack.com) or [Register for interest](https://forms.gle/8XmpTTWXbZwWkfqT6).
 
