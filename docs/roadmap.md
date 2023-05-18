@@ -48,6 +48,12 @@ Coming soon:
 * [ ] Actuated for self-hosted GitLab.
 * [ ] Support for private, self-hosted GitHub Enterprise Server (GHES) installations
 
+Open for customer contributions:
+
+* [ ] Examples for using S3/Minio running on the server as an actions cache, instead of the default hosted cache within Azure
+* [ ] Examples for setting up an apt/yum mirror for faster builds
+* [ ] Example for configuring two different Docker pull through registries instead of just one.
+
 Under consideration:
 
 * [ ] Automated agent installation and bootstrap
