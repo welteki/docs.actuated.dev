@@ -33,7 +33,7 @@ Here you'll see if any of your servers are offline, in a draining status due a r
 
 The Ping time is how long it takes for the control-plane to check the agent's capacity.
 
-## Build Queue
+## Build queue
 
 Only builds that are queued (not yet in progress), or already in progress will be shown on this page.
 
