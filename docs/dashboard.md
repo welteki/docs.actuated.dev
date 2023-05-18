@@ -7,8 +7,12 @@ For each organisation, you can see:
 * Today's builds so far - a quick picture of today's activity across all enrolled organisations
 * Runners - Your build servers and their status
 * Build queue - All builds queued for processing and their status
-* CLI - install the CLI for management via command line
 * Insights - full build history and usage by organisation, repo and user
+
+Plus:
+
+* CLI - install the CLI for management via command line
+* SSH Sessions - connect to a runner via SSH to debug issues or to explore - works on hosted and actuated runners
 
 ## Today's builds so far
 
@@ -66,3 +70,20 @@ When viewing usage at a repository-level, you can easily identify anomalies and 
 ![Build history per user of your GitHub organisation](/images/dashboard/user-usage.png)
 
 This is where you get to learn who is trigger the most amount of builds, who may be a little less active for this period and where folks may benefit from additional training due a high failure rate of builds.
+
+## SSH Sessions
+
+Once you configure an action to pause at a set point by introducing our custom GitHub action step, you'll be able to copy and paste an SSH command and run it in your terminal.
+
+Your SSH keys will be pre-installed and no password is required.
+
+![SSH sessions in the dashboard](/images/ssh-sessions.jpg)
+> Viewing an SSH session to a hosted runner
+
+See also: [Example: Debug a job with SSH](/tasks/debug-ssh/)
+
+## CLI
+
+The CLI page has download instructions, you can find the downloads for Linux, macOS and Windows here:
+
+[self-actuated/actuated-cli](https://github.com/self-actuated/actuated-cli)
