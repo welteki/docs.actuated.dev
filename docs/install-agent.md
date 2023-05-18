@@ -75,7 +75,7 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
 
     Run the following to create an enrollment file at `$HOME/.actuated/agent.yaml`:
 
-   > For an Arm server run `agent-arm64` instead of `agent`
+    > For an Arm server run `agent-arm64` instead of `agent`
 
     ```bash
     agent enroll --url https://server1.example.com
