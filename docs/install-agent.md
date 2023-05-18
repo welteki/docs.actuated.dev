@@ -66,7 +66,6 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
     (
     cd agent
     sudo ./install.sh
-    mkdir -p ~/.actuated
     )
     ```
 
