@@ -36,7 +36,7 @@ Shipped
 * [x] Detailed insights across your organisation on usage
 * [x] Detailed insights across your repos
 * [x] Detailed insights by committer
-* [x] Integrated SSH debug experience
+* [x] Integrated SSH debug for runners within dashboard and CLI
 * [x] At a glance insights for the day's activity so far
 * [x] CLI/API for remote logs of VMs and the actuated agent
 * [x] CLI/API for restarting the agent and rebooting a server
