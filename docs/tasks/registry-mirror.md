@@ -24,7 +24,7 @@ We will create a mirror that:
 
 This tutorial shows you how to set up what was previously known as "Docker's Open Source Registry" and is now a CNCF project called [distribution](https://github.com/distribution/distribution).
 
-If you'd like to mirror another registry like gcr.io, ecr.io, quay.io, or your own registry, then you can use the same approach. See the notes at the end for how to mirror a number of registries by running on different ports.
+If you'd like to mirror another registry like gcr.io, ecr.io, quay.io, or your own registry, then you can use the same approach, but run each registry on a different port. The configuration may need to be set up manually, since the current action we have built is only designed for one mirror.
 
 Certified for:
 
@@ -178,24 +178,6 @@ You can check the status of the mirror at any time with:
 ```bash
 sudo journalctl -u registry --since today
 ```
-
-## What if you need to mirror gcr.io, ecr.io or another registry?
-
-You can use the same approach to mirror other registries, but you'll need to run the mirror on a separate port for each registry and then configure Docker to use the that port for the registry you want to mirror.
-
-> The Docker daemon checks the Container Registry registry and fetches the images if it exists. You can have multiple mirrors configured, for example you may also have your own local mirror. The Docker daemon will check each configured mirror for the image until it is found.
-
-```yaml
-uses: self-actuated/hub-mirror@master
-with:
-  insecureRegistries: "\"192.168.128.1:5000\", \"192.168.128.1:5001\""
-  registryMirrors: "\"http://192.168.128.1:5000\", \"http://192.168.128.1:5001\""
-  buildkitRegistryMirror: "\"192.168.128.1:5000\", \"192.168.128.1:5001\""
-```
-
-The action updates `/etc/docker/daemon.json` and also configures containerd and buildx using the `docker/setup-buildx-action@v2` action. 
-
-See more configuration options: [self-actuated/hub-mirror/blob/master/action.yml](https://github.com/self-actuated/hub-mirror/blob/master/action.yml)
 
 ## Further reading
 
