@@ -63,6 +63,7 @@ Note that if you're running on an Arm64 machine, instead of `runs-on: actuated`,
     echo Kernel and OS info
     uname -a
 
+    echo Generally, KVM should not be available unless specifically enabled
     if ! [ -e /dev/kvm ]; then
         echo "/dev/kvm does not exist"
     else
@@ -74,6 +75,13 @@ Note that if you're running on an Arm64 machine, instead of `runs-on: actuated`,
 
     echo Egress IP:
     curl -s -L -S https://checkip.amazonaws.com
+
+    echo Speed test of Internet
+    sudo pip install speedtest-cli
+    speedtest-cli
+
+    echo Checking Docker
+    docker run alpine:3.17.1 cat /etc/os-release
     ```
 
     Don't leave out this step!
