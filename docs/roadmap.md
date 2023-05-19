@@ -56,6 +56,8 @@ Open for customer contributions:
 
 Under consideration:
 
+* [ ] Summary of CPU/RAM/disk consumption of builds
+* [ ] Right-sizing of build VMs based upon prior build history
 * [ ] Automated agent installation and bootstrap
 * [ ] GPU pass-through support for ML and AI workloads
 * [ ] Actuated for Jenkins
