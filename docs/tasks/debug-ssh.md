@@ -12,6 +12,8 @@ Certified for:
 
 ## Try out the action on your agent
 
+You'll need to add the `id_token: write` permission to your workflow to use this action. It allows the action to authenticate with the SSH gateway using an [GitHub Actions OIDC token](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect).
+
 Create a `.github/workflows/workflow.yaml` file
 
 ```yaml
