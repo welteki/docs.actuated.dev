@@ -53,4 +53,4 @@ jobs:
           docker images
 ```
 
-To run this on ARM64, just change the actuated label to `actuated-aarch64`.
+To run this on ARM64, just change the actuated label to `actuated-arm64`.

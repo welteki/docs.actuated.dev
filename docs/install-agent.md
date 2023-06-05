@@ -165,6 +165,49 @@ You can now start your first build and see it run on your actuated agent.
 
 [Start a build on your agent](/test-build)
 
+By default, the configured VM size for each server will be used when the `actuated` label is set:
+
+```diff
+name: ci
+
+on: push
+
+jobs:
+  build-golang:
+-    runs-on: ubuntu-latest
++    runs-on: actuated
+```
+
+For Arm servers, use `actuated-arm64`:
+
+```diff
+name: ci
+
+on: push
+
+jobs:
+  build-golang:
+-    runs-on: ubuntu-latest
++    runs-on: actuated-arm64
+```
+
+You can also customise the VM size for each job:
+
+```diff
+name: ci
+
+on: push
+
+jobs:
+  build-golang:
+-    runs-on: actuated
++    runs-on: actuated-4cpu-8gb
+```
+
+> In a future version of actuated, you'll be able to specify `actuated-any` if you don't mind whether the job runs on one of your amd64 or arm64 servers.
+
+### Other considerations
+
 If you'd like to install a firewall, [ufw](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-20-04) should be relatively quick to configure.
 
 You will need the following ports open:

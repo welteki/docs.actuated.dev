@@ -41,26 +41,29 @@ Shipped
 * [x] CLI/API for remote logs of VMs and the actuated agent
 * [x] CLI/API for restarting the agent and rebooting a server
 * [x] OIDC Proxy for OpenFaaS CE/Standard/Enterprise users for keyless login
+* [x] Examples for using S3/Minio running on the server as an actions cache, instead of the default hosted cache within Azure
 
 Coming soon:
 
-* [ ] Specify a custom runner size for an individual workflow - i.e. `actuated-8cpu-12gb`
+* [x] Specify a custom runner size for an individual workflow - i.e. `actuated-8cpu-12gb`
+* [ ] Specify `actuated-any` to run jobs on any available server whether amd64 or arm64, for architecture-agnostic workflows such as npm or for browser testing. 
 * [ ] Actuated for self-hosted GitLab.
-* [ ] Support for private, self-hosted GitHub Enterprise Server (GHES) installations
 
 Open for customer contributions:
 
-* [ ] Examples for using S3/Minio running on the server as an actions cache, instead of the default hosted cache within Azure
 * [ ] Examples for setting up an apt/yum mirror for faster builds
 * [ ] Example for configuring two different Docker pull through registries instead of just one.
 
 Under consideration:
 
+* [ ] Support for private, self-hosted GitHub Enterprise Server (GHES) installations
 * [ ] Summary of CPU/RAM/disk consumption of builds
 * [ ] Right-sizing of build VMs based upon prior build history
 * [ ] Automated agent installation and bootstrap
 * [ ] GPU pass-through support for ML and AI workloads
 * [ ] Actuated for Jenkins
+
+Items marked under consideration are awaiting customer interest. Reach out to us if you'd like to see these features sooner.
 
 Is there something else you need? If you're already a customer, contact us via [the actuated Slack](https://self-actuated.slack.com) or [Register for interest](https://forms.gle/8XmpTTWXbZwWkfqT6).
 

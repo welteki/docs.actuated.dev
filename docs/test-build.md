@@ -10,7 +10,7 @@ The below steps should take less than 10 minutes.
 
 This build will show you the specs, OS and Kernel name reported by the MicroVM.
 
-Note that if you're running on an Arm64 machine, instead of `runs-on: actuated`, you'll need to specify `runs-on: actuated-aarch64`.
+Note that if you're running on an Arm64 machine, instead of `runs-on: actuated`, you'll need to specify `runs-on: actuated-arm64` instead.
 
 1. Create a test repository and a GitHub Action
 
@@ -32,7 +32,7 @@ Note that if you're running on an Arm64 machine, instead of `runs-on: actuated`,
     jobs:
         specs:
             name: specs
-            # runs-on: actuated-aarch64
+            # runs-on: actuated-arm64
             runs-on: actuated
             steps:
             - uses: actions/checkout@v1
@@ -81,7 +81,7 @@ Note that if you're running on an Arm64 machine, instead of `runs-on: actuated`,
     speedtest-cli
 
     echo Checking Docker
-    docker run alpine:3.17.1 cat /etc/os-release
+    docker run alpine:latest cat /etc/os-release
     ```
 
     Don't leave out this step!
@@ -115,7 +115,7 @@ Do you have any questions or comments? Feel free to reach out to us over Slack i
 
 ## Enable actuated for an existing repository
 
-To add actuated to an existing repository, simply edit the workflow YAML file and change `runs-on:` to `runs-on: actuated` and for Arm builds, change it to: `runs-on: actuated-aarch64`.
+To add actuated to an existing repository, simply edit the workflow YAML file and change `runs-on:` to `runs-on: actuated` and for Arm builds, change it to: `runs-on: actuated-arm64`.
 
 ## Recommended: Enable a Docker Hub mirror
 
