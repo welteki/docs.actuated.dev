@@ -42,11 +42,12 @@ Shipped
 * [x] CLI/API for restarting the agent and rebooting a server
 * [x] OIDC Proxy for OpenFaaS CE/Standard/Enterprise users for keyless login
 * [x] Examples for using S3/Minio running on the server as an actions cache, instead of the default hosted cache within Azure
+* [x] Specify a custom runner size for an individual workflow - i.e. `actuated-8cpu-12gb`
+* [ ] Specify `actuated-any` to run jobs on any available server whether amd64 or arm64, for architecture-agnostic workflows such as npm or for browser testing. 
 
 Coming soon:
 
-* [x] Specify a custom runner size for an individual workflow - i.e. `actuated-8cpu-12gb`
-* [ ] Specify `actuated-any` to run jobs on any available server whether amd64 or arm64, for architecture-agnostic workflows such as npm or for browser testing. 
+* [ ] Custom CA for self-hosted S3, Minio, Docker Registries, apt/yum mirrors, etc.
 * [ ] Actuated for self-hosted GitLab.
 
 Open for customer contributions:
