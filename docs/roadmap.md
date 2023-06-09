@@ -48,7 +48,7 @@ Shipped
 Coming soon:
 
 * [ ] Custom CA for self-hosted S3, Minio, Docker Registries, apt/yum mirrors, etc.
-* [ ] Actuated for self-hosted GitLab.
+* [ ] Actuated for self-hosted GitLab. [Watch the video here](https://twitter.com/alexellisuk/status/1667130226327863298?s=20)
 
 Open for customer contributions:
 

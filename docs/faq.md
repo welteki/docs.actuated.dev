@@ -55,6 +55,8 @@ For the pilot phase, we're targeting GitHub Actions because it has fine-grained 
 
 That said, if you're using these tools within your organisation, and face similar issues or concerns, we'd like to hear from you. And we have a proof of concept that works with GitLab CI, so feel free to reach out to us if you feel actuated would be a good fit for your team.
 
+[Watch the actuated for GitLab preview](https://twitter.com/alexellisuk/status/1667130226327863298?s=20)
+
 Feel free to contact us at: [contact@openfaas.com](mailto:contact@openfaas.com)
 
 ## Is GitHub Enterprise supported?
