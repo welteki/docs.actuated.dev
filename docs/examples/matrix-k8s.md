@@ -19,7 +19,7 @@ Certified for:
 
 ## Try out the action on your agent
 
-Create a new file at: `.github/workspaces/build.yml` and commit it to the repository.
+Create a new file at: `.github/workflows/build.yml` and commit it to the repository.
 
 Customise both the array "k3s" with the versions you need to test and replace the step "Test crds" with whatever you need to install such as helm charts.
 

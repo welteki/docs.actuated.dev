@@ -14,7 +14,7 @@ In this short example we will build [alexellis/registry-creds](https://github.co
 
 ### Enable caching on a supported action
 
-Create a new file at: `.github/workspaces/build.yaml` and commit it to the repository.
+Create a new file at: `.github/workflows/build.yaml` and commit it to the repository.
 
 ```yaml
 name: build
@@ -47,7 +47,7 @@ The cache is populated the first time this workflow runs. Running the workflow a
 
 If there is no setup action for your language that supports caching it can be configured manually.
 
-Create a new file at: `.github/workspaces/build.yaml` and commit it to the repository.
+Create a new file at: `.github/workflows/build.yaml` and commit it to the repository.
 
 ```yaml
 

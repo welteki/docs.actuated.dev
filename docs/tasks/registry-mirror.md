@@ -119,7 +119,7 @@ sudo journalctl -u registry -f
 
 ## Use the registry within a workflow
 
-Create a new registry in your organisation, along with a: `.github/workspaces/build.yml` file and commit it to the repository.
+Create a new registry in your organisation, along with a: `.github/workflows/build.yml` file and commit it to the repository.
 
 ```yaml
 name: CI

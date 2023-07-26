@@ -113,6 +113,7 @@ nav:
       - Docker run/build: examples/docker.md
       - Publish an OpenFaaS function: examples/openfaas-publish.md
       - Deploy a Helm chart: examples/openfaas-helm.md
+      - Custom VM sizes: examples/custom-vm-size.md
   - Advanced examples:
     - Run a KVM guest: examples/kvm-guest.md
     - Multi-arch images with buildx: examples/multiarch-buildx.md

@@ -19,7 +19,7 @@ Certified for:
 
 ## Try out the action on your agent
 
-For alexellis' repository called [alexellis/autoscaling-functions](https://github.com/alexellis/autoscaling-functions), then check out the `.github/workspaces/publish.yml` file:
+For alexellis' repository called [alexellis/autoscaling-functions](https://github.com/alexellis/autoscaling-functions), then check out the `.github/workflows/publish.yml` file:
 
 * The "Setup QEMU" and "Set up Docker Buildx" steps configure the builder to produce a multi-arch image.
 * The "OWNER" variable means this action can be run on any organisation without having to hard-code a username for GHCR.

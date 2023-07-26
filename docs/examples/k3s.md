@@ -11,7 +11,7 @@ Certified for:
     GitHub recommends using a private repository with self-hosted runners because changes can be left over from a previous run, even when using Actions Runtime Controller. Actuated uses an ephemeral VM with an immutable image, so can be used on both public and private repos. Learn why in the [FAQ](/faq).
 ## Try out the action on your agent
 
-Create a new file at: `.github/workspaces/build.yml` and commit it to the repository.
+Create a new file at: `.github/workflows/build.yml` and commit it to the repository.
 
 Note that it's important to make sure Kubernetes is responsive before performing any commands like running a Pod or installing a helm chart.
 

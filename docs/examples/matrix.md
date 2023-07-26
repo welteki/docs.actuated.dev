@@ -12,7 +12,7 @@ Certified for:
 
 ## Try out the action on your agent
 
-Create a new file at: `.github/workspaces/build.yml` and commit it to the repository.
+Create a new file at: `.github/workflows/build.yml` and commit it to the repository.
 
 ```yaml
 name: CI

@@ -50,7 +50,7 @@ echo Egress IP:
 curl -s -L -S https://checkip.amazonaws.com
 ```
 
-Create a new file at: `.github/workspaces/build.yml` and commit it to the repository.
+Create a new file at: `.github/workflows/build.yml` and commit it to the repository.
 
 ```yaml
 name: CI
