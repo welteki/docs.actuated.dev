@@ -1,7 +1,7 @@
 # Monitoring
 
 !!! info "Our team monitors actuated around the clock, on your behalf"
-    The actuated team proactively monitors your servers and build queue for issues. We remediate them on your behalf and for anything cannot be fixed remotely, we'll contact your main contact via Slack or email.
+    The actuated team proactively monitors your servers and build queue for issues. We remediate them on your behalf and for anything cannot be fixed remotely, we'll be in touch via Slack or email.
 
 The [actuated CLI](/tasks/cli) should be used for support, to query the agent's logs, or the logs of individual VMs.
 
