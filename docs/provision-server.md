@@ -59,7 +59,7 @@ Intel and AMD CPUs can be used interchangeable and are known as `amd64` or `x86_
 
     [Equinix Metal](https://deploy.equinix.com/) have partnered with us to offer 500 USD of credit for new customers to use on actuated. You'll get the discount code after signing up with us. We've tested their c3.small.x86 and c2.small.x86 machines, and they are very fast, with enterprise-grade networking and support included, with many different regions available.
 
-    Are you on a budget or looking to cut costs? Both [Ionos](https://ionos.co.uk) and [Hetzner](https://hetzner.com) have excellent value, with NVMe storage very fast AMD CPUs available.
+    Are you on a budget or looking to cut costs? Both [Ionos](https://ionos.co.uk) (UK) and [Hetzner](https://hetzner.com) (Germany) have excellent value, with NVMe storage very fast AMD CPUs available.
     
     Hetzner have a minimum commitment of one month, and most of the time will also charge a one-time setup fee. We recommend their AX-Line with NVMe and ECC RAM - for instance the AX41-NVME, AX52, or AX102. The best machine on offer is the AX161 which also has a fast delivery time.
 
