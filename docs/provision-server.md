@@ -39,17 +39,18 @@ Intel and AMD CPUs can be used interchangeable and are known as `amd64` or `x86_
     There are at least a dozen options for hosted bare-metal servers:
     
     - [Alibaba Cloud](https://eu.alibabacloud.com/en)
-    - [AWS](https://aws.amazon.com/) 
+    - [AWS](https://aws.amazon.com/) - untenable pricing for bare-metal servers
+    - [Berry Byte](https://berrybyte.net/dedicated/) - US region available
     - [Cherry Servers](https://www.cherryservers.com/)
     - [Equinix Metal](https://deploy.equinix.com/) - 500 USD free credit
     - [fasthosts](https://www.fasthosts.co.uk/)
     - [Glesys](https://glesys.com/dedicated) 
-    - [Hetzner](https://hetzner.com)
-    - [Ionos](https://ionos.co.uk)
-    - [latitude.sh](https://www.latitude.sh/) 
-    - [OVHcloud](https://www.ovhcloud.com/en-gb/bare-metal/rise/)
-    - [PhoenixNAP](https://phoenixnap.com) 
-    - [Scaleway](https://scaleway.com)
+    - [Hetzner](https://hetzner.com) - Region: Germany or Finland
+    - [Ionos](https://ionos.co.uk) - UK based
+    - [latitude.sh](https://www.latitude.sh/) - EU and US region available 
+    - [OVHcloud](https://www.ovhcloud.com/en-gb/bare-metal/rise/) - EU and US regions available
+    - [PhoenixNAP](https://phoenixnap.com) - US and EU regions available 
+    - [Scaleway](https://scaleway.com) - France region
     - [Vultr](https://www.vultr.com/)
     
     You can see a separate [list here](https://github.com/alexellis/awesome-baremetal#bare-metal-cloud).
