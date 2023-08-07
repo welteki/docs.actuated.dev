@@ -6,6 +6,14 @@ All customers have access to a public Slack channel for support and collaboratio
 
 Enterprise customers may also have an upgraded SLA for support tickets via email and access to a private Slack channel.
 
+### Change your credit card
+
+Sometimes credit card limits or virtual cards are used on a subscription. To change the credit card used for your subscription, click here: [My Orders](https://app.lemonsqueezy.com/my-orders).
+
+### Upgrade your plan
+
+If you'd like to upgrade your plan for more concurrent builds, a higher level of support or anything else, please contact us via email or Slack with the new plan name or size. The amount will be applied Pro-rata when upgrading.
+
 ## The Actuated Dashboard
 
 The first port of call should be the [Actuated Dashboard](https://dashboard.actuated.dev) where you can check the status of your agents and see the current queue of jobs.
