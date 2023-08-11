@@ -52,11 +52,16 @@ Create a Docker Hub Access token with "Public repos only" scope, and save it as 
 )
 ```
 
-Create a config file to make the registry only available on the Linux bridge for Actuated VMs:
+Create a config file to make the registry only available on the Linux bridge for Actuated VMs.
+
+Before doing so, you'll need to:
+
+1. Create a file named `hub.txt` in your home directory.
+2. Set the `USERNAME` variable to your Docker Hub username.
 
 ```bash
-export TOKEN=$(cat ~/hub.txt)
 export USERNAME=""
+export TOKEN=$(cat ~/hub.txt)
 
 cat >> /tmp/registry.yml <<EOF
 version: 0.1
@@ -149,6 +154,9 @@ jobs:
             docker pull alpine:latest
 ```
 
+!!! note
+    The `self-actuated/hub-mirror` action already runs the `docker/setup-buildx` action, so if you have that in your builds already, you can remove it, otherwise it will overwrite the settings for the mirror. Alternatively, move the `self-actuated/hub-mirror` action to after the `docker/setup-buildx` action.
+
 ## Checking if it worked
 
 You'll see the build run, and cached artifacts appearing in: `/var/lib/registry/`.
@@ -178,6 +186,18 @@ You can check the status of the mirror at any time with:
 ```bash
 sudo journalctl -u registry --since today
 ```
+
+If you're not sure if the registry is working, or want to troubleshoot it, you can enable verbose logging, by editing the `log` section of the service file.
+
+```
+log:
+  accesslog:
+    disabled: false
+  level: debug
+  formatter: text
+```
+
+Then restart the service, and check the logs again. We do not recommend keeping this setting live as it will fill up the logs and disk quickly.
 
 ## Further reading
 

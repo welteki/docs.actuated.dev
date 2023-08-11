@@ -286,11 +286,11 @@ The website and documentation are available on GitHub and we plan to release som
 
 ## Is there a risk that we could get "locked-in" to actuated?
 
-No, you can move back to either hosted runners (pay per minute from GitHub) or self-managed self-hosted runners at any time. Bear in mind that actuated solves for a certain set of issues with both of those approaches.
+No, you can move back to either hosted runners (pay per minute from GitHub) or self-managed self-hosted runners at any time. Bear in mind that actuated solves painful issues with both hosted runners and self-managed self-hosted runners.
 
 ## Why is the brand called "actuated" and "selfactuated"?
 
-The name of the software is actuated, in some places "actuated" is not available, and we liked "selfactuated" more than "actuatedhq" or "actuatedio" because it refers to the hybrid experience of self-hosted runners.
+The name of the software, product and brand is: "actuated". In some places "actuated" is not available, and we liked "selfactuated" more than "actuatedhq" or "actuatedio" because it refers to the hybrid experience of self-hosted runners.
 
 ## Privacy policy & data security
 
