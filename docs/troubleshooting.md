@@ -29,13 +29,27 @@ Try a direct link here: [Actuated Dashboard OAuth App](https://github.com/settin
 
 ## A job is stuck as "queued"
 
-By default, we reject jobs on public repositories, however we can feature flag this on for you. Just ask us.
-
 If you're using a private repo and the job is queued, let us know on Slack and we'll check the audit database to try and find out why.
 
-You can also check `/var/log/actuated/` for log files, `tail -n 20 /var/log/actuated/*.txt` should show you any errors that may have occurred on any of the VM boot-ups or runner registrations.
+To remotely check the logs of the actuated service on a host, run the following:
 
-From time to time, GitHub Actions does have an outage.
+```
+actuated-cli agent-logs --owner ORG --host HOST [--age 20m]
+```
+
+Or you can also check `/var/log/actuated/` for log files, `tail -n 20 /var/log/actuated/*.txt` should show you any errors that may have occurred on any of the VM boot-ups or runner registrations. Or check `sudo journalctl -u actuated` to see what's happening within the actuated service.
+
+Since 2022, the main GitHub service and/or Actions has had a high number of partial or full outages.
+
+Check the [GitHub Status Page](https://www.githubstatus.com/) to make sure GitHub is fully operational, and bear in mind that there could be an issue, even if it hasn't been shown on that page yet.
+
+You can schedule additional VMs to launch, one per queued job with the CLI:
+
+```
+actuated-cli repair --org OWNER
+```
+
+This command should not be run multiple times without contacting support first.
 
 ## You pull a lot of large images from the Docker Hub
 
