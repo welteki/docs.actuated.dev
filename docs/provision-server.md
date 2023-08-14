@@ -6,9 +6,6 @@ We have done extensive research and testing both independently and with our cust
 
 Servers for actuated do not need to be expensive at all. Bare-metal from European providers is available between 50-150 EUR / mo, and VMs on GCP, Azure and DigitalOcean are all available within a similar budget range. Using your own hardware can also be really cost effective.
 
-!!! info "500 USD free credit for bare-metal"
-    [Equinix Metal](https://metal.equinix.com/) have partnered with us to offer 500 USD of credit for new customers to use on actuated. You can request the discount code after purchasing your actuated subscription.
-
 So what makes a one server quicker than another?
 
 * CPU Clock speed - the base and turbo speeds affect how some builds perform like Go and Rust
@@ -19,10 +16,36 @@ So what makes a one server quicker than another?
 * Storage - the only option we'd recommend is local NVMe, which means a high throughput and low latency
 * Multi-tenancy - if you're using a managed service, that means your builds may be affected by other users
 
+!!! info "What Operating System (OS) should I use?"
+    The recommended Operating System for an Actuated Agent is: Ubuntu Server 22.04. Ubuntu Server 20.04 will also work if 22.04 is unavailable for some reason.
+
+### Just tell me what I need
+
+If in doubt, the absolute best value and performance we've seen is:
+
+* *x86_64* - [Hetzner's A102](https://www.hetzner.com/dedicated-rootserver/ax102)
+* *Arm64* - [Hetzner's RX170](https://www.hetzner.com/dedicated-rootserver/matrix-rx)
+
+To calculate the amount of servers you need, divide the RAM of the server by the amount of RAM you want to allocate to each VM, then calculate the same with vCPU.
+
+I.e.
+
+* 128GB of RAM with 10 VMs, would be: 128 / 10 = 12GB of RAM per VM.
+* 32 threads with 10 VMs would be roughly 3 threads per VM.
+
+So you could probably over-commit a little with 12GB of RAM and 4 vCPU per VM.
+
+Alternatively, the server could be configured with 24GB of RAM per job and 8 vCPU per VM.
+
+## Our research on servers for actuated
+
 !!! tip "Want us to recommend a server?"
-    There's a lot of options when it comes to picking a server. We're happy to recommend a provider based upon your performance requirements, budget and vendor preferences. Just send us an email.
+    There's a lot of options when it comes to picking a server. We're happy to recommend a provider based upon your performance requirements, budget and vendor preferences. Reach out to us on the [Actuated Slack](https://self-actuated.slack.com)
 
 ### Intel/AMD
+
+!!! info "1000 USD free credit for bare-metal"
+    [Equinix Metal](https://metal.equinix.com/) have partnered with us to offer 1000 USD of credit for new customers to use on actuated. This will cover your usage for one month using an AMD Epyc server. You can request the discount code after purchasing your actuated subscription.
 
 Intel and AMD CPUs can be used interchangeable and are known as `amd64` or `x86_64`.
 
@@ -113,9 +136,7 @@ For [Fluent Bit](https://twitter.com/alexellisuk/status/1671455406097326080?s=20
 
     There are Arm VMs available on Azure, GCP, and Oracle OCI. We have tested each and since they are based on the same generation of Ampere Altra hardware, we can confirm that they do not have KVM available and will not work for running actuated builds.
 
-### Server Operating System
-
-The recommended Operating System for an Actuated Agent is: Ubuntu Server 22.04. Ubuntu Server 20.04 will also work if 22.04 is unavailable for some reason.
+### Want to talk to us?
 
 Still not sure which option is right for your team? Get in touch with us on the [Actuated Slack](https://self-actuated.slack.com) and we'll help you decide.
 

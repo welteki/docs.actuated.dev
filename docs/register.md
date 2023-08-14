@@ -9,19 +9,23 @@ Would you like to try out Actuated for your team and GitHub Organisation?
 * Administrative access to add our GitHub App
 * One or more bare-metal hosts or VMs that support nested virtualisation (if you need a recommendation, feel free to ask)
 
-## Sign-up for the pilot
+## Purchase a subscription
+
+You can purchase a [subscription via our store on LemonSqueezy](https://openfaas-subscribe.lemonsqueezy.com/checkout/buy/6869822f-d5bd-40be-9b93-c45c25dcf2f1).
+
+You can get an idea of your expected usage by running our free actions-usage CLI tool, or by roughly correlating the number of people committing to the repositories by 1-2x. So for a team of 5, you may want between 5-10 concurrent builds. Higher plans come with additional benefits.
+
+We recommend picking the right plan for your intended usage from the offset, to get the most out of your initial month's subscription.
+
+If you have any questions, contact us using the email address on the page, or reach out for a short call with the link below and we can answer any questions you may have.
+
+## Want to talk to us first?
 
 Actuated is a managed service. We run a SaaS platform, integration with GitHub and VM images. All you need to do, is to install our agent on a number servers.
 
-What is a pilot?
+Actuated is already being used by commercial teams to run their pipelines, but if you'd like to talk to us before going ahead with the platform, you can setup a call with us here:
 
-Actuated is already being used by commercial teams to run their pipelines, so why do we need a pilot? The pilot is a way for us to:
-
-* build the right thing with direct customer feedback
-* land on the right pricing model
-* find teams who can benefit from our help
-
-[Sign-up for the pilot](https://forms.gle/8XmpTTWXbZwWkfqT6)
+[Schedule a call](https://forms.gle/8XmpTTWXbZwWkfqT6)
 
 ## Install the GitHub App
 
