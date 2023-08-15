@@ -4,28 +4,30 @@ Would you like to try out Actuated for your team and GitHub Organisation?
 
 ## What you'll need
 
-* A GitHub organisation (you can also create a test organisation to try actuated out)
+* A GitHub organisation
 * One or more public or private repositories hosted in the organisation
-* Administrative access to add our GitHub App
-* One or more bare-metal hosts or VMs that support nested virtualisation (if you need a recommendation, feel free to ask)
+* Administrative access to install the actuated GitHub App
+* One or more bare-metal servers or VMs that support nested virtualisation (if you need a recommendation, just ask us)
+
+## We can guide you through the process
+
+Actuated is a managed service or SaaS, where you bring your own servers to perform GitHub Actions. Just sign up for a plan, install the GitHub App on an organisation, and install the agent on one or more servers.
+
+We've run almost 100,000 VMs for commercial teams already, and there's very little for you to do once set up, but we recommend a short call to get you started.
+
+[Schedule a call](https://forms.gle/8XmpTTWXbZwWkfqT6)
 
 ## Purchase a subscription
 
 You can purchase a [subscription via our store on LemonSqueezy](https://openfaas-subscribe.lemonsqueezy.com/checkout/buy/6869822f-d5bd-40be-9b93-c45c25dcf2f1).
 
-You can get an idea of your expected usage by running our free actions-usage CLI tool, or by roughly correlating the number of people committing to the repositories by 1-2x. So for a team of 5, you may want between 5-10 concurrent builds. Higher plans come with additional benefits.
+What's the right plan size?
 
-We recommend picking the right plan for your intended usage from the offset, to get the most out of your initial month's subscription.
+You can get an idea of your expected usage by running our [free actions-usage CLI tool](https://github.com/self-actuated/actions-usage), or by roughly correlating the number of people committing to the repositories by 1-2x. So for a team of 5, you may want between 5-10 concurrent builds. As the concurrency increases in your plan, so do other features and benefits.
+
+We recommend picking the right plan for your intended usage from the offset, to get the most out of your initial experience.
 
 If you have any questions, contact us using the email address on the page, or reach out for a short call with the link below and we can answer any questions you may have.
-
-## Want to talk to us first?
-
-Actuated is a managed service. We run a SaaS platform, integration with GitHub and VM images. All you need to do, is to install our agent on a number servers.
-
-Actuated is already being used by commercial teams to run their pipelines, but if you'd like to talk to us before going ahead with the platform, you can setup a call with us here:
-
-[Schedule a call](https://forms.gle/8XmpTTWXbZwWkfqT6)
 
 ## Install the GitHub App
 

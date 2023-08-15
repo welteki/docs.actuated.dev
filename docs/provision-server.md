@@ -21,21 +21,14 @@ So what makes a one server quicker than another?
 
 ### Just tell me what I need
 
-If in doubt, the absolute best value and performance we've seen is:
+For the absolute best value in terms of performance and cost, we recommend the following options from Hetzner's Dedicated range:
 
 * *x86_64* - [Hetzner's A102](https://www.hetzner.com/dedicated-rootserver/ax102)
 * *Arm64* - [Hetzner's RX170](https://www.hetzner.com/dedicated-rootserver/matrix-rx)
 
-To calculate the amount of servers you need, divide the RAM of the server by the amount of RAM you want to allocate to each VM, then calculate the same with vCPU.
+Each server can run a set number of jobs, depending on how you want to divide the RAM and CPU threads between them.
 
-I.e.
-
-* 128GB of RAM with 10 VMs, would be: 128 / 10 = 12GB of RAM per VM.
-* 32 threads with 10 VMs would be roughly 3 threads per VM.
-
-So you could probably over-commit a little with 12GB of RAM and 4 vCPU per VM.
-
-Alternatively, the server could be configured with 24GB of RAM per job and 8 vCPU per VM.
+For instance, if your server has 32 threads and 128GB of RAM, you could allocate 6 vCPU and 25 GB of RAM to each job for 5x jobs in parallel, or 4x vCPU and 12GB of RAM for 10x jobs in parallel.
 
 ## Our research on servers for actuated
 

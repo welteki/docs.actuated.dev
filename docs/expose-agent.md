@@ -2,7 +2,7 @@
 
 The actuated agent serves HTTP, and must be accessible by the actuated control plane.
 
-We expect most of our pilot customers to be using hosts with public IP addresses, and the combination of an API token plus TLS is a battle tested combination.
+We expect most of our customers to be using hosts with public IP addresses, and the combination of an API token plus TLS is a battle tested combination.
 
 For anyone running with private hosts, OpenFaaS Ltd's inlets product can be used to get incoming traffic over a secure tunnel
 
