@@ -6,20 +6,20 @@ Monitor Actuated runners and jobs from the command line.
 
 Download and installation instruction are available via the [actuated-dashboard](https://dashboard.actuated.dev/cli)
 
+You'll need to run `actuated-cli auth` first, so that you can get a Personal Access Token with the appropriate scopes from GitHub.
+
 ## View queued jobs
 
 ```bash
 actuated-cli jobs \
-    --pat ~/reader.txt \
-    --owner actuated-samples
+    actuated-samples
 ```
 
 ## View runners for organization
 
 ```bash
 actuated-cli runners \
-    --pat ~/reader.txt \
-    --owner actuated-samples
+    actuated-samples
 ```
 
 ## Check the logs of VMs
@@ -33,10 +33,9 @@ View the serial console and systemd output of the VMs launched on a specific ser
 
 ```bash
 actuated-cli logs \
-    --pat ~/reader.txt \
-    --host runner1 \
     --owner actuated-samples \
-    --age 15m
+    --age 15m \
+    runner1
 ```
 
 The age is specified as a Go duration i.e. `60m` or `24h`.
@@ -49,10 +48,9 @@ View VM launch times, etc.
 
 ```bash
 actuated-cli agent-logs \
-    --pat ~/reader.txt \
-    --host runner1 \
     --owner actuated-samples \
-    --age 15m
+    --age 60m \
+    runner1
 ```
 
 ## Schedule a repair to re-queue jobs
@@ -63,8 +61,7 @@ Run sparingly because it will launch one VM per job queued.
 
 ```bash
 actuated-cli repair \
-    --pat ~/reader.txt \
-    --owner actuated-samples
+    actuated-samples
 ```
 
 ## JSON mode
@@ -80,4 +77,3 @@ The `--staff` flag can be added to the `runners`, `jobs` and the `repair` comman
 ## Help & support
 
 Reach out to our team [on Slack](https://self-actuated.slack.com)
-.
