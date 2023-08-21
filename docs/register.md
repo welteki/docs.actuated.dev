@@ -18,7 +18,7 @@ Actuated is a managed service or SaaS, where you bring your own servers to perfo
 
 We've run almost 100,000 VMs for commercial teams already, and there's very little for you to do once set up, but we recommend a short call to get you started.
 
-[Schedule a call](https://forms.gle/8XmpTTWXbZwWkfqT6)
+[Talk to us about Actuated](https://forms.gle/8XmpTTWXbZwWkfqT6)
 
 ## Purchase a subscription
 
