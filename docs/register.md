@@ -18,19 +18,9 @@ Actuated is a managed service or SaaS, where you bring your own servers to perfo
 
 We've run almost 100,000 VMs for commercial teams already, and there's very little for you to do once set up, but we recommend a short call to get you started.
 
-[Talk to us about Actuated](https://forms.gle/8XmpTTWXbZwWkfqT6)
+Book a call: [Talk to us about Actuated](https://forms.gle/8XmpTTWXbZwWkfqT6)
 
-## Purchase a subscription
-
-You can purchase a [subscription via our store on LemonSqueezy](https://openfaas-subscribe.lemonsqueezy.com/checkout/buy/6869822f-d5bd-40be-9b93-c45c25dcf2f1).
-
-What's the right plan size?
-
-You can get an idea of your expected usage by running our [free actions-usage CLI tool](https://github.com/self-actuated/actions-usage), or by roughly correlating the number of people committing to the repositories by 1-2x. So for a team of 5, you may want between 5-10 concurrent builds. As the concurrency increases in your plan, so do other features and benefits.
-
-We recommend picking the right plan for your intended usage from the offset, to get the most out of your initial experience.
-
-If you have any questions, contact us using the email address on the page, or reach out for a short call with the link below and we can answer any questions you may have.
+Before the call, you should run our [free actions-usage CLI tool](https://github.com/self-actuated/actions-usage) and send over the results via email. It'll help us recommend the best fit plan and server sizes for you.
 
 ## Install the GitHub App
 
