@@ -9,16 +9,16 @@ Would you like to try out Actuated for your team and GitHub Organisation?
 * Administrative access to install the actuated GitHub App
 * One or more bare-metal servers or VMs that support nested virtualisation (if you need a recommendation, just ask us)
 
-## We can guide you through the process
+## We'll guide you through the process
 
 ![Onboarding steps](/images/onboarding-steps.png)
 > The onboarding process is easy, but we think it's best to talk to us so we can make it as simple as possible for you.
 
 Actuated is a managed service or SaaS, where you bring your own servers to perform GitHub Actions. Just sign up for a plan, install the GitHub App on an organisation, and install the agent on one or more servers.
 
-We've run almost 100,000 VMs for commercial teams already, and there's very little for you to do once set up, but we recommend a short call to get you started.
+We've run almost 100,000 VMs for commercial teams already, and there's very little for you to do once set up, but we recommend a short call to get you started and to make sure that you'll get enough value from the service.
 
-Book a call: [Talk to us about Actuated](https://forms.gle/8XmpTTWXbZwWkfqT6)
+* [Book a call with us](https://forms.gle/8XmpTTWXbZwWkfqT6)
 
 Before the call, you should run our [free actions-usage CLI tool](https://github.com/self-actuated/actions-usage) and send over the results via email. It'll help us recommend the best fit plan and server sizes for you.
 
