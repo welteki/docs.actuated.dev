@@ -136,7 +136,7 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
     
     > Note the different binary name: `agent-arm64`
 
-    This creates an env file, /etc/default/actuated, with the agent configuration and starts a systemd service.
+    If you need to make changes you can run the command again, or edit `/etc/default/actuated`.
 
     Check the service's status with:
     
