@@ -1,27 +1,27 @@
 ## Provision a Server for actuated
 
-You'll need to provision or allocate a Server which is capable of virtualisation with Linux KVM. Each of your builds will run in an isolated microVM, with its own networking, Kernel and immutable filesystem.
+You'll need to provision a Server which is capable of virtualisation with Linux KVM. Each of your builds will run in an isolated microVM, with its own networking, Kernel and immutable filesystem.
 
-We have done extensive research and testing both independently and with our customers. The recommendations on this page are updated regularly to include both bare-metal and cloud VMs which support nested virtualisation.
+We have done extensive research and testing both independently and with our customers. The recommendations on this page are updated regularly. We recommend bare-metal for the best performance, but cloud VMs which support nested virtualisation are also an option.
 
-Servers for actuated do not need to be expensive at all. Bare-metal from European providers is available between 50-150 EUR / mo, and VMs on GCP, Azure and DigitalOcean are all available within a similar budget range. Using your own hardware can also be really cost effective.
+Did you know? Bare-metal servers from European providers are available from 50-150 EUR / mo. Using your own hardware can also be really cost effective.
 
-So what makes a one server quicker than another?
+So what makes one server quicker than another?
 
 * CPU Clock speed - the base and turbo speeds affect how some builds perform like Go and Rust
 * Core core - The amount of vCPU allocated to a build affects multi-processing
 * RAM and disk space - tune these to your needs to prevent builds slowing down
-* Generation of hardware - hosted runners use very old hardware - you can use the latest technology 
-* Network bandwidth - this affects downloading images, and uploading results
-* Storage - the only option we'd recommend is local NVMe, which means a high throughput and low latency
-* Multi-tenancy - if you're using a managed service, that means your builds may be affected by other users
+* Generation of hardware - hosted runners may use obsolete hardware, you can use the latest generation 
+* Network bandwidth - how quickly images, artifacts and caches will be transferred
+* Storage - NVMe is the only viable option for high performance builds
+* Multi-tenancy - are other customers contenting for the same resources, or is the server dedicated to your team?
 
 !!! info "What Operating System (OS) should I use?"
-    The recommended Operating System for an Actuated Agent is: Ubuntu Server 22.04. Ubuntu Server 20.04 will also work if 22.04 is unavailable for some reason.
+    The certified Operating System for an Actuated server is: Ubuntu Server 22.04.
 
 ### Just tell me what I need
 
-For the absolute best value in terms of performance and cost, we recommend the following options from Hetzner's Dedicated range:
+For the absolute best value in terms of performance and cost, we recommend the following options from [Hetzner's](https://www.hetzner.com) Dedicated range:
 
 * *x86_64* - [Hetzner's A102](https://www.hetzner.com/dedicated-rootserver/ax102)
 * *Arm64* - [Hetzner's RX170](https://www.hetzner.com/dedicated-rootserver/matrix-rx)
@@ -33,7 +33,7 @@ For instance, if your server has 32 threads and 128GB of RAM, you could allocate
 ## Our research on servers for actuated
 
 !!! tip "Want us to recommend a server?"
-    There's a lot of options when it comes to picking a server. We're happy to recommend a provider based upon your performance requirements, budget and vendor preferences. Reach out to us on the [Actuated Slack](https://self-actuated.slack.com)
+    There's a lot of options when it comes to picking a server. On the onboarding call, we can help you find a match for your performance requirements, budget, and vendor preferences.
 
 ### Intel/AMD
 
@@ -88,8 +88,10 @@ Intel and AMD CPUs can be used interchangeable and are known as `amd64` or `x86_
 3. Bare-metal on-premises (cheap, convenient, high performance)
 
     Running bare-metal on-premises is a cost-effective and convenient way to re-use existing hardware investment.
+    
+    The machine could be racked in your server room, under your desk, or in a co-location datacenter.
 
-    The machine could be racked in your server room, under your desk, or in a co-lo somewhere.
+    You can use [inlets to expose your agent to actuated](/expose-agent).
 
     Make sure you segment or isolate the agent into its own subnet, VLAN, DMZ, or VPC so that it cannot access the rest of your network. If you are thinking of running an actuated runner at home, [we have suggested iptables rules that worked well for our own testing](/expose-agent#preventing-the-runner-from-accessing-your-local-network).
 
@@ -117,9 +119,9 @@ For [Fluent Bit](https://twitter.com/alexellisuk/status/1671455406097326080?s=20
 
 2. Arm for on-premises
 
-    For on-premises ARM64 builds, we recommend the Mac Mini M1 (2020) with 16GB RAM and 512GB storage with Asahi Linux.
+    For on-premises ARM64 builds, we recommend the Mac Mini M1 (2020) with 16GB RAM and 512GB storage with Asahi Linux. The M2 is unable to run Linux at this time.
     
-    It's also possible to buy a 1 or 2U server from Ampere through one of their partners, with a capital expense up front.
+    Ampere and their partners also offer 1U and 2U servers, along with and [desktop-form workstations](https://www.ipi.wiki/products/ampere-altra-developer-platform) which can be racked or installed in your office.
 
     The Raspberry Pi 4 also works when used with an external NVMe, and in one instance [was much faster than using emulation with a Hosted GitHub Runner](https://twitter.com/alexellisuk/status/1583092051398524928?s=20&t=2SelTpdc5idJLmayIu3Djw).
 
