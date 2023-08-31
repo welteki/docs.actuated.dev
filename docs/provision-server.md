@@ -19,6 +19,12 @@ So what makes one server quicker than another?
 !!! info "What Operating System (OS) should I use?"
     The certified Operating System for an Actuated server is: Ubuntu Server 22.04.
 
+## How many VMs or jobs can a server run?
+
+Depending on the level of concurrency in your plan, each server will be able to run a set number of jobs. So we suggest dividing the RAM and CPU threads between them. For instance, if your server has 32 threads and 128GB of RAM, you could allocate 6 vCPU and 25 GB of RAM to each job for 5x jobs in parallel, or 4x vCPU and 12GB of RAM for 10x jobs in parallel.
+
+In addition, you can also specify vCPU and RAM requirements on a per-job basis by changing the `runs-on: actuated` label to: `runs-on: actuated-2cpu-8gb` and so forth. This is useful for when you have a particular jobs which needs a lot of resources like building Kernels, Kubernetes/Docker E2E tests and browser testing.
+
 ### Just tell me what I need
 
 For the absolute best value in terms of performance and cost, we recommend the following options from [Hetzner's](https://www.hetzner.com) Dedicated range:
@@ -26,9 +32,7 @@ For the absolute best value in terms of performance and cost, we recommend the f
 * *x86_64* - [Hetzner's A102](https://www.hetzner.com/dedicated-rootserver/ax102)
 * *Arm64* - [Hetzner's RX170](https://www.hetzner.com/dedicated-rootserver/matrix-rx)
 
-Each server can run a set number of jobs, depending on how you want to divide the RAM and CPU threads between them.
-
-For instance, if your server has 32 threads and 128GB of RAM, you could allocate 6 vCPU and 25 GB of RAM to each job for 5x jobs in parallel, or 4x vCPU and 12GB of RAM for 10x jobs in parallel.
+Servers on Hetnzer arrive with a "rescue" system, use it to install Ubuntu 22.04, and make sure you disable software RAID, so that the two NVMe drives are presented as separate devices. One will run the system, the other will be used for filesystems for all the VMs.
 
 ## Our research on servers for actuated
 
