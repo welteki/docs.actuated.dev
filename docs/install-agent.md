@@ -62,6 +62,17 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
 
     Run the setup.sh script which will install all the required dependencies like containerd, CNI and Firecracker.
 
+    **For best performance**, a dedicated drive, volume or partition is required to store the filesystems for running VMs. If you do not have a volume or extra drive attached, then you can shrink the root partition, and use the resulting free space.
+
+    ```bash
+    (
+    cd agent
+    VM_DEV=/dev/nvme0n2 sudo -E ./install.sh
+    )
+    ```
+
+    If you do not have additional storage available at this time, the installer will generate a loopback filesystem for you.
+
     ```bash
     (
     cd agent
