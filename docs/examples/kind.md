@@ -72,6 +72,17 @@ containerdConfigPatches:
 EOF
 ```
 
+With open source projects, you may need to run the build on GitHub's hosted runners some of the time, in which case, you can use a check whether the mirror is available:
+
+```bash
+if [ "$(curl -f --connect-timeout 0.1 -s http://192.168.128.1:5000)" == "0" ]
+then
+  echo "Mirror found, configure KinD for the mirror"
+else
+  echo "Mirror not found, use defaults"
+fi
+```
+
 To use authentication instead, create a Kubernetes secret of type `docker-registry` and then attach it to the default service account of each namespace within your cluster.
 
 The OpenFaaS docs show how to do this for private registries, but the same applies for authenticating to the Docker Hub to raise rate-limits.
