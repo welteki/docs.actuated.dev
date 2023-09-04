@@ -199,6 +199,12 @@ log:
 
 Then restart the service, and check the logs again. We do not recommend keeping this setting live as it will fill up the logs and disk quickly.
 
+## A note on KinD
+
+The self-actuated/hub-mirror action will configure both the Docker Daemon, and buildkit, however KinD uses its own instance of containerd and so must be configured separately.
+
+See notes on [KinD with actuated](/examples/kind) for more information.
+
 ## Further reading
 
 * [Docker: Configuration for the registry](https://docs.docker.com/registry/configuration/)

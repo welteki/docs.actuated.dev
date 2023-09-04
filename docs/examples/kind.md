@@ -50,3 +50,30 @@ jobs:
 ```
 
 To run this on ARM64, just change the actuated label to `actuated-arm64`.
+
+### Using a registry mirror for KinD
+
+Whilst the instructions for a [registry mirror](/tasks/registry-mirror) work for Docker, and for buildkit, KinD uses its own containerd configuration, so needs to be configured separately, as required.
+
+When using KinD, if you're deploying images which are hosted on the Docker Hub, then you'll probably need to either: authenticate to the Docker Hub, or configure the registry mirror running on your server.
+
+Here's an example of how to create a KinD cluster, using a registry mirror for the Docker Hub:
+
+```bash
+#!/bin/bash
+
+kind create cluster --wait 300s --config /dev/stdin <<EOF
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+containerdConfigPatches:
+- |-
+    [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
+    endpoint = ["http://192.168.128.1:5000"]
+EOF
+```
+
+To use authentication instead, create a Kubernetes secret of type `docker-registry` and then attach it to the default service account of each namespace within your cluster.
+
+The OpenFaaS docs show how to do this for private registries, but the same applies for authenticating to the Docker Hub to raise rate-limits.
+
+You may also like Alex's [alexellis/registry-creds](https://github.com/alexellis/registry-creds) project which will replicate your Docker Hub credentials into each namespace within a cluster, to make sure images are pulled with the correct credentials.
