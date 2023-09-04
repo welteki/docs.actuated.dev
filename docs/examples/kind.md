@@ -75,7 +75,9 @@ EOF
 With open source projects, you may need to run the build on GitHub's hosted runners some of the time, in which case, you can use a check whether the mirror is available:
 
 ```bash
-if [ "$(curl -f --connect-timeout 0.1 -s http://192.168.128.1:5000)" == "0" ]
+curl -f --connect-timeout 0.1 -s http://192.168.128.1:5000/v2/_catalog &> /dev/null
+
+if [ "$?" == "0" ]
 then
   echo "Mirror found, configure KinD for the mirror"
 else
