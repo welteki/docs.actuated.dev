@@ -142,6 +142,21 @@ If you find yourself regularly getting into a queued state, there are three pote
 
 The plan you select will determine how many Actuated Servers you can run, so consider 1. and 2. before 3.
 
+### Running out of RAM or needing more cores for jobs
+
+If you suspect a job is running out of RAM or would benefit from more vCPU, you can increase the allocation by changing the `actuated` label, as follows:
+
+```yaml
+-runs-on: actuated
++runs-on: actuated-16gb-8cpu
+```
+
+You must set both RAM and vCPU at the same time. For arm64 builds, the format follows the same convention: `actuated-arm64-16gb-8cpu`.
+
+### Running out of disk space for jobs
+
+The disk space allocated for jobs is 30GB by default, but this value can be increased. Contact the actuated team for instructions on how to do this.
+
 ## Do I need to auto-scale the Actuated Servers?
 
 Please read the section "How are VMs scheduled".
