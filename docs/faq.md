@@ -151,7 +151,11 @@ If you suspect a job is running out of RAM or would benefit from more vCPU, you 
 +runs-on: actuated-16gb-8cpu
 ```
 
-You must set both RAM and vCPU at the same time. For arm64 builds, the format follows the same convention: `actuated-arm64-16gb-8cpu`.
+You must set both RAM and vCPU at the same time. For arm64 builds, the format follows the same convention: `actuated-arm64-16gb-8cpu`.'
+
+Bear in mind that if you set the RAM higher than the default, this may result in fewer concurrent VMs being scheduled on a single server.
+
+The maximum amount of vCPU that can be set for a single job is 32 vCPU, this is an implementation detail of Firecracker and may change in the future.
 
 ### Running out of disk space for jobs
 
