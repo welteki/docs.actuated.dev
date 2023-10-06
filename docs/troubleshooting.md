@@ -79,10 +79,12 @@ If you suspect a job is running out of RAM or would benefit from more vCPU, you 
 
 ```yaml
 -runs-on: actuated
-+runs-on: actuated-16gb-8cpu
++runs-on: actuated-8cpu-16gb
 ```
 
-You must set both RAM and vCPU at the same time. For arm64 builds, the format follows the same convention: `actuated-arm64-16gb-8cpu`.'
+You must set both RAM and vCPU at the same time, in the order of CPU (given in a whole number) followed by RAM (specified in GB)
+
+For arm64 builds, the format follows the same convention: `actuated-arm64-8cpu-16gb`.'
 
 Bear in mind that if you set the RAM higher than the default, this may result in fewer concurrent VMs being scheduled on a single server.
 
