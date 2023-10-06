@@ -6,13 +6,17 @@ All customers have access to a public Slack channel for support and collaboratio
 
 Enterprise customers may also have an upgraded SLA for support tickets via email and access to a private Slack channel.
 
+## Billing and your plan
+
 ### Change your credit card
 
 Sometimes credit card limits or virtual cards are used on a subscription. To change the credit card used for your subscription, click here: [My Orders](https://app.lemonsqueezy.com/my-orders).
 
 ### Upgrade your plan
 
-If you'd like to upgrade your plan for more concurrent builds, a higher level of support or anything else, please contact us via email or Slack with the new plan name or size. The amount will be applied Pro-rata when upgrading.
+If you'd like to upgrade your plan for more concurrent builds, a higher level of support or anything else, you can do so via the Lemon Squeezy dashboard, the additional amount will be applied pro-rata.
+
+[Update or review your plan](https://openfaas.lemonsqueezy.com/billing)
 
 ## The Actuated Dashboard
 
@@ -69,6 +73,33 @@ We've created simple instructions on how to set up a registry mirror to cache im
 
 * [Example: Set up a registry mirror](/tasks/registry-mirror)
 
+## A job is running out of RAM or needs more cores
+
+If you suspect a job is running out of RAM or would benefit from more vCPU, you can increase the allocation by changing the `actuated` label, as follows:
+
+```yaml
+-runs-on: actuated
++runs-on: actuated-16gb-8cpu
+```
+
+You must set both RAM and vCPU at the same time. For arm64 builds, the format follows the same convention: `actuated-arm64-16gb-8cpu`.'
+
+Bear in mind that if you set the RAM higher than the default, this may result in fewer concurrent VMs being scheduled on a single server.
+
+The maximum amount of vCPU that can be set for a single job is 32 vCPU, this is an implementation detail of Firecracker and may change in the future.
+
+## Disk space is running out for a job
+
+The disk space allocated for jobs is 30GB by default, but this value can be increased. Contact the actuated team for instructions on how to do this.
+
+A dedicated disk or partition should be allocated for your VMs, if that's not the case, contact us and we'll help you reconfigure the server.
+
+## Your agent has been offline or unavailable for a significant period of time
+
+If your agent has been offline for a significant period of time, then our control plane will have disconnected it from its pool of available agents.
+
+Contact us via Slack to have it reinstated.
+
 ## You need to rotate the authentication token used for your agent
 
 There should not be many reasons to rotate this token, however, if something's happened and it's been leaked or an employee has left the company, contact us via email for the update procedure.
@@ -78,47 +109,6 @@ There should not be many reasons to rotate this token, however, if something's h
 Your private/public keypair is comparable to an SSH key, although it cannot be used to gain access to your agent via SSH.
 
 If you need to rotate it for some reason, please contact us by email as soon as you can.
-
-## Disk space is running out
-
-This can be observed by running `df -h` or `df -h /`.
-
-Over time, the various "fat" VM images that we ship to you may fill up the disk space on your machine.
-
-You can delete all images, including the current image with the following command.
-
-```bash
-sudo ctr -n mvm image ls -q | xargs sudo ctr -n mvm image rm
-```
-
-We do not recommend running this on a cron schedule since the maintenance command will cause your agent to download the latest fat VM image ~ 1GB+/- again.
-
-An alternative for a cron schedule would need to exclude the current image being used:
-
-```bash
-CURRENT="ghcr.io/openfaasltd/actuated-ubuntu:20.0.4-2022-09-30-1357"
-sudo ctr -n mvm image ls -q |grep -v $CURRENT | xargs sudo ctr -n mvm image rm
-```
-
-## Your agent has been offline or unavailable for a significant period of time
-
-If your agent has been offline for a significant period of time, then our control plane will have disconnected it from its pool of available agents.
-
-Contact us via Slack to have it reinstated.
-
-## The devmapper snapshotter is not available or running
-
-The actuated agent uses the devmapper snapshotter for containerd, which emulates a thin-provisioned block device. Performance can be improved by attaching a dedicated disk or partition, but in our testing the devmapper works well enough for most workloads.
-
-The dmsetup.sh script must be run upon every fresh boot-up of the host. It enables Firecracker to use snapshots to save disk space when launching new VMs.
-
-If you see an error about the "devmapper" snapshot driver, then run the `dmsetup.sh` shell script then restart containerd:
-
-```bash
-./dmsetup.sh
-sudo systemctl daemon-reload
-sudo systemctl restart containerd
-```
 
 ## Your builds are slower than expected
 
