@@ -33,7 +33,7 @@ Learn more in the [FAQ](faq.md).
 !!! info "End User License Agreement (EULA)"
     Make sure you've read the [Actuated EULA](https://github.com/self-actuated/actuated/blob/master/EULA.md) before registering your organisation with the actuated GitHub App.
 
-1. Click on the [Actuated GitHub App](https://github.com/apps/actuated-pilot)
+1. Click on the [Actuated GitHub App](https://github.com/apps/self-actuated)
 2. Click **Install app**
 3. Select the organisation you want to install the Actuated app to
 4. Install the app on all repositories or select repositories
