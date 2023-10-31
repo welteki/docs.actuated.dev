@@ -170,6 +170,10 @@ The VM image contains similar software to the hosted runner image: `ubuntu-lates
 
 The image is built automatically using GitHub Actions and is available on a container registry.
 
+## What Kernel version is being used?
+
+At time of writing, the latest version supported by the Firecracker team is Kernel 5.10.77. As and when [newer versions are made available](https://github.com/firecracker-microvm/firecracker/tree/master/resources/guest_configs), we'll upgrade our support.
+
 ## How easy is it to debug a runner?
 
 OpenSSH is pre-installed, but it will be inaccessible from your workstation by default.

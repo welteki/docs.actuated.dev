@@ -11,17 +11,24 @@ Certified for:
 
 ## Request a custom VM size
 
-Valid formats for a predefined size:
+To use the pre-configured size:
 
 * `actuated`
 * `actuated-arm64`
 
-For a custom size just append `-cpu-` and `-gb` to the predefined size, for example:
+For a custom size just append `-cpu-` and `-gb` to the above labels, for example:
+
+*x86_64* example:
 
 * `actuated-1cpu-2gb`
 * `actuated-4cpu-16gb`
-* `actuated-arm64-1cpu-2gb`
-* `actuated-arm64-32cpu-128gb`
+
+*64-bit Arm example*:
+
+* `actuated-arm64-4cpu-16gb`
+* `actuated-arm64-32cpu-64gb`
+
+You can change vCPU and RAM independently, there are no set combinations, so you can customise both to whatever you like.
 
 The upper limit for vCPU is 32.
 
