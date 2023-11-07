@@ -20,9 +20,11 @@ Plans are paid monthly, without any minimum commitment. Why not pilot our servic
 
 We've now run over 120,000 VMs for commercial teams already, and there's very little for you to do to get started, in most cases, we've seen a 2-3x speed up for `x86_64` builds by switching one line in a workflow: `runs-on: actuated`. For `Arm` builds, native hardware makes a night and day difference.
 
-* [Book a call with us](https://forms.gle/8XmpTTWXbZwWkfqT6)
+## Book a call with us
 
 Before the call, generate a usage report with our open-source [actions-usage tool](https://github.com/self-actuated/actions-usage) and send over the results via email. It'll help us recommend the best fit plan and server sizes for you.
+
+[Talk to us](https://forms.gle/8XmpTTWXbZwWkfqT6)
 
 ## Install the GitHub App
 
