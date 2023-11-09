@@ -172,7 +172,11 @@ The image is built automatically using GitHub Actions and is available on a cont
 
 ## What Kernel version is being used?
 
-At time of writing, the latest version supported by the Firecracker team is Kernel 5.10.77. As and when [newer versions are made available](https://github.com/firecracker-microvm/firecracker/tree/master/resources/guest_configs), we'll upgrade our support.
+At time of writing, actuated is using a 5.10.199 Kernel version, and will upgrade to various patch versions as they become available.
+
+As and when [newer versions are made available](https://github.com/firecracker-microvm/firecracker/tree/master/resources/guest_configs), we'll upgrade our support.
+
+The Firecracker team has released a guest configuration for the 6.1 Kernel, however there are several known issues which need to be addressed before it can be used with actuated.
 
 ## How easy is it to debug a runner?
 
