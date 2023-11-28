@@ -12,17 +12,25 @@ There are some prerequisites to enable KVM support:
 
 1. Make sure [nested virtualization is enabled](https://ostechnix.com/how-to-enable-nested-virtualization-in-kvm-in-linux/) on the Agent host.
 
-2. Edit `/etc/default/actuated` for your Actuated Agent and add the `kvm` suffix to the `AGENT_KERNEL_REF` variable:
+2. Edit `/etc/default/actuated` on the Actuated Agent and add the `kvm` suffix to the `AGENT_KERNEL_REF` variable:
 
     ```diff
-    - AGENT_KERNEL_REF="ghcr.io/openfaasltd/actuated-kernel-5.10.77:x86-64-latest"
-    + AGENT_KERNEL_REF="ghcr.io/openfaasltd/actuated-kernel-5.10.77:x86-64-latest-kvm"
+    - AGENT_KERNEL_REF="ghcr.io/openfaasltd/actuated-kernel:x86-64-latest"
+    + AGENT_KERNEL_REF="ghcr.io/openfaasltd/actuated-kernel:x86-64-kvm-latest"
+    ```
+
+3. Also add it to the `AGENT_IMAGE_REF` line:
+
+    ```diff
+    - AGENT_IMAGE_REF="ghcr.io/openfaasltd/actuated-ubuntu22.04:x86-64-latest"
+    + AGENT_IMAGE_REF="ghcr.io/openfaasltd/actuated-ubuntu22.04:x86-64-kvm-latest"
     ```
 
 3. Restart the Agent to use the new kernel.
 
     ```bash
-    sudo systemctl restart actuated
+    sudo systemctl daemon-reload && \
+        sudo systemctl restart actuated
     ```
 
 4. Run a [test build](/test-build/) to verify KVM support is enabled in the runner. The specs script from the test build will report whether `/dev/kvm` is available.
@@ -43,7 +51,7 @@ The workflow instals Firecracker, configures and boots a guest VM and then waits
     on: push
     jobs:
     vm-run:
-        runs-on: actuated
+        runs-on: actuated-4cpu-8gb
         steps:
         - uses: actions/checkout@master
             with:

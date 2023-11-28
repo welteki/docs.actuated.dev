@@ -172,7 +172,7 @@ The image is built automatically using GitHub Actions and is available on a cont
 
 ## What Kernel version is being used?
 
-At time of writing, actuated is using a 5.10.199 Kernel version, and will upgrade to various patch versions as they become available.
+At time of writing, actuated is using a 5.10.201 Kernel version, and will upgrade to various patch versions as they become available.
 
 As and when [newer versions are made available](https://github.com/firecracker-microvm/firecracker/tree/master/resources/guest_configs), we'll upgrade our support.
 
