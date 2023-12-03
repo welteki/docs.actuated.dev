@@ -15,15 +15,15 @@ There are some prerequisites to enable KVM support:
 2. Edit `/etc/default/actuated` on the Actuated Agent and add the `kvm` suffix to the `AGENT_KERNEL_REF` variable:
 
     ```diff
-    - AGENT_KERNEL_REF="ghcr.io/openfaasltd/actuated-kernel:x86-64-latest"
-    + AGENT_KERNEL_REF="ghcr.io/openfaasltd/actuated-kernel:x86-64-kvm-latest"
+    - AGENT_KERNEL_REF="ghcr.io/openfaasltd/actuated-kernel:x86_64-latest"
+    + AGENT_KERNEL_REF="ghcr.io/openfaasltd/actuated-kernel:x86_64-kvm-latest"
     ```
 
 3. Also add it to the `AGENT_IMAGE_REF` line:
 
     ```diff
-    - AGENT_IMAGE_REF="ghcr.io/openfaasltd/actuated-ubuntu22.04:x86-64-latest"
-    + AGENT_IMAGE_REF="ghcr.io/openfaasltd/actuated-ubuntu22.04:x86-64-kvm-latest"
+    - AGENT_IMAGE_REF="ghcr.io/openfaasltd/actuated-ubuntu22.04:x86_64-latest"
+    + AGENT_IMAGE_REF="ghcr.io/openfaasltd/actuated-ubuntu22.04:x86_64-kvm-latest"
     ```
 
 3. Restart the Agent to use the new kernel.
