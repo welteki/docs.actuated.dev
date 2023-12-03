@@ -26,7 +26,7 @@ Some engineers hate talking to sales people. You're not alone, and this is not a
 
 The purpose of a call is to understand your goals, and help you pick the best server hardware, hosting company, and subscription plan for your usage.
 
-Before the call, generate a usage report with our open-source [actions-usage tool](https://github.com/self-actuated/actions-usage) and send over the results via email. It'll help us recommend the best fit plan and server sizes for you.
+Before the call, generate a usage report with our open-source [actions-usage tool](https://github.com/self-actuated/actions-usage) for at least 7 days, and either send it over via email or share it with us on the call. It'll help us make a better recommendation.
 
 [Talk to us](https://forms.gle/8XmpTTWXbZwWkfqT6)
 
