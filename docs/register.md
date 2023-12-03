@@ -2,7 +2,7 @@
 
 Actuated is a managed service, where you plug in your own servers, and we do everything else needed to create and manage self-hosted runners for your GitHub Actions.
 
-Plans are paid monthly, without any minimum commitment. Why not pilot our service?
+Plans are paid monthly, without any minimum commitment.
 
 ## What you'll need
 
@@ -18,9 +18,13 @@ Plans are paid monthly, without any minimum commitment. Why not pilot our servic
 
 > We'll walk you through the onboarding process and answer all your questions, so that you can be up and running straight away.
 
-We've now run over 120,000 VMs for commercial teams already, and there's very little for you to do to get started, in most cases, we've seen a 2-3x speed up for `x86_64` builds by switching one line in a workflow: `runs-on: actuated`. For `Arm` builds, native hardware makes a night and day difference.
+We've now run over 160,000 VMs for commercial teams already, and there's very little for you to do to get started, in most cases, we've seen a 2-3x speed up for `x86_64` builds by switching one line in a workflow: `runs-on: actuated`. For `Arm` builds, native hardware makes a night and day difference.
 
 ## Book a call with us
+
+Some engineers hate talking to sales people. You're not alone, and this is not a sales call, or with sales people. Our pricing is public, and paid month to month by corporate card.
+
+The purpose of a call is to understand your goals, and help you pick the best server hardware, hosting company, and subscription plan for your usage.
 
 Before the call, generate a usage report with our open-source [actions-usage tool](https://github.com/self-actuated/actions-usage) and send over the results via email. It'll help us recommend the best fit plan and server sizes for you.
 
