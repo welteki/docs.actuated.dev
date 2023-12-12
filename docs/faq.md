@@ -49,7 +49,11 @@ actuated is primarily for software engineering teams who are currently using Git
 
 We have a sponsored program with the CNCF and Ampere for various Open Source projects, you can find out more here: [Announcing managed Arm CI for CNCF projects](https://actuated.dev/blog/arm-ci-cncf-ampere).
 
-Sponsored projects are required to [add our logo](/images/actuated-logo-github.png) to the README file for each repository where the actuated is being used.
+Sponsored projects are required to [add our GitHub badge](/images/actuated-badge.png) to the top of their README file for each repository where the actuated is being used, along with any other GitHub badges such as build status, code coverage, etc.
+
+```
+<img alt="Arm CI sponsored by Actuated" src="https://docs.actuated.dev/images/actuated-badge.png" width="120px"></img>
+```
 
 ## What kind of machines do I need for the agent?
 
