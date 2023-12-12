@@ -45,6 +45,12 @@ Actuated uses a one-shot VM that is destroyed immediately after a build is compl
 
 actuated is primarily for software engineering teams who are currently using GitHub Actions. A GitHub organisation is required for installation, and runners are attached to individual repositories as required, to execute builds.
 
+## Is there a sponsored subscription for Open Source projects?
+
+We have a sponsored program with the CNCF and Ampere for various Open Source projects, you can find out more here: [Announcing managed Arm CI for CNCF projects](https://actuated.dev/blog/arm-ci-cncf-ampere).
+
+Sponsored projects are required to [add our logo](/images/actuated-logo-github.png) to the README file for each repository where the actuated is being used.
+
 ## What kind of machines do I need for the agent?
 
 You'll need either: a bare-metal host (your own, AWS i3.metal or Equinix Metal), or a VM that supports nested virtualisation such as those provided by GCP, DigitalOcean and Azure.
