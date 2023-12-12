@@ -9,7 +9,7 @@ repo_url: https://github.com/self-actuated
 edit_uri: ""
 
 copyright: |
-  Copyright &copy; 2022 OpenFaaS Ltd
+  Copyright &copy; 2023 OpenFaaS Ltd
 theme:
   name: material
   # custom_dir: docs/theme
