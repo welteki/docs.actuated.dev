@@ -112,7 +112,7 @@ Actuated fixes the isolation problem, and prevents side-effects between builds. 
 
 ## Can I use the containers feature of GitHub Actions?
 
-GitHub Action's [Running jobs in a container](https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container) feature is supported, as is Docker, Buildx, Kubernetes, KinD, K3s, etc.
+GitHub Action's [Running jobs in a container](https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container) feature is supported, as is Docker, Buildx, Kubernetes, KinD, K3s, eBPF, etc.
 
 Example of running commands with the `docker.io/node:16` image.
 
