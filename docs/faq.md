@@ -55,6 +55,8 @@ Sponsored projects are required to [add our GitHub badge](/images/actuated-badge
 <img alt="Arm CI sponsored by Actuated" src="https://docs.actuated.dev/images/actuated-badge.png" width="120px"></img>
 ```
 
+For an example of what this would look like, see the [inletsctl project README](https://github.com/inlets/inletsctl).
+
 ## What kind of machines do I need for the agent?
 
 You'll need either: a bare-metal host (your own, AWS i3.metal or Equinix Metal), or a VM that supports nested virtualisation such as those provided by GCP, DigitalOcean and Azure.
