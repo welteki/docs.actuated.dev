@@ -190,6 +190,40 @@ As and when [newer versions are made available](https://github.com/firecracker-m
 
 The Firecracker team has released a guest configuration for the 6.1 Kernel, however there are several known issues which need to be addressed before it can be used with actuated.
 
+### Where are the Kernel headers / includes?
+
+!!! Warning
+    The following command is only designed for off the shelf cloud image builds of Ubuntu server, and will not work on actuated.
+
+    ```bash
+    apt-get install linux-headers-$(uname -r) 
+    ```
+
+For actuated, you'll need to take a different approach to build a DKMS or kmod module for your Kernel.
+
+Add [self-actuated/get-kernel-sources](https://github.com/self-actuated/get-kernel-sources) to your workflow and run it before your build step.
+
+```yaml
+      - name: Install kernel headers (actuated)
+        uses: self-actuated/get-kernel-sources@master
+```
+
+An `if` statement can be added to the block, if you also run the same job on various other types of runners outside of actuated.
+
+### Where is the Kernel configuration?
+
+You can run a job to print out or dump the configuration from proc, or from /boot/.
+
+Just create a new job, or an SSH debug session and run:
+
+```bash
+sudo modprobe configs
+cat /proc/config.gz | gunzip > /tmp/config
+
+# Look for a specific config option
+cat /tmp/config | grep "CONFIG_DEBUG_INFO_BTF"
+```
+
 ## How easy is it to debug a runner?
 
 OpenSSH is pre-installed, but it will be inaccessible from your workstation by default.
