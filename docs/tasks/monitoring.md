@@ -84,6 +84,12 @@ VMs running by host:
 sum by(job) (actuated_vm_running_gauge) > 0 
 ```
 
+Free RAM by host:
+
+```
+actuated_system_memory_available_bytes{}
+```
+
 VM launch total:
 
 ```
