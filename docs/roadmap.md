@@ -43,11 +43,12 @@ Shipped
 * [x] OIDC Proxy for OpenFaaS CE/Standard/Enterprise users for keyless login
 * [x] Examples for using S3/Minio running on the server as an actions cache, instead of the default hosted cache within Azure
 * [x] Specify a custom runner size for an individual workflow - i.e. `actuated-8cpu-12gb`
-* [ ] Specify `actuated-any` to run jobs on any available server whether amd64 or arm64, for architecture-agnostic workflows such as npm or for browser testing. 
+* [x] Specify `actuated-any` to run jobs on any available server whether amd64 or arm64, for architecture-agnostic workflows such as npm or for browser testing. 
 
-Coming soon:
+Coming next:
 
-* [ ] Custom CA for self-hosted S3, Minio, Docker Registries, apt/yum mirrors, etc.
+* [ ] GPU pass-through for ML and AI workloads
+* [ ] Support for private, self-hosted GitHub Enterprise Server (GHES) installations
 * [ ] Actuated for self-hosted GitLab. [Watch the video here](https://twitter.com/alexellisuk/status/1667130226327863298?s=20)
 
 Open for customer contributions:
@@ -57,11 +58,10 @@ Open for customer contributions:
 
 Under consideration:
 
-* [ ] Support for private, self-hosted GitHub Enterprise Server (GHES) installations
+* [ ] Custom CA for self-hosted S3, Minio, Docker Registries, apt/yum mirrors, etc.
 * [ ] Summary of CPU/RAM/disk consumption of builds
 * [ ] Right-sizing of build VMs based upon prior build history
 * [ ] Automated agent installation and bootstrap
-* [ ] GPU pass-through support for ML and AI workloads
 * [ ] Actuated for Jenkins
 
 Items marked under consideration are awaiting customer interest. Reach out to us if you'd like to see these features sooner.
