@@ -38,24 +38,18 @@ If you missed it in the "Provision a Server" page, we recommend you use Ubuntu 2
 
     > Setting up an ARM64 agent? Wherever you see `agent` in a command, change it to: `agent-arm64`. So instead of `agent keygen` you'd run `agent-arm64 keygen`.
 
-    Install [crane](https://github.com/google/go-containerregistry/releases):
-
-    ```bash
-    (
-    curl -sLS https://get.arkade.dev | sudo sh
-    arkade get crane
-    sudo mv $HOME/.arkade/bin/crane /usr/local/bin/
-    )
-    ```
-
+    Install [arkade](https://github.com/alexellis/arkade) using the command below, or download it from the [releases page](https://github.com/alexellis/arkade/releases).
+    
     Download the latest agent and install the binary to `/usr/local/bin/`:
 
     ```bash
     (
-    rm -rf agent || :
-    mkdir -p agent
+    # Install arkade
+    curl -sLS https://get.arkade.dev | sudo sh
 
-    crane export ghcr.io/openfaasltd/actuated-agent:latest | tar -xvf - -C ./agent
+    # Use arkade to extract the agent from its OCI container image
+    arkade oci install ghcr.io/openfaasltd/actuated-agent:latest --path ./agent
+    chmod +x ./agent/agent*
     sudo mv ./agent/agent* /usr/local/bin/
     )
     ```
