@@ -22,7 +22,7 @@ name: build
 on: push
 jobs:
   start-kind:
-    runs-on: actuated
+    runs-on: actuated-4cpu-16gb
     steps:
       - uses: actions/checkout@master
         with:
@@ -49,7 +49,7 @@ jobs:
         run: docker exec kind-control-plane journalctl -u kubelet
 ```
 
-To run this on ARM64, just change the actuated label to `actuated-arm64`.
+To run this on ARM64, just change the actuated prefix from `actuated-` to `actuated-arm64-`.
 
 ### Using a registry mirror for KinD
 

@@ -11,11 +11,6 @@ Certified for:
 
 ## Request a custom VM size
 
-To use the pre-configured size:
-
-* `actuated`
-* `actuated-arm64`
-
 For a custom size just append `-cpu-` and `-gb` to the above labels, for example:
 
 *x86_64* example:

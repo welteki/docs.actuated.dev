@@ -170,8 +170,6 @@ You can now start your first build and see it run on your actuated agent.
 
 [Start a build on your agent](/test-build)
 
-By default, the configured VM size for each server will be used when the `actuated` label is set:
-
 ```diff
 name: ci
 
@@ -180,10 +178,12 @@ on: push
 jobs:
   build-golang:
 -    runs-on: ubuntu-latest
-+    runs-on: actuated
++    runs-on: actuated-4cpu-16gb
 ```
 
-For Arm servers, use `actuated-arm64`:
+The amount of RAM and CPU can be picked independently.
+
+For Arm servers change the prefix from `actuated-` to `actuated-arm64`:
 
 ```diff
 name: ci
@@ -193,7 +193,7 @@ on: push
 jobs:
   build-golang:
 -    runs-on: ubuntu-latest
-+    runs-on: actuated-arm64
++    runs-on: actuated-arm64-8cpu-32gb
 ```
 
 You can also customise the VM size for each job:

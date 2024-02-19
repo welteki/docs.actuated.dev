@@ -21,7 +21,7 @@ name: k3sup-tester
 on: push
 jobs:
   k3sup-tester:
-    runs-on: actuated
+    runs-on: actuated-4cpu-16gb
     steps:
       - name: get arkade
         uses: alexellis/setup-arkade@v1
@@ -46,4 +46,4 @@ jobs:
         run: kubectl get pod -A -o wide
 ```
 
-To run this on ARM64, just change the actuated label to `actuated-arm64`.
+To run this on ARM64, just change the actuated prefix from `actuated-` to `actuated-arm64-`.

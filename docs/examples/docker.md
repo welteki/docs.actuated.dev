@@ -22,7 +22,7 @@ name: build
 on: push
 jobs:
   ping-google:
-    runs-on: actuated
+    runs-on: actuated-4cpu-16gb
     steps:
       - uses: actions/checkout@master
         with:
@@ -40,7 +40,7 @@ name: build
 on: push
 jobs:
   build-in-docker:
-    runs-on: actuated
+    runs-on: actuated-4cpu-16gb
     steps:
       - uses: actions/checkout@master
         with:
@@ -53,4 +53,4 @@ jobs:
           docker images
 ```
 
-To run this on ARM64, just change the actuated label to `actuated-arm64`.
+To run this on ARM64, just change the actuated prefix from `actuated-` to `actuated-arm64-`.
