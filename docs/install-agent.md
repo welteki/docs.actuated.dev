@@ -40,7 +40,7 @@ Enter the following into cloud-init/userdata or run it manually on the server af
 
 curl -LSsf https://get.actuated.com | LICENSE="" \
   TOKEN="" \
-  HOME="/root" bash -
+  HOME="/root" sudo -E bash -
 ```
 
 Minimum configuration:
@@ -48,12 +48,12 @@ Minimum configuration:
 * `TOKEN` - your Account API Token - reach out to us and we'll generate one for you
 * `LICENSE` - the key you received when you [purchased an actuated subscription](https://actuated.com/pricing)
 cache layers pulled anonymously
-* `HOME` - Set this only if using cloud-init/userdata - where HOME is usually unset. Otherwise leave it blank and the script will use the current user's home directory.
+* `HOME` - Generally, set this if using cloud-init/userdata because `HOME` is usually unset. Otherwise leave it blank and the script will use the current user's home directory.
 
 Additional configuration:
 
 * `DOCKER_USERNAME` and `DOCKER_PASSWORD` - your Docker Hub credentials for the pull-through cache. [Create a token here](https://docs.docker.com/security/access-tokens/) or leave empty to 
-* `LABELS` - apply a comma-separated list of labels to the agent, e.g. `gce` or `gce,ssd`
+* `LABELS` - apply a comma-separated list of labels to the agent, e.g. `gce` or `gce,ssd` or `gce,ssd,r1` then if you have a second machine later, you could label it `gce,ssh,r2` and target to either `r1` or `r2` in the `runs-on:` label later on like `runs-on: [actuated-2cpu-8gb, r2]`
 * `SAN` - use this option if autodetecting the host's IP address is not working properly, add `SAN=$(curl -sfSL https://checkip.amazonaws.com)` as an extra environment variable
 
 Storage configuration:
