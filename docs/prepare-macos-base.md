@@ -4,8 +4,8 @@ The macOS agent creates its base VM locally from a restore image downloaded
 directly from Apple. Actuated does not distribute a macOS base image.
 
 Preparing the base image installs macOS, configures the guest agent, and adds
-the GitHub Actions runner. The agent uses this base as a template and creates a
-disposable clone for each job VM.
+Apple's Command Line Tools and the GitHub Actions runner. The agent uses this
+base as a template and creates a disposable clone for each job VM.
 
 Complete the host requirements and [install the agent binary](install-macos-agent.md#2-install-the-agent)
 before preparing the image. Run all agent commands as the regular macOS user
@@ -40,8 +40,8 @@ Both methods create the same base bundle at `~/.actuated/base.bundle`.
     ```
 
     When setup finishes, leave the `oobe` command running. Open a second
-    Terminal, install the GitHub Actions runner into the base image, then shut
-    down the VM:
+    Terminal, install Apple's Command Line Tools and the GitHub Actions runner
+    into the base image, then shut down the VM:
 
     ```bash
     ~/.actuated/bin/agent base provision \
@@ -81,8 +81,8 @@ Both methods create the same base bundle at `~/.actuated/base.bundle`.
     Enter the `runner` password when prompted. The VM shuts down and the
     `base create` command exits after the guest agent is installed.
 
-    Start the VM again, install the GitHub Actions runner into the base image,
-    then shut down the VM:
+    Start the VM again, install Apple's Command Line Tools and the GitHub
+    Actions runner into the base image, then shut down the VM:
 
     ```bash
     ~/.actuated/bin/agent vm run \
@@ -98,9 +98,10 @@ Both methods create the same base bundle at `~/.actuated/base.bundle`.
 If `latest` cannot be installed on the host, download a compatible IPSW from
 Apple and pass its local path to `--ipsw` instead.
 
-The prepared base image now contains the GitHub Actions runner. Per-job
-credentials are supplied to disposable clones and are never stored in the
-base.
+The `base provision` command installs Apple's Command Line Tools in the guest
+before it installs the GitHub Actions runner. The prepared base image therefore
+provides tools such as Git and Clang to every disposable job VM. Per-job
+credentials are supplied to disposable clones and are never stored in the base.
 
 ## Verify the base image
 
