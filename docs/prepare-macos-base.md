@@ -156,4 +156,35 @@ specify it when
   --base ~/.actuated/base-xcode.bundle
 ```
 
+## Verify the base image
+
+Verify the base image:
+
+```bash
+~/.actuated/bin/agent base verify \
+  --bundle ~/.actuated/base.bundle
+```
+
+The command boots a disposable clone and checks the Actuated agent, Command Line
+Tools, and Actions runner. When an Xcode bundle is selected, it also checks the
+Xcode version and configured platform SDK. It then shuts down and removes the
+clone.
+
+Example output:
+
+```text
+$ ~/.actuated/bin/agent base verify \
+  --bundle ~/.actuated/base.bundle
+
+   Verifying base.bundle (base)
+ ✓ Cloning the base image base.bundle.verify
+ ✓ Booting the clone (8.3s)
+ ✓ Checking the guest agent f90c2b35c2e79ed9efc03124b6b42b0ed7e017cc, macOS 26.2
+ ✓ Checking the Command Line Tools git version 2.50.1 (Apple Git-155), Apple clang version 21.0.0 (20.1s)
+ ✓ Checking the Actions runner 2.336.0
+ ✓ Shutting down and removing the clone (6.9s)
+
+✓ base.bundle is ready to serve jobs
+```
+
 Next, return to [Install and join the macOS agent](install-macos-agent.md#4-enroll-the-host).
