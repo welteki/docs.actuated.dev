@@ -143,9 +143,14 @@ Install the service as the agent user, not with `sudo`.
       --addr "127.0.0.1:8080"
     ```
 
-The command uses the current agent binary, `~/.actuated` as its work
-directory, and `~/.actuated/base.bundle` as the base image. Use `--work-dir`
-or `--base` only when those defaults need to change.
+The command uses the current agent binary, `~/.actuated` as its work directory,
+and `~/.actuated/base.bundle` as the default base image. Use `--work-dir` when
+the default work directory needs to change.
+
+The `--base` flag selects the image used for every job VM and cannot be
+overridden per job. If your jobs need Xcode, first
+[prepare an image with the required version](prepare-macos-base.md#add-xcode-into-the-base-image),
+then pass its path to `--base` when installing the service.
 
 We recommend enabling automatic runner updates. Append
 `--schedule-runner-updates` to the `install` command above to install a

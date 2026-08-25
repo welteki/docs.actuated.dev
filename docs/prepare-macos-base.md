@@ -1,15 +1,18 @@
 # Prepare the macOS base image
 
-The macOS agent creates its base VM locally from a restore image downloaded
-directly from Apple. Actuated does not distribute a macOS base image.
+When enrolling a new Apple Mac for use with actuated, you must first prepare a
+base image from Apple's IPSW restore image. The restore image will be booted,
+and walk through the setup wizard, and install actuated's guest agent. From
+there, two additional stages set up the Command Line Tools CLT (such as git,
+Swift, etc), then you can follow further steps to install Xcode on top to build
+native applications for targets such as iOS.
 
-Preparing the base image installs macOS, configures the guest agent, and adds
-Apple's Command Line Tools and the GitHub Actions runner. The agent uses this
-base as a template and creates a disposable clone for each job VM.
+Actuated does not distribute macOS due to restrictions in the EULA limiting
+redistribution.
 
-Complete the host requirements and [install the agent binary](install-macos-agent.md#2-install-the-agent)
-before preparing the image. Run all agent commands as the regular macOS user
-that will run the service, not as root.
+Complete the host requirements and
+[install the agent binary](install-macos-agent.md#2-install-the-agent) first,
+then run all commands as the regular service user, not root.
 
 ## Choose an image preparation method
 
@@ -98,15 +101,65 @@ Both methods create the same base bundle at `~/.actuated/base.bundle`.
 If `latest` cannot be installed on the host, download a compatible IPSW from
 Apple and pass its local path to `--ipsw` instead.
 
-The `base provision` command installs Apple's Command Line Tools in the guest
-before it installs the GitHub Actions runner. The prepared base image therefore
-provides tools such as Git and Clang to every disposable job VM. Per-job
-credentials are supplied to disposable clones and are never stored in the base.
+The prepared base image now contains Apple's Command Line Tools and the GitHub
+Actions runner. Per-job credentials are supplied to disposable clones and are
+never stored in the base.
+
+## Add Xcode into the base image
+
+The default base image contains Apple's Command Line Tools, but not the full
+Xcode application or additional Apple platform support. If the runner needs
+Xcode, create a separate Xcode base image after completing the provisioning
+steps above.
+
+Make sure [Xcode](https://developer.apple.com/xcode/resources/) is installed on
+the host, then build the Xcode image from the provisioned base. By default, the
+agent uses the newest installed version:
+
+```bash
+~/.actuated/bin/agent base xcode \
+  --from ~/.actuated/base.bundle \
+  --to ~/.actuated/base-xcode.bundle
+```
+
+The command clones the provisioned base, adds Xcode and the iOS SDK, then seals
+`base-xcode.bundle` without modifying `base.bundle`. Creating the Xcode image
+takes approximately 6-10 minutes.
+
+The `--platform` flag can be used to select which additional Apple platform
+support Xcode downloads into the base image. It accepts `iOS`, `watchOS`,
+`tvOS`, or `visionOS`, and defaults to `iOS`. Use `--platform ''` to install
+Xcode without downloading an additional platform.
+
+If multiple Xcode versions are installed, select one by its version or provide
+its path explicitly:
+
+```bash
+~/.actuated/bin/agent base xcode \
+  --from ~/.actuated/base.bundle \
+  --to ~/.actuated/base-xcode.bundle \
+  --xcode-version 26.6
+
+~/.actuated/bin/agent base xcode \
+  --from ~/.actuated/base.bundle \
+  --to ~/.actuated/base-xcode.bundle \
+  --xcode-app /Applications/Xcode-26.6.app
+```
+
+Each macOS agent uses one base image for all of its job VMs. Individual jobs
+cannot select a different image. To configure the agent to use the Xcode image,
+specify it when
+[installing the macOS agent service](install-macos-agent.md#5-install-the-service):
+
+```bash
+~/.actuated/bin/agent install \
+  --base ~/.actuated/base-xcode.bundle
+```
 
 ## Verify the base image
 
-Verification is optional. If you verify the image, always test a disposable
-clone, not the base itself:
+Verification is optional. Always test a disposable clone rather than the base
+image itself:
 
 ```bash
 ~/.actuated/bin/agent vm clone \
