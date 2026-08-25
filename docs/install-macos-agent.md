@@ -116,13 +116,20 @@ There are two options for enrolling the host:
 ### 5. Install the service
 
 Starting a macOS VM requires the agent user's login keychain to be unlocked.
-For unattended recovery after a reboot, FileVault must be off and automatic
-login must be enabled:
+To recover without intervention after a reboot, the host therefore uses
+automatic login.
+
+FileVault prevents automatic login. For unattended operation,
+[turn off FileVault](https://support.apple.com/guide/mac-help/turn-off-filevault-on-mac-mchlp2560/mac),
+confirm that it is off, then enable automatic login:
 
 ```bash
-sudo fdesetup status
+sudo fdesetup status  # Expect: FileVault is Off.
 sudo ~/.actuated/bin/agent autologin --user "$(id -un)"
 ```
+
+If FileVault remains enabled, an operator must unlock the Mac and log in as the
+agent user after every reboot before jobs can start.
 
 Install the service as the agent user, not with `sudo`.
 
@@ -183,9 +190,13 @@ Expected results:
 
 ### 7. Run a test job
 
-Target the Mac from a minimal workflow:
+Create a GitHub Actions workflow:
 
 ```yaml
+name: macOS agent test
+
+on: workflow_dispatch
+
 jobs:
   build:
     runs-on: actuated-macos-arm64-2cpu-8gb
@@ -195,7 +206,8 @@ jobs:
       - run: sudo -n true
 ```
 
-The job should complete, and the single-use VM should be removed afterward.
+Trigger the workflow. The job should complete, and the single-use VM should be
+removed afterward.
 
 ## Keep the agent and base image current
 
