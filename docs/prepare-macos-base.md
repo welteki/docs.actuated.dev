@@ -156,28 +156,4 @@ specify it when
   --base ~/.actuated/base-xcode.bundle
 ```
 
-## Verify the base image
-
-Verification is optional. Always test a disposable clone rather than the base
-image itself:
-
-```bash
-~/.actuated/bin/agent vm clone \
-  --from ~/.actuated/base.bundle \
-  --to ~/.actuated/smoke.bundle
-
-~/.actuated/bin/agent vm run \
-  --bundle ~/.actuated/smoke.bundle &
-
-~/.actuated/bin/agent vm agent-health \
-  --bundle ~/.actuated/smoke.bundle
-
-~/.actuated/bin/agent vm rm \
-  --bundle ~/.actuated/smoke.bundle \
-  --force
-```
-
-The health command should return JSON describing the guest. Keep
-`base.bundle` stopped; the agent clones it for each job.
-
 Next, return to [Install and join the macOS agent](install-macos-agent.md#4-enroll-the-host).
